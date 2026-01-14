@@ -3,27 +3,37 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
-      {/* HEADER CON LOGO */}
-      <header className="py-8 border-b-2 border-black flex flex-col items-center">
-        <div className="relative w-full max-w-2xl h-48 md:h-64">
+      {/* HEADER CON LOGO AGRANDADO */}
+      <header className="flex flex-col items-center overflow-hidden">
+        <div className="relative w-full max-w-5xl h-[250px] md:h-[400px] -mb-6 md:-mb-10 transition-transform hover:scale-105 duration-500"> 
           <Image 
-            src="/logo.png" 
+            src="/logo_sinfondo.png" 
             alt="Alerta Flequillo Logo" 
             fill 
             className="object-contain"
             priority
+            unoptimized
+            quality={100}
           />
         </div>
+        
+        {/* El video que tenías comentado, si lo querés activar, ya tiene el tamaño grande también */}
+        {/* <div className="mt-8 w-64 h-64 md:w-80 md:h-80 rounded-full border-8 border-black shadow-[10px_10px_0px_0px_rgba(220,38,38,1)] overflow-hidden">
+          <video autoPlay loop muted playsInline className="w-full h-full object-cover scale-110">
+            <source src="/videologo.mp4" type="video/mp4" />
+          </video>
+        </div> 
+        */}
       </header>
-
+      
       {/* NAV CON TUS COLORES */}
-      <nav className="bg-alerta-blood text-alerta-pink py-3 px-4 flex justify-center gap-8 text-xs font-bold uppercase tracking-widest border-b-2 border-black">
-        <a href="#" className="hover:text-white transition-colors">Inicio</a>
-        <a href="#" className="hover:text-white transition-colors">Feminismo y Política</a>
-        <a href="#" className="hover:text-white transition-colors">Arte y Cultura</a>
-        <a href="#" className="hover:text-white transition-colors">Nosotras</a>
-        <a href="#" className="hover:text-white transition-colors">Contacto</a>
-        <a href="#" className="hover:text-white transition-colors">Apoyanos</a>
+      <nav className="sticky top-0 z-10 bg-black text-white py-4 flex flex-wrap justify-center gap-6 text-sm font-black uppercase tracking-widest -rotate-1 shadow-xl">
+        <a href="#" className="hover:text-red-500 underline decoration-red-600 underline-offset-4">Inicio</a>
+        <a href="#" className="hover:text-red-500">Feminismo y Política</a>
+        <a href="#" className="hover:text-red-500">Arte y Cultura</a>
+        <a href="#" className="hover:text-red-500">Nosotras</a>
+        <a href="#" className="hover:text-red-500">Contacto</a>
+        <a href="#" className="bg-white text-black px-2 py-0.5 rotate-2 hover:bg-red-600 hover:text-white transition-all">Apoyanos</a>
       </nav>
 
       {/* NOTA PRINCIPAL */}
