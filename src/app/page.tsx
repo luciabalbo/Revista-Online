@@ -5,7 +5,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       {/* HEADER CON LOGO AGRANDADO */}
       <header className="flex flex-col items-center overflow-hidden">
-        <div className="relative w-full max-w-5xl h-[250px] md:h-[400px] -mb-6 md:-mb-10 transition-transform hover:scale-105 duration-500"> 
+        <div className="relative w-full max-w-2xl h-[180px] md:h-[350px] -mb-4 md:-mb-8 transition-transform hover:scale-105 duration-500"> 
           <Image 
             src="/logo_sinfondo.png" 
             alt="Alerta Flequillo Logo" 
@@ -27,20 +27,20 @@ export default function Home() {
       </header>
       
       {/* NAV CON TUS COLORES */}
-      <nav className="sticky top-0 z-10 bg-black text-white py-4 flex flex-wrap justify-center gap-6 text-sm font-black uppercase tracking-widest -rotate-1 shadow-xl">
-        <a href="#" className="hover:text-red-500 underline decoration-red-600 underline-offset-4">Inicio</a>
-        <a href="#" className="hover:text-red-500">Feminismo y Política</a>
-        <a href="#" className="hover:text-red-500">Arte y Cultura</a>
-        <a href="#" className="hover:text-red-500">Nosotras</a>
-        <a href="#" className="hover:text-red-500">Contacto</a>
-        <a href="#" className="bg-white text-black px-2 py-0.5 rotate-2 hover:bg-red-600 hover:text-white transition-all">Apoyanos</a>
+      <nav className="sticky top-0 z-10 bg-black text-white mt-10 py-4 flex flex-wrap justify-center gap-6 text-sm font-black uppercase tracking-widest -rotate-1 shadow-xl">
+        <a href="#" className="hover:text-alerta-red underline decoration-alerta-red underline-offset-4">Inicio</a>
+        <a href="#" className="hover:text-alerta-red">Feminismo y Política</a>
+        <a href="#" className="hover:text-alerta-red">Arte y Cultura</a>
+        <a href="#" className="hover:text-alerta-red">Nosotras</a>
+        <a href="#" className="hover:text-alerta-red">Contacto</a>
+        <a href="#" className="bg-white text-black px-2 py-0.5 rotate-2 hover:bg-alerta-red hover:text-white transition-all">Apoyanos</a>
       </nav>
 
       {/* NOTA PRINCIPAL */}
       <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 font-sans">
         <div className="lg:col-span-8">
           <article className="group cursor-pointer">
-            <div className="bg-alerta-pink aspect-video mb-6 border-2 border-black shadow-[10px_10px_0px_0px_#4B0706] transition-transform group-hover:-translate-y-1">
+            <div className="bg-white aspect-video mb-6 border-2 border-black shadow-[10px_10px_0px_0px_#4B0706] transition-transform group-hover:-translate-y-1">
               {/* Aquí se verá la imagen cuando la subas */}
             </div>
             <span className="font-mono text-alerta-red font-bold uppercase text-sm">Editorial</span>
