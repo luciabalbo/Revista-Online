@@ -3,11 +3,11 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
-      {/* HEADER CON LOGO AGRANDADO */}
-      <header className="flex flex-col items-center overflow-hidden">
-        <div className="relative w-full max-w-2xl h-[180px] md:h-[350px] -mb-4 md:-mb-8 transition-transform hover:scale-105 duration-500"> 
+      {/* HEADER */}
+      <header className="flex flex-col items-center overflow-hidden p-0 m-0"> 
+        <div className="relative w-full max-w-2xl h-[250px] md:h-[400px] -mt-4 md:-mt-22 -mb-6 md:-mb-20 transition-transform hover:scale-105 duration-500"> 
           <Image 
-            src="/logo_sinfondo.png" 
+            src="/AlertaFlequillo.png" 
             alt="Alerta Flequillo Logo" 
             fill 
             className="object-contain"
@@ -26,94 +26,85 @@ export default function Home() {
         */}
       </header>
       
-      {/* NAV CON TUS COLORES */}
-      <nav className="sticky top-0 z-10 bg-black text-white mt-10 py-4 flex flex-wrap justify-center gap-6 text-sm font-black uppercase tracking-widest -rotate-1 shadow-xl">
-        <a href="#" className="hover:text-alerta-red underline decoration-alerta-red underline-offset-4">Inicio</a>
-        <a href="#" className="hover:text-alerta-red">Feminismo y Política</a>
-        <a href="#" className="hover:text-alerta-red">Arte y Cultura</a>
-        <a href="#" className="hover:text-alerta-red">Nosotras</a>
-        <a href="#" className="hover:text-alerta-red">Contacto</a>
-        <a href="#" className="bg-white text-black px-2 py-0.5 rotate-2 hover:bg-alerta-red hover:text-white transition-all">Apoyanos</a>
+      {/* NAV */}
+      <nav className="sticky top-0 z-10 bg-black text-white mt-0 py-4 flex flex-wrap justify-center gap-6 text-sm font-black font-montserrat uppercase shadow-xl">
+        <a href="#" className="hover:text-bordo underline decoration-bordo underline-offset-4">Inicio</a>
+        <a href="#" className="hover:text-naranja">Feminismo y Política</a>
+        <a href="#" className="hover:text-celeste">Arte y Cultura</a>
+        <a href="#" className="hover:text-lila">Nosotras</a>
+        <a href="#" className="hover:text-verde">Contacto</a>
+        <a href="#" className="bg-white text-black px-2 py-0.5 rotate-2 hover:bg-bordo hover:text-white transition-all">Apoyanos</a>
       </nav>
       
-      {/* NOTA PRINCIPAL */}
-      <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 font-sans">
-        <div className="lg:col-span-8">
-          <article className="group cursor-pointer">
-            <div className="bg-white aspect-video mb-6 border-2 border-black shadow-[10px_10px_0px_0px_#4B0706] transition-transform group-hover:-translate-y-1">
-              {/* Aquí se verá la imagen cuando la subas */}
-            </div>
-            <span className="font-mono text-alerta-red font-bold uppercase text-sm">Editorial</span>
-            <h2 className="text-5xl md:text-7xl font-serif font-black leading-[0.9] mt-4 mb-6 text-alerta-blood">
-              PROGRAMAR ES <br/> NUESTRA VENGANZA
-            </h2>
-            <p className="text-xl leading-relaxed text-gray-800 max-w-2xl">
-              Un manifiesto sobre por qué las pibas tenemos que ocupar los espacios de código y construcción digital.
-            </p>
-          </article>
-        </div>
-
-        {/* COLUMNA LATERAL */}
-        <aside className="lg:col-span-4 border-l-2 border-black pl-8 space-y-10">
-          <h3 className="font-mono bg-alerta-red text-white inline-block px-2 py-1 text-sm">LO ÚLTIMO</h3>
-          <div className="space-y-8">
-            {[1, 2].map((i) => (
-              <div key={i} className="border-b border-gray-200 pb-4">
-                <h4 className="text-2xl font-serif font-bold leading-tight hover:text-alerta-red cursor-pointer">
-                  Título de una nota secundaria que impacta.
-                </h4>
-                <p className="text-sm font-mono text-gray-500 mt-2">Por Alerta Flequillo</p>
+      {/* --- SECCIÓN PRINCIPAL: SLIDER DE NOTAS (Inspo Anfibia) --- */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 no-scrollbar pb-8">
+          {/* Nota Principal 1 */}
+          <div className="min-w-full md:min-w-[80%] snap-center relative group cursor-pointer">
+            <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-negro border-2 border-negro shadow-[12px_12px_0_0_#A52502]">
+              <img src="/stikers/descarga.jfif" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 opacity-70 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-negro via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 p-8 w-full md:w-2/3">
+                <span className="bg-celeste text-white px-3 py-1 font-mono text-xs uppercase mb-4 inline-block">Destacado</span>
+                <h2 className="font-sansita font-[900] text-4xl md:text-7xl text-white leading-none uppercase drop-shadow-md">
+                  Programar es nuestra <span className="text-naranja italic">venganza</span>
+                </h2>
+                <p className="font-montserrat text-white text-lg mt-4 hidden md:block">Por Luciana Gallo — Un manifiesto sobre ocupar los espacios de código.</p>
               </div>
-            ))}
+            </div>
           </div>
-        </aside>
+          {/* Nota Principal 2 (Podes duplicar este bloque para más notas) */}
+          <div className="min-w-full md:min-w-[80%] snap-center relative group cursor-pointer">
+            <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-negro border-2 border-negro shadow-[12px_12px_0_0_#154B52]">
+              <img src="/stikers/descarga (1).jfif" className="w-full h-full object-cover grayscale opacity-70" />
+              <div className="absolute bottom-0 left-0 p-8">
+                <h2 className="font-sansita font-[900] text-4xl md:text-7xl text-white uppercase">El algoritmo del deseo</h2>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 relative">
-  
-        {/* --- NOTA PRINCIPAL (El "Gran Impacto") --- */}
-        <div className="lg:col-span-7 relative group">
-          {/* Imagen con marco irregular */}
-          <div className="relative bg-black p-2 rotate-1 shadow-[15px_15px_0px_0px_#4B0706] transition-transform group-hover:-rotate-1 duration-300">
-            <div className="aspect-[4/5] bg-gray-300 relative overflow-hidden border-2 border-white">
-              {/* Acá iría la foto de la nota, por ahora un placeholder con estilo */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <img src="/stikers/descarga.jfif" className="w-full h-full object-cover grayscale contrast-125" alt="Nota principal" />
+      {/* --- SECCIÓN 3 COLUMNAS (Inspo Feminacida) --- */}
+      <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 border-t-2 border-negro pt-12">
+        {[
+          { cat: 'Política', col: 'text-bordo', desc: 'Hackeando el sistema desde las bases.' },
+          { cat: 'Cultura', col: 'text-verde', desc: 'Nuevas narrativas en la era digital.' },
+          { cat: 'Tecnología', col: 'text-lila', desc: '¿Quién escribe las reglas de la IA?' }
+        ].map((item, i) => (
+          <article key={i} className="group cursor-pointer">
+            <div className="aspect-square bg-gray-200 mb-6 overflow-hidden border-2 border-negro transition-transform group-hover:-rotate-2">
+              <img src={`/stikers/descarga (${i+1}).jfif`} className="w-full h-full object-cover" />
             </div>
-            
-            {/* Etiqueta tipo cinta adhesiva */}
-            <span className="absolute -top-4 -left-4 bg-alerta-red text-white font-mono px-4 py-1 text-sm -rotate-6 border-2 border-black z-30">
-              EDITORIAL #01
-            </span>
+            <span className={`font-sansita font-bold uppercase ${item.col}`}>{item.cat}</span>
+            <h3 className="font-sansita font-bold text-2xl mt-2 leading-tight hover:underline">
+              Título de la nota que entra en la grilla de tres columnas
+            </h3>
+            <p className="font-montserrat text-sm mt-4 text-gray-700">{item.desc}</p>
+            <p className="font-mono text-[10px] mt-4 uppercase">Por Alerta Flequillo</p>
+          </article>
+        ))}
+      </section>
+
+      {/* --- BANNER INTERMEDIO / FOTOPERIODISMO --- */}
+      <section className="bg-negro py-20 my-12 overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+          <div className="md:w-1/2 z-10">
+            <h4 className="font-sansita font-[900] text-celeste text-sm uppercase tracking-[0.2em] mb-4">Fotoperiodismo</h4>
+            <h2 className="font-sansita font-[900] text-5xl md:text-7xl text-white leading-none mb-6">MIRADAS <br/> QUE <span className="text-bordo italic">GRITAN</span></h2>
+            <button className="bg-white text-negro px-8 py-3 font-sansita font-bold uppercase border-4 border-celeste hover:bg-celeste hover:text-white transition-all">Ver Galería</button>
           </div>
-
-          {/* Título que pisa la imagen (como en tu inspo) */}
-          <h2 className="relative z-20 -mt-20 ml-4 text-6xl md:text-8xl font-black text-white uppercase leading-[0.8] drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">
-            PROGRAMAR <br />
-            <span className="text-alerta-red italic">ES NUESTRA</span> <br />
-            VENGANZA
-          </h2>
-        </div>
-
-        {/* --- COLUMNA LATERAL (Moodboard Style) --- */}
-        <div className="lg:col-span-5 flex flex-col justify-center space-y-12">
-          
-          {/* Texto descriptivo con fondo tipo "resaltador" */}
-          <div className="bg-[#fffbeb] p-6 border-2 border-black -rotate-2 shadow-[8px_8px_0px_0px_black]">
-            <p className="font-serif text-xl leading-tight text-black">
-              "No queremos solo usar la tecnología, queremos <span className="bg-alerta-red text-white px-1">romperla</span> y volverla a armar a nuestra imagen y semejanza."
-            </p>
-            <p className="mt-4 font-mono text-xs uppercase tracking-tighter text-gray-600">
-              — Escrito por la colectiva Alerta Flequillo
-            </p>
+          <div className="md:w-1/2 relative">
+            <div className="grid grid-cols-2 gap-4 rotate-3">
+              <img src="/stikers/descarga.jfif" className="w-full aspect-square object-cover border-4 border-white shadow-xl" />
+              <img src="/stikers/descarga (2).jpg" className="w-full aspect-square object-cover border-4 border-white shadow-xl -mt-8" />
+            </div>
           </div>
-
-          {/* Botón de acción estilo Punk */}
-          <button className="self-start bg-black text-white px-8 py-4 font-black uppercase tracking-widest border-4 border-alerta-red hover:bg-alerta-red hover:translate-x-2 hover:-translate-y-2 transition-all shadow-[10px_10px_0px_0px_black]">
-            Leer Manifiesto Completo
-          </button>
         </div>
-
+        {/* Texto de fondo tipo Anfibia */}
+        <div className="absolute -bottom-10 right-0 font-sansita font-[900] text-[15vw] text-white/5 whitespace-nowrap select-none">
+          ALERTA FLEQUILLO ALERTA FLEQUILLO
+        </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-6 py-20">

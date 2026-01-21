@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, Special_Elite } from "next/font/google";
+import { Sansita, Montserrat, Special_Elite } from "next/font/google"; // Importamos las nuevas
 import "./globals.css";
 
-// Cargamos las fuentes de Google
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif" });
-const specialElite = Special_Elite({ weight: "400", subsets: ["latin"], variable: "--font-mono" });
+const sansita = Sansita({ 
+  weight: ["400", "700", "900"], 
+  subsets: ["latin"], 
+  variable: "--font-sansita" 
+});
+
+const montserrat = Montserrat({ 
+  weight: ["400"], 
+  subsets: ["latin"], 
+  style: ["normal", "italic"],
+  variable: "--font-montserrat" 
+});
+
+const specialElite = Special_Elite({ 
+  weight: "400", 
+  subsets: ["latin"], 
+  variable: "--font-mono" 
+});
 
 export const metadata: Metadata = {
   title: "Alerta Flequillo | Revista Online",
@@ -19,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${inter.variable} ${playfair.variable} ${specialElite.variable} antialiased`}>
+      <body className={`${sansita.variable} ${montserrat.variable} ${specialElite.variable} antialiased`}>
         {children}
       </body>
     </html>
