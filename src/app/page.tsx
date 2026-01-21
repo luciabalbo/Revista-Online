@@ -1,6 +1,22 @@
+"use client";
 import Image from "next/image";
+import { useRef } from "react";
 
 export default function Home() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      // clientWidth es el ancho exacto de lo que ves en pantalla
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo = direction === "left" ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      
+      scrollRef.current.scrollTo({
+        left: scrollTo,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <main className="min-h-screen bg-white">
       {/* HEADER */}
@@ -36,32 +52,75 @@ export default function Home() {
         <a href="#" className="bg-white text-black px-2 py-0.5 rotate-2 hover:bg-bordo hover:text-white transition-all">Apoyanos</a>
       </nav>
       
-      {/* --- SECCIÓN PRINCIPAL: SLIDER DE NOTAS (Inspo Anfibia) --- */}
-      <section className="max-w-7xl mx-auto px-6 py-12">
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 no-scrollbar pb-8">
-          {/* Nota Principal 1 */}
-          <div className="min-w-full md:min-w-[80%] snap-center relative group cursor-pointer">
-            <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-negro border-2 border-negro shadow-[12px_12px_0_0_#A52502]">
-              <img src="/stikers/descarga.jfif" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 opacity-70 group-hover:opacity-100" />
-              <div className="absolute inset-0 bg-gradient-to-t from-negro via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 p-8 w-full md:w-2/3">
-                <span className="bg-celeste text-white px-3 py-1 font-mono text-xs uppercase mb-4 inline-block">Destacado</span>
-                <h2 className="font-sansita font-[900] text-4xl md:text-7xl text-white leading-none uppercase drop-shadow-md">
-                  Programar es nuestra <span className="text-naranja italic">venganza</span>
-                </h2>
-                <p className="font-montserrat text-white text-lg mt-4 hidden md:block">Por Luciana Gallo — Un manifiesto sobre ocupar los espacios de código.</p>
+      {/* --- SECCIÓN PRINCIPAL: FULL-SCREEN SLIDER (Inspo Anfibia + Fotoperiodismo) --- */}
+      <section className="relative w-full h-[80vh] md:h-[90vh] overflow-hidden bg-negro group">
+        
+        {/* Contenedor del Scroll */}
+        <div className="flex h-full overflow-x-auto snap-x snap-mandatory no-scrollbar">
+          
+          {/* NOTA 1 */}
+          <div className="min-w-full h-full snap-center relative">
+            <img 
+              src="/stikers/descarga.jfif" 
+              className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 opacity-60" 
+              alt="Programar es nuestra venganza"
+            />
+            {/* Overlay de degradado para legibilidad */}
+            <div className="absolute inset-0 bg-gradient-to-r from-negro/80 via-negro/20 to-transparent" />
+            
+            <div className="relative h-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-start">
+              <span className="bg-bordo text-white px-4 py-1 font-mono text-sm uppercase mb-6 border-2 border-white rotate-1">
+                Destacado
+              </span>
+              <h2 className="font-sansita font-[900] text-6xl md:text-[120px] text-white leading-[0.85] uppercase max-w-4xl drop-shadow-2xl">
+                PROGRAMAR <br />
+                <span className="text-naranja">ES NUESTRA</span> <br />
+                VENGANZA
+              </h2>
+              <div className="mt-8 border-l-4 border-celeste pl-6">
+                <p className="font-montserrat italic text-white text-xl md:text-2xl max-w-xl">
+                  "Un manifiesto sobre ocupar los espacios de código y construcción digital."
+                </p>
+                <p className="font-mono text-celeste mt-4 text-sm uppercase tracking-widest">
+                  Por Luciana Gallo
+                </p>
               </div>
             </div>
           </div>
-          {/* Nota Principal 2 (Podes duplicar este bloque para más notas) */}
-          <div className="min-w-full md:min-w-[80%] snap-center relative group cursor-pointer">
-            <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-negro border-2 border-negro shadow-[12px_12px_0_0_#154B52]">
-              <img src="/stikers/descarga (1).jfif" className="w-full h-full object-cover grayscale opacity-70" />
-              <div className="absolute bottom-0 left-0 p-8">
-                <h2 className="font-sansita font-[900] text-4xl md:text-7xl text-white uppercase">El algoritmo del deseo</h2>
-              </div>
+
+          {/* NOTA 2 */}
+          <div className="min-w-full h-full snap-center relative">
+            <img 
+              src="/stikers/descarga (1).jfif" 
+              className="absolute inset-0 w-full h-full object-cover grayscale opacity-50" 
+              alt="El algoritmo del deseo"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-negro/80 via-transparent to-negro/80" />
+            <div className="relative h-full flex items-center justify-center text-center">
+              <h2 className="font-sansita font-[900] text-7xl md:text-[100px] text-white uppercase leading-none">
+                EL ALGORITMO <br /> <span className="text-lila italic">DEL DESEO</span>
+              </h2>
             </div>
           </div>
+        </div>
+
+        {/* FLECHAS DE NAVEGACIÓN (Inspo Anfibia) */}
+        <button className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white text-white hover:text-negro border-2 border-white p-4 transition-all opacity-0 group-hover:opacity-100 hidden md:block">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-8 h-8">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        <button className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white text-white hover:text-negro border-2 border-white p-4 transition-all opacity-0 group-hover:opacity-100 hidden md:block">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-8 h-8">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+
+        {/* INDICADOR DE SCROLL MOUSE */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2">
+          <div className="w-12 h-1 bg-white"></div>
+          <div className="w-12 h-1 bg-white/30"></div>
+          <div className="w-12 h-1 bg-white/30"></div>
         </div>
       </section>
 
