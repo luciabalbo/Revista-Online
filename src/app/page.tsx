@@ -155,9 +155,9 @@ export default function Home() {
           </div>
         </div>
         {/* Texto de fondo tipo Anfibia */}
-        <div className="absolute -bottom-10 right-0 font-sansita font-[900] text-[15vw] text-white/7 whitespace-nowrap select-none">
+        {/*<div className="absolute -bottom-10 right-0 font-sansita font-[900] text-[15vw] text-white/7 whitespace-nowrap select-none">
           ALERTA FLEQUILLO ALERTA FLEQUILLO
-        </div>
+        </div>*/}
       </section>
 
       {/*<section className="max-w-7xl mx-auto px-6 py-20">
