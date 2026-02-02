@@ -305,7 +305,7 @@ export default function Home() {
             <div className="flex gap-4 mt-4">
               {/* Stickers de Redes */}
               <div className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-lila hover:rotate-12 transition-all cursor-pointer">IG</div>
-              <div className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-naranja hover:-rotate-12 transition-all cursor-pointer">TW</div>
+              <div className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-naranja hover:-rotate-12 transition-all cursor-pointer">TK</div>
               <div className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-verde hover:rotate-6 transition-all cursor-pointer">YT</div>
             </div>
           </div>
