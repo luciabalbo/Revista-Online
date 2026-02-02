@@ -275,7 +275,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-bordo rounded-full rotate-3 group-hover:rotate-6 transition-transform duration-500 shadow-[10px_10px_0px_0px_rgba(255,255,255,0.1)]"></div>
               
               {/* El Video Logo */}
-              <div className="absolute inset-0 rounded-full  overflow-hidden -rotate-3 group-hover:rotate-0 transition-transform duration-500">
+              <div className="absolute inset-0 rounded-full overflow-hidden -rotate-3 group-hover:rotate-0 transition-transform duration-500">
                 <video 
                   autoPlay 
                   loop 
