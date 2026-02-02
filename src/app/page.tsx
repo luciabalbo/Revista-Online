@@ -236,6 +236,95 @@ export default function Home() {
           </div>
         </div>
       </section>*/}
+
+      {/* BLOQUE CENTRAL (Manifiesto y Buscador) */}
+      <section className="bg-negro py-20 my-12 overflow-hidden relative">
+        <div className="max-w-4xl mx-auto mt-24 mb-16 text-center flex flex-col items-center relative z-10">
+          <p className="font-montserrat text-2xl md:text-3xl italic text-white leading-tight max-w-2xl mb-12 text-pretty">
+            "No somos una revista, somos un <span className="bg-white text-negro px-2 not-italic font-black">grito digital</span>. Arte, política y feminismo desde el borde del abismo."
+          </p>
+          
+          <div className="relative w-full max-w-lg group">
+            <input 
+              type="text" 
+              placeholder="BUSCAR EN EL CAOS..." 
+              className="w-full bg-white/5 border-2 border-white p-5 font-mono text-sm focus:outline-none focus:bg-white focus:text-negro transition-all placeholder:text-white/30 text-center uppercase tracking-widest"
+            />
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-celeste text-negro px-4 py-1 text-xs font-black -rotate-2 border border-negro shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] group-hover:rotate-2 transition-transform">
+              SEARCH
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* --- FOOTER: ESTILO FANZINE / DIARIO --- */}
+      <footer className="bg-negro text-white pt-20 pb-10 px-6 border-t-4 border-bordo relative overflow-hidden">
+        
+        {/* Decoración de fondo: Letras gigantes cortadas */}
+        <div className="absolute top-0 right-0 text-[20vw] font-black text-white/5 leading-none select-none pointer-events-none -mr-10">
+          ALERTA
+        </div>
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+          
+          {/* --- COLUMNA 1: LOGO VIDEO + APOYO --- */}
+          <div className="md:col-span-2 flex flex-col items-start">
+            
+            {/* Contenedor del Video Logo */}
+            <div className="relative w-60 h-60 md:w-50 md:h-50 mb-8 group">
+              {/* Círculo decorativo de fondo (Efecto Sticker) */}
+              <div className="absolute inset-0 bg-bordo rounded-full rotate-3 group-hover:rotate-6 transition-transform duration-500 shadow-[10px_10px_0px_0px_rgba(255,255,255,0.1)]"></div>
+              
+              {/* El Video Logo */}
+              <div className="absolute inset-0 rounded-full border-4 border-white overflow-hidden -rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="w-full h-full object-cover scale-110"
+                >
+                  <source src="/videologo.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+
+          {/* Columna 2: Navegación Rápida */}
+          <div className="flex flex-col gap-4 font-mono uppercase text-sm">
+            <span className="text-bordo font-black mb-2 tracking-widest">— SECCIONES</span>
+            <a href="#" className="hover:translate-x-2 transition-transform hover:text-naranja">Feminismo y Política</a>
+            <a href="#" className="hover:translate-x-2 transition-transform hover:text-celeste">Arte y Cultura</a>
+            <a href="#" className="hover:translate-x-2 transition-transform hover:text-lila">Nosotras</a>
+            <a href="#" className="hover:translate-x-2 transition-transform hover:text-verde">Contacto</a>
+          </div>
+
+          {/* Columna 3: Redes / Contacto */}
+          <div className="flex flex-col gap-4 font-mono uppercase text-sm">
+            <span className="text-celeste font-black mb-2 tracking-widest">— CONTACTO</span>
+            <a href="#" className="hover:text-white/60 underline decoration-bordo underline-offset-4 text-xs lowercase">alertaflequillo@gamil.com</a>
+            <div className="flex gap-4 mt-4">
+              {/* Stickers de Redes */}
+              <div className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-lila hover:rotate-12 transition-all cursor-pointer">IG</div>
+              <div className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-naranja hover:-rotate-12 transition-all cursor-pointer">TW</div>
+              <div className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-verde hover:rotate-6 transition-all cursor-pointer">YT</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Línea final de créditos */}
+        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-mono uppercase tracking-[0.2em] text-gray-500">
+          <p>© 2026 ALERTA FLEQUILLO - HECHO CON AMOR </p>
+          <div className="flex gap-8">
+            <span className="hover:text-white cursor-help">Privacidad (¿Qué es eso?)</span>
+            <span className="text-white">Córdoba, Argentina</span>
+          </div>
+        </div>
+
+        {/* El sticker final de "Hecho por..." */}
+        <div className="absolute bottom-4 right-4 bg-white text-negro p-2 font-black text-[10px] rotate-3 shadow-[4px_4px_0px_0px_rgba(165,37,2)]">
+          DESIGN BY LULA
+        </div>
+      </footer>
     </main>
   );
 }
