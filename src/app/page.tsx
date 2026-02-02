@@ -298,17 +298,36 @@ export default function Home() {
             <a href="#" className="hover:translate-x-2 transition-transform hover:text-verde">Contacto</a>
           </div>
 
-          {/* Columna 3: Redes / Contacto */}
-          <div className="flex flex-col gap-4 font-mono uppercase text-sm">
-            <span className="text-celeste font-black mb-2 tracking-widest">— CONTACTO</span>
-            <a href="#" className="hover:text-white/60 underline decoration-bordo underline-offset-4 text-xs lowercase">alertaflequillo@gamil.com</a>
-            <div className="flex gap-4 mt-4">
-              {/* Stickers de Redes */}
-              <div className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-lila hover:rotate-12 transition-all cursor-pointer">IG</div>
-              <div className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-naranja hover:-rotate-12 transition-all cursor-pointer">TK</div>
-              <div className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-verde hover:rotate-6 transition-all cursor-pointer">YT</div>
-            </div>
+        {/* Columna 3: Redes / Contacto */}
+        <div className="flex flex-col gap-4 font-mono uppercase text-sm">
+          <span className="text-celeste font-black mb-2 tracking-widest">— CONTACTO</span>
+          <a href="mailto:alertaflequillo@gmail.com" className="hover:text-white/60 underline decoration-bordo underline-offset-4 text-xs lowercase">
+            alertaflequillo@gmail.com
+          </a>
+          
+          <div className="flex gap-4 mt-4">
+            {/* Instagram */}
+            <a href="#" className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-lila hover:rotate-12 transition-all cursor-pointer group">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+            </a>
+
+            {/* TikTok */}
+            <a href="#" className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-naranja hover:-rotate-12 transition-all cursor-pointer group">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+              </svg>
+            </a>
+
+            {/* YouTube */}
+            <a href="#" className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-verde hover:rotate-6 transition-all cursor-pointer group">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 69.44 69.44 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 69.44 69.44 0 0 1-15 0 2 2 0 0 1-2-2Z"/><path d="m10 15 5-3-5-3z"/>
+              </svg>
+            </a>
           </div>
+        </div>
         </div>
 
         {/* Línea final de créditos */}
