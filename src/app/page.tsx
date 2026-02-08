@@ -1,10 +1,15 @@
 "use client";
 import Image from "next/image";
 import { useRef } from "react";
+import Link from "next/link"; // Importante para navegar
+import notas from '@/app/notas.json'; // Asegúrate de que la ruta sea correcta
 
 export default function Home() {
-  // Esta es la manguera que conecta el código con el slider
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Filtramos las notas: las primeras 3 para el Slider, las siguientes 3 para la grilla
+  const notasBanner = notas.slice(0, 3);
+  const notasGrilla = notas.slice(3, 6);
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -30,14 +35,13 @@ export default function Home() {
             className="object-contain"
             priority
             unoptimized
-            quality={100}
           />
         </div>
       </header>
       
       {/* NAV */}
       <nav className="sticky top-0 z-50 bg-black text-white py-4 flex flex-wrap justify-center gap-6 text-sm font-black font-montserrat uppercase shadow-xl">
-        <a href="#" className="hover:text-bordo underline decoration-bordo underline-offset-4">Inicio</a>
+        <Link href="/" className="hover:text-bordo underline decoration-bordo underline-offset-4">Inicio</Link>
         <a href="#" className="hover:text-naranja">Feminismo y Política</a>
         <a href="#" className="hover:text-celeste">Arte y Cultura</a>
         <a href="#" className="hover:text-lila">Nosotras</a>
@@ -45,78 +49,89 @@ export default function Home() {
         <a href="#" className="bg-white text-black px-2 py-0.5 rotate-2 hover:bg-bordo hover:text-white transition-all">Apoyanos</a>
       </nav>
       
-      {/* --- SECCIÓN PRINCIPAL: FULL-SCREEN SLIDER --- */}
-      <section className="relative w-full h-[80vh] md:h-[90vh] overflow-hidden bg-negro group">
-        
-        {/* LA CORRECCIÓN ESTÁ ACÁ: Agregamos ref={scrollRef} */}
+     {/* --- SECCIÓN PRINCIPAL: SLIDER DINÁMICO (ESTILO ANFIBIA) --- */}
+      <section className="relative w-full h-[80vh] md:h-[90vh] overflow-hidden bg-black group">
         <div 
           ref={scrollRef} 
           className="flex h-full overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth"
         >
-          
-          {/* NOTA 1: flex-shrink-0 es clave para que no se achique */}
-          <div className="min-w-full h-full snap-center relative flex-shrink-0">
-            <img 
-              src="/stikers/descarga.jfif" 
-              className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 opacity-60" 
-              alt="Programar"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-negro/80 via-negro/20 to-transparent" />
-            
-            <div className="relative h-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-start">
-              <span className="bg-bordo text-white px-4 py-1 font-montserrat text-sm uppercase mb-6 border-2 border-white rotate-1">
-                Destacado
-              </span>
-              <h2 className="font-sansita font-[900] text-6xl md:text-[120px] text-white leading-[0.85] uppercase max-w-4xl drop-shadow-2xl">
-                PROGRAMAR <br />
-                <span className="text-naranja">ES NUESTRA</span> <br />
-                VENGANZA
-              </h2>
-              <div className="mt-8 border-l-4 border-celeste pl-6">
-                <p className="font-montserrat italic text-white text-xl md:text-2xl max-w-xl text-pretty">
-                  "Un manifiesto sobre ocupar los espacios de código y construcción digital."
-                </p>
-                <p className="font-mono text-celeste mt-4 text-sm uppercase tracking-widest">
-                  Por Luciana Gallo
-                </p>
+          {notasBanner.map((nota) => (
+            <div key={nota.id} className="min-w-full h-full snap-center relative flex-shrink-0">
+              {/* IMAGEN: Menos opacidad, quitamos el grayscale fijo para que luzca como la referencia */}
+              <img 
+                src={nota.imagen} 
+                className="absolute inset-0 w-full h-full object-cover brightness-[0.7] transition-all duration-700" 
+                alt={nota.titulo}
+              />
+              
+              {/* OVERLAY: Un gradiente oscuro desde abajo para que el texto blanco siempre se lea */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
+              
+              {/* CONTENIDO CENTRADO */}
+              <div className="relative h-full w-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-center text-center">
+                
+                <span className="bg-bordo text-white px-4 py-1 font-montserrat text-xs md:text-sm uppercase mb-4 tracking-widest shadow-lg">
+                  {nota.categoria}
+                </span>
+
+                <Link href={`/notas/${nota.slug}`}>
+                  <h2 className="font-sansita font-[900] text-5xl md:text-[80px] text-white leading-[0.9] uppercase max-w-5xl drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] hover:scale-[1.02] transition-transform cursor-pointer">
+                    {nota.titulo}
+                  </h2>
+                </Link>
+
+                <div className="mt-6 max-w-3xl">
+                  <p className="font-montserrat italic text-white text-lg md:text-2xl text-pretty drop-shadow-md">
+                    "{nota.bajada}"
+                  </p>
+                  
+                  <div className="flex flex-col items-center gap-4 mt-6">
+                    <p className="font-mono text-white/90 text-sm uppercase tracking-[0.2em]">
+                      Por <span className="text-celeste font-bold">{nota.autor}</span>
+                    </p>
+                    
+                    <Link href={`/notas/${nota.slug}`} className="mt-2 bg-white text-black px-6 py-2 font-black text-sm uppercase hover:bg-bordo hover:text-white transition-all shadow-xl">
+                      Leer más
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-
-          {/* NOTA 2: flex-shrink-0 también acá */}
-          <div className="min-w-full h-full snap-center relative flex-shrink-0">
-            <img 
-              src="/stikers/descarga (1).jfif" 
-              className="absolute inset-0 w-full h-full object-cover grayscale opacity-50" 
-              alt="Algoritmo"
-            />
-            <div className="absolute inset-0 bg-gradient-to-l from-negro/80 via-transparent to-negro/80" />
-            <div className="relative h-full flex items-center justify-center text-center px-4">
-              <h2 className="font-sansita font-[900] text-7xl md:text-[100px] text-white uppercase leading-none">
-                EL ALGORITMO <br /> <span className="text-lila italic">DEL DESEO</span>
-              </h2>
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* FLECHAS CON CLIC FUNCIONANDO */}
+        {/* FLECHAS ESTILO MINIMALISTA */}
         <button 
-          onClick={() => scroll("left")}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-40 bg-white/10 hover:bg-white text-white hover:text-negro border-2 border-white p-3 md:p-4 transition-all opacity-0 group-hover:opacity-100 hidden md:block"
+          onClick={() => scroll("left")} 
+          className="absolute left-6 top-1/2 -translate-y-1/2 z-40 bg-black/20 hover:bg-white text-white hover:text-black border border-white/30 w-12 h-12 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 hidden md:flex"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-8 h-8">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-          </svg>
+          <span className="text-2xl">←</span>
         </button>
+        <button 
+          onClick={() => scroll("right")} 
+          className="absolute right-6 top-1/2 -translate-y-1/2 z-40 bg-black/20 hover:bg-white text-white hover:text-black border border-white/30 w-12 h-12 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 hidden md:flex"
+        >
+          <span className="text-2xl">→</span>
+        </button>
+      </section>
 
-        <button 
-          onClick={() => scroll("right")}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-40 bg-white/10 hover:bg-white text-white hover:text-negro border-2 border-white p-3 md:p-4 transition-all opacity-0 group-hover:opacity-100 hidden md:block"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-8 h-8">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-          </svg>
-        </button>
+      {/* --- SECCIÓN 3 COLUMNAS DINÁMICAS --- */}
+      <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 border-t-2 border-negro pt-12">
+        {notasGrilla.map((nota) => (
+          <Link href={`/notas/${nota.slug}`} key={nota.id}>
+            <article className="group cursor-pointer">
+              <div className="aspect-square bg-gray-200 mb-6 overflow-hidden border-2 border-negro transition-transform group-hover:-rotate-2">
+                <img src={nota.imagen} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+              </div>
+              <span className="font-sansita font-bold uppercase text-bordo">{nota.categoria}</span>
+              <h3 className="font-sansita font-bold text-2xl mt-2 leading-tight group-hover:underline">
+                {nota.titulo}
+              </h3>
+              <p className="font-montserrat text-sm mt-4 text-gray-700 line-clamp-3">{nota.bajada}</p>
+              <p className="font-mono text-[10px] mt-4 uppercase text-gray-400">Por {nota.autor}</p>
+            </article>
+          </Link>
+        ))}
       </section>
       {/* --- SECCIÓN 3 COLUMNAS (Inspo Feminacida) --- */}
       <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 border-t-2 border-negro pt-12">
@@ -237,21 +252,33 @@ export default function Home() {
         </div>
       </section>*/}
 
-      {/* BLOQUE CENTRAL (Manifiesto y Buscador) */}
-      <section className="bg-negro py-20 my-12 overflow-hidden relative">
-        <div className="max-w-4xl mx-auto mt-24 mb-16 text-center flex flex-col items-center relative z-10">
-          <p className="font-montserrat text-2xl md:text-3xl italic text-white leading-tight max-w-2xl mb-12 text-pretty">
-            "No somos una revista, somos un <span className="bg-white text-negro px-2 not-italic font-black">grito digital</span>. Arte, política y feminismo desde el borde del abismo."
+      {/* BLOQUE CENTRAL (Manifiesto y Buscador) con Imagen de Fondo */}
+      <section className="relative py-32 my-12 overflow-hidden min-h-[500px] flex items-center justify-center">
+        
+        {/* Imagen de Fondo */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/banner_buscar.png" // Cambia esto por la ruta de tu imagen
+            alt="Fondo Manifiesto"
+            className="w-full h-full object-cover grayscale" // Grayscale le da el toque fanzine
+          />
+          {/* Overlay para que el texto resalte (puedes usar bg-negro/70 o bg-bordo/60) */}
+          <div className="absolute inset-0 bg-negro/70 mix-blend-multiply"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center relative z-10 px-6">
+          <p className="font-montserrat text-2xl md:text-4xl italic text-white leading-[1.1] max-w-2xl mb-12 text-pretty drop-shadow-xl">
+            "No somos una revista, somos un <span className="bg-white text-negro px-2 not-italic font-black mx-1">grito digital</span>. Arte, política y feminismo desde el borde del abismo."
           </p>
           
           <div className="relative w-full max-w-lg group">
             <input 
               type="text" 
               placeholder="BUSCAR EN EL CAOS..." 
-              className="w-full bg-white/5 border-2 border-white p-5 font-mono text-sm focus:outline-none focus:bg-white focus:text-negro transition-all placeholder:text-white/30 text-center uppercase tracking-widest"
+              className="w-full bg-white/10 backdrop-blur-sm border-2 border-white p-5 font-mono text-sm focus:outline-none focus:bg-white focus:text-negro transition-all placeholder:text-white/50 text-center uppercase tracking-widest text-white"
             />
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-celeste text-negro px-4 py-1 text-xs font-black -rotate-2 border border-negro shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] group-hover:rotate-2 transition-transform">
-              SEARCH
+              BUSCAR
             </div>
           </div>
         </div>
