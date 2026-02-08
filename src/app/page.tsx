@@ -168,7 +168,7 @@ export default function Home() {
             Fotoperiodismo
           </span>
 
-          <h2 className="font-sansita font-[900] text-4xl md:text-6xl text-white leading-none  max-w-4xl drop-shadow-2xl">
+          <h2 className="font-sansita font-[700] text-4xl md:text-6xl text-white leading-none  max-w-4xl drop-shadow-2xl">
             Miradas que <span className="text-bordo italic">Gritan</span>
           </h2>
 
@@ -196,8 +196,8 @@ export default function Home() {
           <h3 className="text-[15vw] font-montserrat font-[900] leading-none text-negro/5 absolute -top-12 left-0 select-none">
             CATEGORIAS
           </h3>
-          <h3 className="text-3xl md:text-4xl font-montserrat font-[900] relative z-10 border-l-8 border-bordo pl-4 uppercase tracking-tighter">
-            EXPLORÁ EL <span className="text-bordo">CAOS</span>
+          <h3 className="text-3xl md:text-4xl font-sansita font-[700] relative z-10 border-l-8 border-bordo pl-4 tracking-tighter">
+            Explorá el <span className="text-bordo">caos</span>
           </h3>
         </div>
 
