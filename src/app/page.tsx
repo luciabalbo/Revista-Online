@@ -128,23 +128,23 @@ export default function Home() {
           </Link>
         ))}
       </section>
-      {/* --- SECCIÓN 3 COLUMNAS (Inspo Feminacida) --- */}
-      <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 border-t-2 border-negro pt-12">
+      {/* --- SECCIÓN 3 COLUMNAS --- */}
+      <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 border-t-2 border-negro pt-10">
         {[
           { cat: 'Política', col: 'text-bordo', desc: 'Hackeando el sistema desde las bases.' },
           { cat: 'Cultura', col: 'text-verde', desc: 'Nuevas narrativas en la era digital.' },
           { cat: 'Tecnología', col: 'text-lila', desc: '¿Quién escribe las reglas de la IA?' }
         ].map((item, i) => (
           <article key={i} className="group cursor-pointer">
-            <div className="aspect-square bg-gray-200 mb-6 overflow-hidden border-2 border-negro transition-transform group-hover:-rotate-2">
+            <div className="aspect-square bg-gray-200 mb-3 overflow-hidden border-2 border-negro transition-transform group-hover:-rotate-2">
               <img src={`/columna${i+1}.jpeg`} className="w-full h-full object-cover" />
             </div>
             <span className={`font-sansita font-bold uppercase ${item.col}`}>{item.cat}</span>
-            <h3 className="font-sansita font-bold text-2xl mt-2 leading-tight hover:underline">
-              Título de la nota que entra en la grilla de tres columnas
+            <h3 className="font-sansita font-bold text-2xl mt-1 leading-tight group-hover:text-naranja">
+              Título de la nota
             </h3>
-            <p className="font-montserrat text-sm mt-4 text-gray-700">{item.desc}</p>
-            <p className="font-mono text-[10px] mt-4 uppercase">Por Alerta Flequillo</p>
+            <p className="font-montserrat text-sm mt-1 text-gray-700">{item.desc}</p>
+            <p className="font-mono text-[10px] mt-2 uppercase">Por Alerta Flequillo</p>
           </article>
         ))}
       </section>

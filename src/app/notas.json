@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "slug": "Bianca de Toni",
+    "slug": "bianca-de-toni",
     "titulo": "Bianca de Toni",
     "autor": "Valentina Terragno",
     "fecha": "03 OCT 2025",
@@ -13,7 +13,7 @@
   },
   {
     "id": "2",
-    "slug": "De la calle a la mesa",
+    "slug": "de-la-calle-a-la-mesa",
     "titulo": "De la calle a la mesa",
     "categoria": "Arte y Cultura",
     "bajada": "Madre Teresa de Calcuta, donde muchos encuentran un hogar",
