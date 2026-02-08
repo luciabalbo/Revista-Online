@@ -137,7 +137,7 @@ export default function Home() {
         ].map((item, i) => (
           <article key={i} className="group cursor-pointer">
             <div className="aspect-square bg-gray-200 mb-6 overflow-hidden border-2 border-negro transition-transform group-hover:-rotate-2">
-              <img src={`/stikers/descarga (${i+1}).jfif`} className="w-full h-full object-cover" />
+              <img src={`/columna${i+1}.jpeg`} className="w-full h-full object-cover" />
             </div>
             <span className={`font-sansita font-bold uppercase ${item.col}`}>{item.cat}</span>
             <h3 className="font-sansita font-bold text-2xl mt-2 leading-tight hover:underline">
@@ -149,25 +149,42 @@ export default function Home() {
         ))}
       </section>
 
-      {/* --- BANNER INTERMEDIO / FOTOPERIODISMO --- */}
-      <section className="bg-negro py-20 my-12 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-          <div className="md:w-1/2 z-10">
-            <h4 className="font-sansita font-[900] text-celeste text-sm uppercase tracking-[0.2em] mb-4">Fotoperiodismo</h4>
-            <h2 className="font-sansita font-[900] text-5xl md:text-7xl text-white leading-none mb-6">MIRADAS <br/> QUE <span className="text-bordo italic">GRITAN</span></h2>
-            <button className="bg-white text-negro px-8 py-3 font-sansita font-bold uppercase border-4 border-celeste hover:bg-celeste hover:text-white transition-all">Ver Galería</button>
-          </div>
-          <div className="md:w-1/2 relative">
-            <div className="grid grid-cols-2 gap-4 rotate-3">
-              <img src="/stikers/descarga.jfif" className="w-full aspect-square object-cover border-4 border-white shadow-xl" />
-              <img src="/stikers/blabla.png" className="w-full aspect-square object-cover border-4 border-white shadow-xl -mt-8" />
-            </div>
+     {/* --- BANNER INTERMEDIO / FOTOPERIODISMO (ESTILO DIVISOR) --- */}
+      <section className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden bg-black my-12 group">
+        {/* IMAGEN DE FONDO: Usamos la principal de fotoperiodismo con el mismo tratamiento */}
+        {/*<img 
+          src="/fotoperiodismo.png" 
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.5] contrast-125 grayscale hover:grayscale-0 transition-all duration-1000" 
+          alt="Fotoperiodismo"
+        />*/}
+        
+        {/* OVERLAY: Gradiente para asegurar legibilidad */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+
+        {/* CONTENIDO CENTRADO Y COMPACTO */}
+        <div className="relative h-full w-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-center text-center">
+          
+          <span className="text-celeste font-mono text-xs md:text-sm uppercase tracking-[0.4em] mb-4 drop-shadow-md">
+            Fotoperiodismo
+          </span>
+
+          <h2 className="font-sansita font-[900] text-4xl md:text-6xl text-white leading-none  max-w-4xl drop-shadow-2xl">
+            Miradas que <span className="text-bordo italic">Gritan</span>
+          </h2>
+
+          <div className="mt-8">
+            <button className="bg-transparent text-white border-2 border-white px-8 py-2 font-black text-xs uppercase hover:bg-white hover:text-black transition-all tracking-widest">
+              Ver Galería
+            </button>
           </div>
         </div>
-        {/* Texto de fondo tipo Anfibia */}
-        {/*<div className="absolute -bottom-10 right-0 font-sansita font-[900] text-[15vw] text-white/7 whitespace-nowrap select-none">
-          ALERTA FLEQUILLO ALERTA FLEQUILLO
-        </div>*/}
+
+        {/* TEXTO GIGANTE DE FONDO (MARCA DE AGUA) */}
+        <div className="absolute -bottom-4 left-0 w-full overflow-hidden opacity-10 pointer-events-none select-none">
+          <p className="font-sansita font-[900] text-[12vw] text-white whitespace-nowrap leading-none uppercase">
+            ALERTA FLEQUILLO • ALERTA FLEQUILLO • ALERTA FLEQUILLO
+          </p>
+        </div>
       </section>
 
       {/*<section className="max-w-7xl mx-auto px-6 py-20">
