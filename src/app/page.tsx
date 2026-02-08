@@ -49,7 +49,7 @@ export default function Home() {
         <a href="#" className="bg-white text-black px-2 py-0.5 rotate-2 hover:bg-bordo hover:text-white transition-all">Apoyanos</a>
       </nav>
       
-     {/* --- SECCIÓN PRINCIPAL: SLIDER DINÁMICO (ESTILO ANFIBIA) --- */}
+     {/* --- SECCIÓN PRINCIPAL: SLIDER DINÁMICO --- */}
       <section className="relative w-full h-[80vh] md:h-[90vh] overflow-hidden bg-black group">
         <div 
           ref={scrollRef} 
@@ -57,25 +57,20 @@ export default function Home() {
         >
           {notasBanner.map((nota) => (
             <div key={nota.id} className="min-w-full h-full snap-center relative flex-shrink-0">
-              {/* IMAGEN: Menos opacidad, quitamos el grayscale fijo para que luzca como la referencia */}
               <img 
                 src={nota.imagen} 
                 className="absolute inset-0 w-full h-full object-cover brightness-[0.7] transition-all duration-700" 
                 alt={nota.titulo}
               />
-              
-              {/* OVERLAY: Un gradiente oscuro desde abajo para que el texto blanco siempre se lea */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40" />
-              
               {/* CONTENIDO CENTRADO */}
               <div className="relative h-full w-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-center text-center">
                 
-                <span className="bg-bordo text-white px-4 py-1 font-montserrat text-xs md:text-sm uppercase mb-4 tracking-widest shadow-lg">
+                {/*} <span className="bg-bordo text-white px-4 py-1 font-montserrat text-xs md:text-sm uppercase mb-4 tracking-widest shadow-lg">
                   {nota.categoria}
-                </span>
+                </span>*/}
 
                 <Link href={`/notas/${nota.slug}`}>
-                  <h2 className="font-sansita font-[900] text-5xl md:text-[80px] text-white leading-[0.9] uppercase max-w-5xl drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] hover:scale-[1.02] transition-transform cursor-pointer">
+                  <h2 className="font-sansita font-[900] text-5xl md:text-[60px] text-bordo leading-[0.9] max-w-5xl drop-shadow-[0_5px_15px_rgba(0,0,0,0.1)] hover:scale-[1.02] transition-transform cursor-pointer">
                     {nota.titulo}
                   </h2>
                 </Link>
