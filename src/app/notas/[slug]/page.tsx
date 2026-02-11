@@ -13,10 +13,10 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
 
   return (
     <article className="min-h-screen bg-[#f8f7f2] text-black selection:bg-bordo selection:text-white overflow-x-hidden">
-      {/* TEXTURA DE PAPEL */}
+      {/* TEXTURA */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[100] bg-[url('https://www.transparenttextures.com/patterns/p6-dark.png')]"></div>
 
-      {/* NAVBAR CORREGIDO: Logo Gigante + Tus Hovers */}
+      {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-20 md:h-20">
           <Link href="/" className="group flex items-center h-full">
@@ -42,7 +42,7 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
         </div>
       </nav>
 
-      {/* HEADER IMPACTO */}
+      {/* HEADER */}
       <header className="relative w-full h-[85vh] flex items-center justify-center bg-black overflow-hidden mt-0">
         <img src={nota.imagen} className="absolute inset-0 w-full h-full object-cover opacity-70" alt={nota.titulo} />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
@@ -91,7 +91,7 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
           </div>
         </div>
 
-        {/* LADO DERECHO: COMPARTIR (Lo que pediste) */}
+        {/* LADO DERECHO: COMPARTIR  */}
         <aside className="hidden lg:block lg:col-span-3 lg:pl-10">
            <div className="sticky top-40 space-y-12">
               <div>

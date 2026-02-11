@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useRef } from "react";
-import Link from "next/link"; // Importante para navegar
-import notas from '@/app/notas.json'; // Asegúrate de que la ruta sea correcta
+import Link from "next/link"; 
+import notas from '@/app/notas.json'; 
 
 export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -49,7 +49,7 @@ export default function Home() {
         <a href="#" className="bg-white text-black px-2 py-0.5 rotate-2 hover:bg-bordo hover:text-white transition-all">Apoyanos</a>
       </nav>
       
-     {/* --- SECCIÓN PRINCIPAL: SLIDER DINÁMICO --- */}
+     {/* --- SECCIÓN PRINCIPAL: SLIDER --- */}
       <section className="relative w-full h-[80vh] md:h-[90vh] overflow-hidden bg-black group">
         <div 
           ref={scrollRef} 
@@ -62,7 +62,6 @@ export default function Home() {
                 className="absolute inset-0 w-full h-full object-cover brightness-[0.7] transition-all duration-700" 
                 alt={nota.titulo}
               />
-              {/* CONTENIDO CENTRADO */}
               <div className="relative h-full w-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-center text-center">
                 
                 {/*} <span className="bg-bordo text-white px-4 py-1 font-montserrat text-xs md:text-sm uppercase mb-4 tracking-widest shadow-lg">
@@ -95,7 +94,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* FLECHAS ESTILO MINIMALISTA */}
+        {/* FLECHAS */}
         <button 
           onClick={() => scroll("left")} 
           className="absolute left-6 top-1/2 -translate-y-1/2 z-40 bg-black/20 hover:bg-white text-white hover:text-black border border-white/30 w-12 h-12 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 hidden md:flex"
@@ -110,7 +109,7 @@ export default function Home() {
         </button>
       </section>
 
-      {/* --- SECCIÓN 3 COLUMNAS DINÁMICAS --- */}
+      {/* --- SECCIÓN 3 COLUMNAS --- */}
       <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 border-t-2 border-negro pt-12">
         {notasGrilla.map((nota) => (
           <Link href={`/notas/${nota.slug}`} key={nota.id}>
@@ -151,7 +150,6 @@ export default function Home() {
 
      {/* --- BANNER INTERMEDIO / FOTOPERIODISMO (ESTILO DIVISOR) --- */}
       <section className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden bg-black my-12 group">
-        {/* IMAGEN DE FONDO: Usamos la principal de fotoperiodismo con el mismo tratamiento */}
         {/*<img 
           src="/fotoperiodismo.png" 
           className="absolute inset-0 w-full h-full object-cover brightness-[0.5] contrast-125 grayscale hover:grayscale-0 transition-all duration-1000" 
@@ -161,7 +159,6 @@ export default function Home() {
         {/* OVERLAY: Gradiente para asegurar legibilidad */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
 
-        {/* CONTENIDO CENTRADO Y COMPACTO */}
         <div className="relative h-full w-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-center text-center">
           
           <span className="text-celeste font-mono text-xs md:text-sm uppercase tracking-[0.4em] mb-4 drop-shadow-md">
@@ -179,7 +176,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* TEXTO GIGANTE DE FONDO (MARCA DE AGUA) */}
+        {/* TEXTO DE FONDO (MARCA DE AGUA) */}
         <div className="absolute -bottom-4 left-0 w-full overflow-hidden opacity-10 pointer-events-none select-none">
           <p className="font-sansita font-[900] text-[12vw] text-white whitespace-nowrap leading-none uppercase">
             ALERTA FLEQUILLO • ALERTA FLEQUILLO • ALERTA FLEQUILLO
@@ -188,10 +185,9 @@ export default function Home() {
       </section>
 
       {/*<section className="max-w-7xl mx-auto px-6 py-20">
-        {/* --- SECCIÓN CATEGORÍAS: EXPLORÁ EL CAOS (Versión Refinada) --- */}
+        {/* --- SECCIÓN CATEGORÍAS: EXPLORÁ EL CAOS --- */}
       <section className="max-w-6xl mx-auto px-6 py-20 relative overflow-hidden">
         
-        {/* Título con letras gigantes de fondo */}
         <div className="mb-16 relative">
           <h3 className="text-[15vw] font-montserrat font-[900] leading-none text-negro/5 absolute -top-12 left-0 select-none">
             CATEGORIAS
@@ -205,7 +201,6 @@ export default function Home() {
           
           {/* CARD 1: ARTE */}
           <div className="bg-bordo rounded-[30px] p-6 h-[260px] relative overflow-hidden group cursor-pointer shadow-xl transition-transform hover:-translate-y-2">
-            {/* Dibujito/Sticker decorativo */}
             <img src="/stikers/estrella.png" className="absolute top-4 right-4 w-12 h-12 opacity-80 group-hover:rotate-12 transition-transform" alt="sticker" />
             
             <h4 className="text-6xl font-montserrat font-[900] text-white leading-none tracking-tighter mt-4">
@@ -218,7 +213,6 @@ export default function Home() {
             <div className="w-full h-full rounded-[22px] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-700">
               <img src="/stikers/fondo.jpg" className="w-full h-full object-cover" alt="Cultura" />
               
-              {/* Sticker central estilo manual */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="bg-white/90 border-2 border-negro px-4 py-1 -rotate-6 shadow-md">
                   <span className="text-negro font-mono font-bold text-2xl uppercase italic">Cultura</span>
@@ -229,7 +223,6 @@ export default function Home() {
 
           {/* CARD 3: POLÍTICA */}
           <div className="bg-negro rounded-[30px] p-6 h-[260px] flex flex-col justify-between group cursor-pointer relative overflow-hidden transition-transform hover:-translate-y-2 shadow-xl">
-            {/* Dibujito: Flecha o Rayo */}
             <img src="/stikers/rayo.png" className="absolute top-6 right-8 w-10 h-10 group-hover:scale-125 transition-transform" alt="sticker" />
             
             <h4 className="text-4xl font-montserrat font-[900] text-naranja uppercase italic leading-tight">
@@ -267,14 +260,12 @@ export default function Home() {
       {/* BLOQUE CENTRAL (Manifiesto y Buscador) con Imagen de Fondo */}
       <section className="relative py-32 my-12 overflow-hidden min-h-[500px] flex items-center justify-center">
         
-        {/* Imagen de Fondo */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/banner_buscar.png" // Cambia esto por la ruta de tu imagen
+            src="/banner_buscar.png" 
             alt="Fondo Manifiesto"
-            className="w-full h-full object-cover grayscale" // Grayscale le da el toque fanzine
+            className="w-full h-full object-cover grayscale" 
           />
-          {/* Overlay para que el texto resalte (puedes usar bg-negro/70 o bg-bordo/60) */}
           <div className="absolute inset-0 bg-negro/70 mix-blend-multiply"></div>
         </div>
 
@@ -295,20 +286,17 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* --- FOOTER: ESTILO FANZINE / DIARIO --- */}
+      {/* --- FOOTER --- */}
       <footer className="bg-negro text-white pt-20 pb-10 px-6 border-t-4 border-bordo relative overflow-hidden">
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
           
-          {/* --- COLUMNA 1: LOGO VIDEO + APOYO --- */}
+          {/* COLUMNA 1 */}
           <div className="md:col-span-2 flex flex-col items-start">
             
-            {/* Contenedor del Video Logo */}
             <div className="relative w-60 h-60 md:w-50 md:h-50 mb-8 group">
-              {/* Círculo decorativo de fondo (Efecto Sticker) */}
               <div className="absolute inset-0 bg-bordo rounded-full rotate-3 group-hover:rotate-6 transition-transform duration-500 shadow-[10px_10px_0px_0px_rgba(255,255,255,0.1)]"></div>
               
-              {/* El Video Logo */}
               <div className="absolute inset-0 rounded-full overflow-hidden -rotate-3 group-hover:rotate-0 transition-transform duration-500">
                 <video 
                   autoPlay 
@@ -323,7 +311,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Columna 2: Navegación Rápida */}
+          {/* Columna 2 */}
           <div className="flex flex-col gap-4 font-mono uppercase text-sm">
             <span className="text-bordo font-black mb-2 tracking-widest">— SECCIONES</span>
             <a href="#" className="hover:translate-x-2 transition-transform hover:text-naranja">Feminismo y Política</a>
@@ -332,7 +320,7 @@ export default function Home() {
             <a href="#" className="hover:translate-x-2 transition-transform hover:text-verde">Contacto</a>
           </div>
 
-        {/* Columna 3: Redes / Contacto */}
+        {/* Columna 3: */}
         <div className="flex flex-col gap-4 font-mono uppercase text-sm">
           <span className="text-celeste font-black mb-2 tracking-widest">— CONTACTO</span>
           <a href="mailto:alertaflequillo@gmail.com" className="hover:text-white/60 underline decoration-bordo underline-offset-4 text-xs lowercase">
