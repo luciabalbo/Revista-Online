@@ -297,11 +297,6 @@ export default function Home() {
       </section>
       {/* --- FOOTER: ESTILO FANZINE / DIARIO --- */}
       <footer className="bg-negro text-white pt-20 pb-10 px-6 border-t-4 border-bordo relative overflow-hidden">
-        
-        {/* Decoración de fondo: Letras gigantes cortadas */}
-        <div className="absolute top-0 right-0 text-[20vw] font-black text-white/5 leading-none select-none pointer-events-none -mr-10">
-          ALERTA
-        </div>
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
           
