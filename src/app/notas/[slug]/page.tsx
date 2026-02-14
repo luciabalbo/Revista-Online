@@ -91,7 +91,7 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
 
       {/* FOOTER */}
       <footer className="bg-black text-white py-32 px-8 text-center relative overflow-hidden">
-        <h2 className="font-sansita font-bold text-5xl md:text-8xl italic mb-12 relative z-10">
+        {/*<h2 className="font-sansita font-bold text-5xl md:text-8xl italic mb-12 relative z-10">
           Seamos la <span className="text-bordo">resistencia</span> creativa.
         </h2>
         <Link href="/" className="inline-block bg-white text-black px-12 py-4 rounded-full font-sansita font-black uppercase text-sm hover:bg-celeste transition-all relative z-10">
@@ -99,7 +99,76 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
         </Link>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 opacity-[0.05] text-[20vw] font-sansita font-black select-none pointer-events-none">
           FLEQUILLO
+        </div> */}
+        {/* SECCIÓN: CONTENIDO RELACIONADO (Estilo Anfibia) */}
+      {/* SECCIÓN: CONTENIDO RELACIONADO (Lógica de filtrado inteligente) */}
+      <section className="w-full bg-[#FB9160] py-24 px-6 md:px-12 relative z-20">
+        <div className="max-w-7xl mx-auto">
+          
+          {/* TÍTULO DE SECCIÓN CON LÍNEAS */}
+          <div className="flex items-center gap-8 mb-20">
+            <div className="h-[1px] flex-grow bg-white/40"></div>
+            <h2 className="font-sansita font-black text-2xl md:text-5xl text-white tracking-tighter text-center italic">
+              Contenido Relacionado
+            </h2>
+            <div className="h-[1px] flex-grow bg-white/40"></div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {(() => {
+              // 1. Filtrar notas de la misma categoría (excluyendo la actual)
+              const mismasCategorias = notas.filter(
+                (n) => n.categoria === nota.categoria && n.slug !== nota.slug
+              );
+
+              // 2. Filtrar el resto de las notas para completar si falta
+              const otrasNotas = notas.filter(
+                (n) => n.categoria !== nota.categoria && n.slug !== nota.slug
+              );
+
+              // 3. Combinar: Primero las de la misma categoría, luego el resto, y agarramos 4
+              const notasRelacionadas = [...mismasCategorias, ...otrasNotas].slice(0, 4);
+
+              return notasRelacionadas.map((rel) => (
+                <Link 
+                  key={rel.slug} 
+                  href={`/notas/${rel.slug}`}
+                  className="group flex flex-col"
+                >
+                  {/* Categoría Tag */}
+                  <div className="mb-4">
+                    <span className="bg-white text-[#FB9160] font-mono text-[9px] font-black px-3 py-1 uppercase tracking-[0.2em] shadow-sm">
+                      {rel.categoria}
+                    </span>
+                  </div>
+
+                  {/* Imagen - Aspect Ratio 4:3 estilo Anfibia */}
+                  <div className="relative aspect-[4/3] overflow-hidden bg-black/20 mb-6">
+                    <img 
+                      src={rel.imagen} 
+                      alt={rel.titulo}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 ease-in-out opacity-90 group-hover:opacity-100"
+                    />
+                    {/* Overlay de color al hover */}
+                    <div className="absolute inset-0 bg-[#FB9160]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+
+                  {/* Info de la nota */}
+                  <h4 className="font-sansita font-bold text-white text-2xl leading-[1.1] lowercase mb-4 group-hover:text-black transition-colors duration-300">
+                    {rel.titulo}
+                  </h4>
+                  
+                  <div className="mt-auto pt-4 border-t border-white/20">
+                    <p className="font-mono text-[10px] text-white/70 uppercase tracking-widest font-bold">
+                      Por <span className="text-white">{rel.autor}</span>
+                    </p>
+                  </div>
+                </Link>
+              ));
+            })()}
+          </div>
         </div>
+      </section>
       </footer>
     </article>
   );
