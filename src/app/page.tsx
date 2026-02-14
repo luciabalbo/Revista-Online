@@ -42,11 +42,12 @@ export default function Home() {
       {/* NAV */}
       <nav className="sticky top-0 z-50 bg-black text-white py-4 flex flex-wrap justify-center gap-6 text-sm font-black font-montserrat uppercase shadow-xl">
         <Link href="/" className="hover:text-bordo underline decoration-bordo underline-offset-4">Inicio</Link>
-        <a href="#" className="hover:text-naranja">Feminismo y Política</a>
         <a href="#" className="hover:text-celeste">Arte y Cultura</a>
+        <a href="#" className="hover:text-naranja">Feminismo y Política</a>
+        <a href="#" className="hover:text-lila">Streaming</a>
         <a href="#" className="hover:text-lila">Nosotras</a>
         <a href="#" className="hover:text-verde">Contacto</a>
-        <a href="#" className="bg-white text-black px-2 py-0.5 rotate-2 hover:bg-bordo hover:text-white transition-all">Apoyanos</a>
+        <a href="#" className="bg-white text-black px-2 py-0.5 rotate-2 hover:bg-bordo hover:text-white transition-all">Sumate a la comunidad</a>
       </nav>
       
      {/* --- SECCIÓN PRINCIPAL: SLIDER --- */}

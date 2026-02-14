@@ -17,12 +17,13 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
           </Link>
           <div className="hidden lg:flex items-center gap-8 font-montserrat text-[11px] uppercase tracking-[0.2em] font-bold">
             <Link href="/" className="hover:text-bordo underline decoration-bordo underline-offset-4">Inicio</Link>
-            <Link href="/categorias/feminismo" className="hover:text-naranja transition-colors">Feminismo y Política</Link>
             <Link href="/categorias/arte" className="hover:text-celeste transition-colors">Arte y Cultura</Link>
+            <Link href="/categorias/feminismo" className="hover:text-naranja transition-colors">Feminismo y Política</Link>
+            <Link href="/categorias/arte" className="hover:text-celeste transition-colors">Streaming</Link>
             <Link href="/nosotras" className="hover:text-lila transition-colors">Nosotras</Link>
             <Link href="/contacto" className="hover:text-verde transition-colors">Contacto</Link>
             <Link href="/apoyanos" className="bg-white text-black border border-black px-4 py-1.5 -rotate-2 hover:rotate-0 hover:bg-black hover:text-white transition-all shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-black">
-              APOYANOS
+              Sumate a la comunidad
             </Link>
           </div>
         </div>
