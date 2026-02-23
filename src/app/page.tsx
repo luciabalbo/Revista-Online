@@ -474,198 +474,203 @@ export default function Home() {
         </div>
       </section>
 
-      {/*<section className="max-w-7xl mx-auto px-6 py-20">
-        {/* --- SECCIÓN CATEGORÍAS: EXPLORÁ EL CAOS --- */}
-      <section className="max-w-6xl mx-auto px-6 py-20 relative overflow-hidden">
-        
-        <div className="mb-16 relative">
-          <h3 className="text-[15vw] font-montserrat font-[900] leading-none text-negro/5 absolute -top-12 left-0 select-none">
-            CATEGORIAS
-          </h3>
-          <h3 className="text-3xl md:text-4xl font-sansita font-[700] relative z-10 border-l-8 border-bordo pl-4 tracking-tighter">
-            Explorá el <span className="text-bordo">caos</span>
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+      {/* --- SECCIÓN CATEGORÍAS --- */}
+      <section className="w-full bg-[#f8f7f2]">
+        <div className="max-w-6xl mx-auto px-6 py-24 relative overflow-hidden">
           
-          {/* CARD 1: ARTE */}
-          <div className="bg-bordo rounded-[30px] p-6 h-[260px] relative overflow-hidden group cursor-pointer shadow-xl transition-transform hover:-translate-y-2">
-            <img src="/stikers/estrella.png" className="absolute top-4 right-4 w-12 h-12 opacity-80 group-hover:rotate-12 transition-transform" alt="sticker" />
-            
-            <h4 className="text-6xl font-montserrat font-[900] text-white leading-none tracking-tighter mt-4">
-              ARTE
-            </h4>
+          <div className="mb-16 relative">
+            <h3 className="text-3xl md:text-5xl font-sansita relative z-10 border-l-[12px] border-bordo pl-6 tracking-tighter lowercase">
+              alerta flequillo <span className="text-bordo font-mono text-xl md:text-2xl align-middle ml-2">- hecho con amor</span>
+            </h3>
           </div>
 
-          {/* CARD 2: CULTURA */}
-          <div className="bg-white rounded-[30px] border-2 border-negro p-2 h-[260px] relative overflow-hidden group cursor-pointer transition-transform hover:-translate-y-2 shadow-xl">
-            <div className="w-full h-full rounded-[22px] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-700">
-              <img src="/stikers/fondo.jpg" className="w-full h-full object-cover" alt="Cultura" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            
+            {/* CARD 1: Feminismo y Política */}
+            <div className="bg-bordo rounded-[40px] p-8 h-[280px] relative overflow-hidden group cursor-pointer shadow-[0_20px_40px_rgba(165,37,2,0.2)] transition-all duration-500 hover:-translate-y-3 flex items-center justify-center text-center border-2 border-transparent hover:border-white/20">
+              <div className="absolute top-6 right-6 w-14 h-14 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors" />
               
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-white/90 border-2 border-negro px-4 py-1 -rotate-6 shadow-md">
-                  <span className="text-negro font-mono font-bold text-2xl uppercase">Cultura</span>
+              <h4 className="text-4xl md:text-5xl font-sansita text-white leading-[0.85] tracking-tighter relative z-10 lowercase">
+                feminismo <br/>
+                <span className="text-negro/90 group-hover:text-white transition-colors duration-500">& política</span>
+              </h4>
+            </div>
+
+            {/* CARD 2: Arte y Cultura (Diseño Sticker con mejoras de borde) */}
+            <div className="bg-white rounded-[40px] border-[3px] border-negro p-2.5 h-[280px] relative overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-3 shadow-[10px_10px_0px_rgba(0,0,0,0.05)]">
+              <div className="w-full h-full rounded-[30px] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-1000">
+                <img src="/stikers/fondo.jpg" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Cultura" />
+                
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-white border-[3px] border-negro px-6 py-2 -rotate-6 shadow-[8px_8px_0px_#000] group-hover:rotate-0 transition-transform duration-500">
+                    <span className="text-negro font-mono font-black text-2xl uppercase tracking-tighter">Arte y Cultura</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* CARD 3: POLÍTICA */}
-          <div className="bg-negro rounded-[30px] p-6 h-[260px] flex flex-col justify-between group cursor-pointer relative overflow-hidden transition-transform hover:-translate-y-2 shadow-xl">
-            <img src="/stikers/rayo.png" className="absolute top-6 right-8 w-10 h-10 group-hover:scale-125 transition-transform" alt="sticker" />
-            
-            <h4 className="text-4xl font-montserrat font-[900] text-naranja uppercase leading-tight">
-              Feminismo <br/> <span className="text-white">Radical</span>
-            </h4>
-
-            <div className="absolute -left-4 bottom-20 font-sansita font-black text-white/5 text-8xl -rotate-12 pointer-events-none uppercase">
-              Power
+            {/* CARD 3: Comunidad */}
+            <div className="bg-negro rounded-[40px] p-8 h-[280px] group cursor-pointer relative overflow-hidden transition-all duration-500 hover:-translate-y-3 shadow-[0_20px_40px_rgba(0,0,0,0.3)] flex items-center justify-center text-center border-2 border-white/5 hover:border-naranja/30">
+              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-naranja/10 rounded-full blur-3xl group-hover:bg-naranja/20 transition-colors" />
+              
+              <h4 className="text-4xl md:text-5xl font-sansita text-naranja leading-[0.85] tracking-tighter relative z-10 lowercase">
+                súmate a la <br/> 
+                <span className="text-white group-hover:text-naranja transition-colors duration-500">comunidad</span>
+              </h4>
             </div>
-          </div>
 
+          </div>
         </div>
       </section>
-      {/*<section className="max-w-7xl mx-auto px-6 py-20">
-        {/* SECCIÓN DE "MOODBOARD" (Inspirado en imagen 1) 
-        <div className="mt-20 border-t-2 border-black pt-10">
-          <div className="flex flex-col md:flex-row gap-8 items-center">
-            <div className="flex-1">
-              <h5 className="font-mono text-sm mb-4">MOODBOARD / REFERENCIAS</h5>
-              <p className="text-3xl font-serif italic leading-tight">
-                "Buscamos referencias visuales para hackear la normalización del sistema."
-              </p>
-            </div>
-            <div className="flex-1 grid grid-cols-4 gap-2">
-              {/* Mini collage de tus imágenes 
-              <img src="/descarga.jfif" className="w-full aspect-square object-cover rounded-lg rotate-3" />
-              <img src="/descarga (2).jpg" className="w-full aspect-square object-cover rounded-lg -rotate-6" />
-              <img src="/descarga (1).jfif" className="w-full aspect-square object-cover rounded-lg rotate-12" />
-              <img src="/logo_sinfondo.png" className="w-full aspect-square object-contain bg-white rounded-lg" />
-            </div>
-          </div>
-        </div>
-      </section>*/}
 
-      {/* BLOQUE CENTRAL (Manifiesto y Buscador) con Imagen de Fondo */}
-      <section className="relative py-32 my-12 overflow-hidden min-h-[500px] flex items-center justify-center">
-        
-        <div className="absolute inset-0 z-0">
+      {/* --- SECCIÓN: BUSCADOR EN EL CAOS --- */}
+      <section className="relative w-full py-32 bg-blanco overflow-hidden">
+        {/* Imagen de fondo con opacidad baja para no molestar la lectura */}
+        <div className="absolute inset-0 z-0 opacity-20 grayscale grayscale-100">
           <img 
             src="/banner_buscar.png" 
-            alt="Fondo Manifiesto"
-            className="w-full h-full object-cover grayscale" 
+            className="w-full h-full object-cover"
+            alt="Fondo Buscador"
           />
-          <div className="absolute inset-0 bg-negro/70 mix-blend-multiply"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center relative z-10 px-6">
-          <p className="font-montserrat text-2xl md:text-4xl text-white leading-[1.1] max-w-2xl mb-12 text-pretty drop-shadow-xl">
-            "No somos una revista, somos un <span className="bg-white text-negro px-2 not-italic font-black mx-1">grito digital</span>. Arte, política y feminismo desde el borde del abismo."
-          </p>
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-sansita text-4xl md:text-6xl text-negro mb-8 leading-[1]">
+            Un espacio de encuentro y comuinidad, de historias cercanas que podemos caminar.
+          </h2>
           
-          <div className="relative w-full max-w-lg group">
-            <input 
-              type="text" 
-              placeholder="BUSCAR EN EL CAOS..." 
-              className="w-full bg-white/10 backdrop-blur-sm border-2 border-white p-5 font-mono text-sm focus:outline-none focus:bg-white focus:text-negro transition-all placeholder:text-white/50 text-center uppercase tracking-widest text-white"
-            />
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-celeste text-negro px-4 py-1 text-xs font-black -rotate-2 border border-negro shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] group-hover:rotate-2 transition-transform">
-              BUSCAR
+          {/* Formulario de Búsqueda Estilo Fanzine */}
+          <div className="relative group max-w-2xl mx-auto">
+            <div className="absolute -top-4 left-4 bg-celeste text-negro font-bold text-[10px] px-3 py-1 uppercase tracking-widest border border-negro z-20 shadow-[2px_2px_0px_#000]">
+              Buscar
             </div>
+            
+            <div className="flex flex-col md:flex-row gap-0 shadow-[10px_10px_0px_#000] border-2 border-negro transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1">
+              <input 
+                type="text" 
+                placeholder="..." 
+                className="w-full bg-white/80 backdrop-blur-sm p-6 font-mono text-sm uppercase tracking-widest outline-none placeholder:text-negro/30"
+              />
+              <button className="bg-negro text-white px-10 py-6 font-black uppercase text-xs tracking-widest hover:bg-naranja transition-colors">
+                Ir →
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-12 flex flex-wrap justify-center gap-4">
+            <span className="font-mono text-[12px] text-negro/40 uppercase">Tendencias:</span>
+            {['Cultura', 'Aborto', 'Streaming', 'IA'].map((tag) => (
+              <button key={tag} className="font-mono text-[12px] font-bold uppercase underline decoration-naranja hover:text-bordo transition-colors">
+                #{tag}
+              </button>
+            ))}
           </div>
         </div>
       </section>
-      {/* --- FOOTER --- */}
-      <footer className="bg-negro text-white pt-20 pb-10 px-6 border-t-4 border-bordo relative overflow-hidden">
+      
+     {/* --- FOOTER --- */}
+      <footer className="bg-negro text-white pt-28 pb-12 px-6 border-t-[12px] border-bordo relative overflow-hidden">
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+        {/* CONTENEDOR PRINCIPAL: Ahora con grid de 3 columnas para alineación simétrica */}
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10 items-start">
           
-          {/* COLUMNA 1 */}
-          <div className="md:col-span-2 flex flex-col items-start">
-            
-            <div className="relative w-60 h-60 md:w-50 md:h-50 mb-8 group">
-              <div className="absolute inset-0 bg-bordo rounded-full rotate-3 group-hover:rotate-6 transition-transform duration-500 shadow-[10px_10px_0px_0px_rgba(255,255,255,0.1)]"></div>
+          {/* COLUMNA 1: LOGO (Alineado a la izquierda) */}
+          <div className="flex justify-start">
+            <div className="relative w-56 h-56 md:w-64 md:h-64 group">
+              <div className="absolute inset-0 border-2 border-dashed border-white/20 rounded-full animate-[spin_20s_linear_infinite] group-hover:border-bordo/50"></div>
+              <div className="absolute inset-2 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700"></div>
               
-              <div className="absolute inset-0 rounded-full overflow-hidden -rotate-3 group-hover:rotate-0 transition-transform duration-500">
+              <div className="absolute inset-2 rounded-full overflow-hidden bg-negro shadow-2xl z-20 border-[4px] border-white/10">
                 <video 
                   autoPlay 
                   loop 
                   muted 
-                  playsInline 
-                  className="w-full h-full object-cover scale-110"
+                  playsInline
+                  disablePictureInPicture
+                  className="w-full h-full object-cover"
                 >
                   <source src="/videologo.mp4" type="video/mp4" />
+                  <div className="w-full h-full bg-bordo flex items-center justify-center text-white font-bold text-4xl font-sansita">af</div>
                 </video>
               </div>
             </div>
           </div>
 
-          {/* Columna 2 */}
-          <div className="flex flex-col gap-4 font-mono uppercase text-sm">
-            <span className="text-bordo font-black mb-2 tracking-widest">— SECCIONES</span>
-            <a href="#" className="hover:translate-x-2 transition-transform hover:text-naranja">Feminismo y Política</a>
-            <a href="#" className="hover:translate-x-2 transition-transform hover:text-celeste">Arte y Cultura</a>
-            <a href="#" className="hover:translate-x-2 transition-transform hover:text-lila">Nosotras</a>
-            <a href="#" className="hover:translate-x-2 transition-transform hover:text-verde">Contacto</a>
+          {/* COLUMNA 2: NAVEGACIÓN (Centro) */}
+          <div className="flex flex-col gap-6 md:pl-8">
+            <span className="text-bordo font-mono font-black text-xs tracking-[0.5em] mb-2 flex items-center gap-2">
+              <span className="w-8 h-[2px] bg-bordo"></span> SECCIONES
+            </span>
+            <div className="flex flex-col gap-4 font-sansita text-2xl">
+              <a href="#" className="hover:text-celeste transition-colors hover:pl-2 duration-300">feminismo y política</a>
+              <a href="#" className="hover:text-naranja transition-colors hover:pl-2 duration-300">arte y cultura</a>
+              <a href="#" className="hover:text-lila transition-colors hover:italic hover:pl-2 duration-300">streaming</a>
+              <a href="#" className="hover:text-verde transition-colors hover:italic hover:pl-2 duration-300">nosotras</a>
+            </div>
           </div>
 
-        {/* Columna 3: */}
-        <div className="flex flex-col gap-4 font-mono uppercase text-sm">
-          <span className="text-celeste font-black mb-2 tracking-widest">— CONTACTO</span>
-          <a href="mailto:alertaflequillo@gmail.com" className="hover:text-white/60 underline decoration-bordo underline-offset-4 text-xs">
-            alertaflequillo@gmail.com
-          </a>
-          
-          <div className="flex gap-4 mt-4">
-            {/* Instagram */}
-            <a href="#" className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-lila hover:rotate-12 transition-all cursor-pointer group">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-              </svg>
+          {/* COLUMNA 3: CONTACTO (Derecha) */}
+          <div className="flex flex-col gap-6 md:pl-8">
+            <span className="text-celeste font-mono font-black text-xs tracking-[0.5em] mb-2 flex items-center gap-2">
+              <span className="w-8 h-[2px] bg-celeste"></span> CONTACTO
+            </span>
+            
+            <a href="mailto:alertaflequillo@gmail.com" className="font-sansita text-2xl hover:text-bordo transition-colors break-all underline underline-offset-8 decoration-white/20">
+              alertaflequillo@gmail.com
             </a>
 
-            {/* TikTok */}
-            <a href="#" className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-naranja hover:-rotate-12 transition-all cursor-pointer group">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
-              </svg>
-            </a>
-
-            {/* YouTube */}
-            <a href="#" className="w-10 h-10 border-2 border-white flex items-center justify-center hover:bg-verde hover:rotate-6 transition-all cursor-pointer group">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 69.44 69.44 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 69.44 69.44 0 0 1-15 0 2 2 0 0 1-2-2Z"/><path d="m10 15 5-3-5-3z"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-        </div>
-
-        {/* Línea final de créditos */}
-        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-mono uppercase tracking-[0.2em] text-gray-500">
-          <p>© 2026 ALERTA FLEQUILLO - HECHO CON AMOR </p>
-          <div className="flex gap-8">
-            <span className="hover:text-white cursor-help">Privacidad (¿Qué es eso?)</span>
-            <span className="text-white">Córdoba, Argentina</span>
+            <div className="flex gap-3 mt-4">
+              {['IG', 'TK', 'YT'].map((social) => (
+                <a 
+                  key={social} 
+                  href="#" 
+                  className="w-10 h-10 bg-negro border-2 border-white flex items-center justify-center font-mono font-black text-xs relative group overflow-hidden shadow-[3px_3px_0px_#fff] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all"
+                >
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">{social}</span>
+                  <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 -z-0 ${
+                    social === 'IG' ? 'bg-lila' : social === 'TK' ? 'bg-naranja' : 'bg-verde'
+                  }`}></div>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* El sticker final de "Hecho por..." */}
-        <div className="absolute bottom-4 right-4 bg-white text-negro p-2 font-black text-[10px] rotate-3 shadow-[4px_4px_0px_0px_rgba(165,37,2)]">
-          DESIGN BY LULA
+        {/* SECCIÓN DE CRÉDITOS: Sticker integrado al medio */}
+        <div className="w-[80vw] mx-auto mt-24 pt-12 border-t border-white/10 relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+            
+            {/* Lado Izquierdo */}
+            <p className="text-[10px] font-mono uppercase tracking-[0.5em] text-white/30 text-center md:text-left">
+              © 2026 ALERTA FLEQUILLO — <span className="text-white/60">HECHO CON AMOR</span>
+            </p>
+
+            {/* STICKER CENTRAL: Ahora ubicado entre los dos textos de créditos */}
+            <div className="group relative">
+              <div className="bg-white text-negro px-4 py-2 font-mono font-black text-[10px] -rotate-2 shadow-[5px_5px_0px_#A52502] group-hover:rotate-0 group-hover:scale-110 transition-all duration-300 cursor-pointer uppercase whitespace-nowrap">
+                Design by Lula
+              </div>
+            </div>
+
+            {/* Lado Derecho */}
+            <div className="flex gap-8 text-[10px] font-mono uppercase tracking-[0.5em] text-white/30">
+              <span className="hover:text-white cursor-help transition-colors italic">privacidad?</span>
+              <span className="text-white/60">Córdoba, Argentina</span>
+            </div>
+          </div>
         </div>
-        {/* CURSOR CUSTOM */}
-        <motion.div 
-          className="fixed top-0 left-0 w-8 h-8 bg-naranja/30 rounded-full pointer-events-none z-[999] mix-blend-multiply hidden md:block"
-          animate={{
-            x: mousePos.x - 16,
-            y: mousePos.y - 16,
-            scale: isHovered ? 2.5 : 1
-          }}
-          transition={{ type: 'spring', damping: 25, stiffness: 250, mass: 0.5 }}
-        />
       </footer>
+      {/* CURSOR CUSTOM */}
+      <motion.div 
+        className="fixed top-0 left-0 w-8 h-8 bg-naranja/30 rounded-full pointer-events-none z-[999] mix-blend-multiply hidden md:block"
+        animate={{
+          x: mousePos.x - 16,
+          y: mousePos.y - 16,
+          scale: isHovered ? 2.5 : 1
+        }}
+        transition={{ type: 'spring', damping: 25, stiffness: 250, mass: 0.5 }}
+      />
     </main>
   );
 }
