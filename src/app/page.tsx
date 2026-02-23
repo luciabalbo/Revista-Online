@@ -202,60 +202,72 @@ export default function Home() {
         }`} 
       />
       
-     {/* --- SECCIÓN PRINCIPAL --- */}
+      {/* --- SECCIÓN PRINCIPAL --- */}
       <section className="relative w-full h-[80vh] md:h-[120vh] bg-negro overflow-hidden">
         
         <div 
           ref={scrollRef} 
           className="flex h-full overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
         >
-          {notasBanner.map((nota) => (
-            <div key={nota.id} className="min-w-full h-full snap-center relative flex-shrink-0 group">
-              
-              {/* IMAGEN */}
-              <img 
-                src={nota.imagen} 
-                className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.7] md:brightness-[0.9]" 
-                alt={nota.titulo} 
-              />
-              
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-negro/90 via-negro/20 to-transparent z-10" />
-              
-              {/* CONTENEDOR DE TEXTO */}
-              <div className="relative h-full w-full flex flex-col justify-end items-center text-center z-20 px-4 pb-20 md:pb-32">
+          {notasBanner.map((nota) => {
+            const colorCategoria = coloresCategorias[nota.categoria] || coloresCategorias["default"];
+
+            return (
+              <div key={nota.id} className="min-w-full h-full snap-center relative flex-shrink-0 group">
                 
-                <div className="max-w-[90vw] md:max-w-5xl flex flex-col items-center">
+                {/* IMAGEN */}
+                <img 
+                  src={nota.imagen} 
+                  className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.7] md:brightness-[0.9]" 
+                  alt={nota.titulo} 
+                />
+                
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-negro/90 via-negro/20 to-transparent z-10" />
+                
+                {/* CONTENEDOR DE TEXTO: Centrado vertical y horizontal */}
+                <div className="relative h-full w-full flex flex-col justify-center items-center text-center z-20 px-4">
                   
-                  {/* Título: Tamaño reducido para estilo editorial */}
-                  <Link href={`/notas/${nota.slug}`}>
-                    <h2 className="font-sansita font-bold text-4xl md:text-5xl text-blanco leading-[0.9] tracking-tighter hover:text-bordo transition-all duration-500 drop-shadow-2xl">
-                      {nota.titulo}
-                    </h2>
-                  </Link>
-
-                  {/* Bajada*/}
-                  <p className="mt-4 font-montserrat text-blanco/90 text-sm md:text-lg lg:text-xl max-w-[85vw] md:max-w-3xl leading-relaxed">
-                    "{nota.bajada}"
-                  </p>
-
-                  {/* SECCIÓN AUTOR*/}
-                  <div className="mt-6 flex items-center gap-3 font-mono text-[10px] md:text-[12px] uppercase tracking-[0.5em]">
-                    <span className="text-white/40">POR</span>
-                    <span className="text-naranja font-black">
-                      {nota.autor || "VALENTINA TERRAGNO"}
+                  <div className="max-w-[90vw] md:max-w-5xl flex flex-col items-center">
+                    
+                    {/* CATEGORÍA: Color dinámico aplicado aquí */}
+                    <span 
+                      className="mb-4 font-montserrat text-[10px] md:text-[12px] uppercase tracking-[0.4em] font-black"
+                      style={{ color: colorCategoria }}
+                    >
+                      {nota.categoria || "CULTURA"}
                     </span>
-                  </div>
 
-                  {/* Botón*/}
-                  <Link href={`/notas/${nota.slug}`} className="mt-10 group/btn flex items-center gap-3 text-white/60 hover:text-white transition-colors font-bold uppercase text-[9px] tracking-[0.3em]">
-                    <span className="border-b border-white/20 pb-1 group-hover/btn:border-naranja transition-all">Seguir leyendo</span>
-                    <span className="text-lg group-hover/btn:translate-x-1 transition-transform">→</span>
-                  </Link>
+                    {/* Título */}
+                    <Link href={`/notas/${nota.slug}`}>
+                      <h2 className="font-sansita font-bold text-4xl md:text-5xl text-blanco leading-[0.9] tracking-tighter hover:text-bordo transition-all duration-500 drop-shadow-2xl">
+                        {nota.titulo}
+                      </h2>
+                    </Link>
+
+                    {/* Bajada */}
+                    <p className="mt-4 font-montserrat text-blanco/90 text-sm md:text-lg lg:text-xl max-w-[85vw] md:max-w-3xl leading-relaxed">
+                      "{nota.bajada}"
+                    </p>
+
+                    {/* SECCIÓN AUTOR */}
+                    <div className="mt-6 flex items-center gap-3 font-mono text-[10px] md:text-[12px] uppercase tracking-[0.5em]">
+                      <span className="text-white/40">POR</span>
+                      <span className="text-naranja font-black">
+                        {nota.autor || "VALENTINA TERRAGNO"}
+                      </span>
+                    </div>
+
+                    {/* Botón */}
+                    <Link href={`/notas/${nota.slug}`} className="mt-10 group/btn flex items-center gap-3 text-white/60 hover:text-white transition-colors font-bold uppercase text-[9px] tracking-[0.3em]">
+                      <span className="border-b border-white/20 pb-1 group-hover/btn:border-naranja transition-all">Seguir leyendo</span>
+                      <span className="text-lg group-hover/btn:translate-x-1 transition-transform">→</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         
         {/* FLECHAS */}
@@ -264,14 +276,14 @@ export default function Home() {
             onClick={() => scroll("left")} 
             className="pointer-events-auto text-blanco/40 hover:text-naranja transition-all p-1"
           >
-             <svg className="w-8 h-8 md:w-14 md:h-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="m15 18-6-6 6-6"/></svg>
+            <svg className="w-8 h-8 md:w-14 md:h-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="m15 18-6-6 6-6"/></svg>
           </button>
           
           <button 
             onClick={() => scroll("right")} 
             className="pointer-events-auto text-blanco/40 hover:text-naranja transition-all p-1"
           >
-             <svg className="w-8 h-8 md:w-14 md:h-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="m9 18 6-6-6-6"/></svg>
+            <svg className="w-8 h-8 md:w-14 md:h-14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="m9 18 6-6-6-6"/></svg>
           </button>
         </div>
       </section>
@@ -427,53 +439,52 @@ export default function Home() {
         </div>
       </section>
 
-     {/* --- SECCIÓN DIVISORA: FOTOPERIODISMO (ESTILO HERO) --- */}
-      <section className="relative w-full py-20 md:py-24 bg-negro overflow-hidden border-y border-white/5">
+      {/* --- SECCIÓN DIVISORA: FOTOPERIODISMO --- */}
+      <section className="relative w-full py-28 md:py-36 bg-[#f8f5f0] overflow-hidden border-y border-negro/5">
         
-        {/* IMAGEN DE FONDO (Traída del banner) */}
+        {/* IMAGEN DE FONDO: Ahora ocupa todo el contenedor con object-cover */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {notasBanner && notasBanner[0] ? (
             <img 
               src={notasBanner[0].imagen} 
-              alt="Background"
-              className="w-full h-full object-cover opacity-70 grayscale" 
+              alt="Background Illustration"
+              className="w-full h-full object-cover opacity-20 mix-blend-multiply grayscale hover:grayscale-0 transition-all duration-1000" 
             />
           ) : (
-            // Imagen de respaldo por si el array está vacío
-            <div className="w-full h-full bg-[#0a0a0a]" /> 
+            <div className="w-full h-full bg-[#f8f5f0]" /> 
           )}
+          {/* Overlay extra para suavizar los bordes si la imagen es muy fuerte */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f8f5f0] via-transparent to-[#f8f5f0] opacity-60" />
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center gap-8"
+            className="flex flex-col items-center gap-10"
           >
 
-            {/* Título Centrado y Gigante */}
-            <h2 className="font-sansita font-bold text-5xl md:text-8xl text-blanco leading-none lowercase tracking-tighter">
+            {/* Título: Gigante y con tracking apretado */}
+            <h2 className="font-sansita font-bold text-2xl md:text-[4rem] text-negro leading-[0.8] lowercase tracking-tighter drop-shadow-sm">
               fotoperiodismo<span className="text-celeste">.</span>
             </h2>
 
-            {/* BOTÓN CENTRADO */}
+            {/* BOTÓN CON ESTILO BRUTALISTA */}
             <Link 
               href="/galeria-fotoperiodismo" 
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              className="group relative inline-flex items-center gap-4 bg-blanco text-negro px-10 py-4 font-bold uppercase text-[11px] tracking-[0.3em] transition-all 
-                        shadow-[6px_6px_0px_#1C8394] 
-                        hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] shrink-0"
+              className="group relative inline-flex items-center gap-4 bg-blanco text-negro px-6 py-3 font-black uppercase text-[10px] tracking-[0.4em] transition-all 
+                        shadow-[8px_8px_0px_#1C8394] 
+                        border-2 border-negro
+                        hover:shadow-none hover:translate-x-[8px] hover:translate-y-[8px] shrink-0"
             >
               Ver Galería
-              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+              <span className="text-xl group-hover:translate-x-2 transition-transform duration-300">→</span>
             </Link>
           </motion.div>
         </div>
       </section>
-
     
       {/* --- SECCIÓN CATEGORÍAS --- */}
       <section className="w-full bg-[#f8f7f2]">
@@ -605,8 +616,8 @@ export default function Home() {
             <div className="flex flex-col gap-4 font-sansita text-2xl">
               <a href="#" className="hover:text-celeste transition-colors hover:pl-2 duration-300">feminismo y política</a>
               <a href="#" className="hover:text-naranja transition-colors hover:pl-2 duration-300">arte y cultura</a>
-              <a href="#" className="hover:text-lila transition-colors hover:italic hover:pl-2 duration-300">streaming</a>
-              <a href="#" className="hover:text-verde transition-colors hover:italic hover:pl-2 duration-300">nosotras</a>
+              <a href="#" className="hover:text-lila transition-colors hover:pl-2 duration-300">streaming</a>
+              <a href="#" className="hover:text-verde transition-colors hover:pl-2 duration-300">nosotras</a>
             </div>
           </div>
 

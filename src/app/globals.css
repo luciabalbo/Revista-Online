@@ -18,3 +18,13 @@
 body {
   @apply bg-white text-black;
 }
+
+/* En tu archivo .css o dentro de una etiqueta <style> */
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Oculta la barra en Chrome, Safari y Opera */
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;  /* Oculta en IE y Edge */
+    scrollbar-width: none;  /* Oculta en Firefox */
+}
