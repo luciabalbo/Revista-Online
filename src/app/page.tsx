@@ -1,5 +1,4 @@
 "use client";
-"use client";
 import { useState, useEffect, useRef } from 'react';
 import Image from "next/image";
 import Link from "next/link"; 
@@ -18,7 +17,7 @@ export default function Home() {
 
   // 2. Referencias y Scroll
   const scrollRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll(); // Ya lo tenés bien importado
+  const { scrollYProgress } = useScroll();
 
   // 3. Efectos
   useEffect(() => {
@@ -41,7 +40,7 @@ export default function Home() {
     };
   }, []);
 
-  // 4. Lógica de Datos (Se mantiene igual)
+  // 4. Lógica de Datos 
   const notasBanner = notas.slice(0, 3);
   const notasGrilla = notas.slice(3, 6);
 
@@ -66,7 +65,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
-      {/* NAVBAR EVOLUTIVA: LOGO + BARRA NEGRA */}
+      {/* NAVBAR */}
       <nav className={`fixed top-0 w-full z-[150] transition-all duration-700 ease-in-out ${
           isScrolled 
             ? 'bg-negro/95 backdrop-blur-md py-2 shadow-2xl' 
@@ -75,10 +74,10 @@ export default function Home() {
         
         <div className="flex flex-col items-center w-full">
           
-          {/* 1. BLOQUE DEL LOGO (Fondo claro, desaparece o se achica al scroll) */}
+          {/* 1. BLOQUE DEL LOGO */}
           <div className={`w-full flex justify-center items-center transition-all duration-700 overflow-hidden ${
             isScrolled 
-              ? 'h-0 opacity-0' /* El logo central desaparece para dar paso al logo lateral en scroll */
+              ? 'h-0 opacity-0'
               : 'bg-[#f8f7f2] py-10 md:py-14 opacity-100'
           }`}>
             <Link href="/" className="group shrink-0 px-6">
@@ -90,13 +89,12 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* 2. BARRA DE NAVEGACIÓN NEGRA (La que manda) */}
+          {/* 2. BARRA DE NAVEGACIÓN */}
           <div className={`w-full bg-negro transition-all duration-500 border-b border-white/5 ${
             isScrolled ? 'py-1' : 'py-0'
           }`}>
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-14 md:h-13">
               
-              {/* Logo pequeño que SOLO aparece en Scroll a la izquierda */}
               <div className={`transition-all duration-500 flex items-center ${
                 isScrolled ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0 pointer-events-none'
               }`}>
@@ -117,7 +115,6 @@ export default function Home() {
                     href={`/${item.toLowerCase().replace(/ /g, '-')}`} 
                     className="relative group overflow-hidden h-4 font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-white"
                   >
-                    {/* El efecto hover que pediste: sube el normal, aparece el naranja */}
                     <span className="inline-block transition-transform duration-500 group-hover:-translate-y-full">
                       {item}
                     </span>
@@ -135,10 +132,10 @@ export default function Home() {
                   </Link>
               </div>
 
-              {/* BOTÓN SUMATE (Estilo destacado) */}
+              {/* BOTÓN SUMATE*/}
               <div className="flex items-center">
 
-                {/* Hamburguesa Mobile (Siempre blanca sobre el negro) */}
+                {/* Hamburguesa Mobile */}
                 <button 
                   onClick={() => setIsMenuOpen(true)} 
                   className="lg:hidden ml-6 text-white text-2xl"
@@ -179,7 +176,7 @@ export default function Home() {
                   key={item} 
                   href="#" 
                   onClick={() => setIsMenuOpen(false)} 
-                  className="font-sansita text-5xl text-blanco lowercase hover:text-negro transition-colors"
+                  className="font-sansita text-5xl text-blanco hover:text-negro transition-colors"
                 >
                   {item}
                 </Link>
@@ -190,25 +187,22 @@ export default function Home() {
                 onClick={() => setIsMenuOpen(false)}
                 className="mt-4 bg-blanco text-naranja px-8 py-3 font-bold uppercase tracking-widest shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none transition-all"
               >
-                SÚMATE
+                Súmate a la comunidad
               </Link>
             </div>
-
-            {/* Logo sutil abajo opcional */}
-            <img src="/logo_sinfondo.png" alt="Logo" className="h-10 w-auto brightness-0 invert opacity-30 absolute bottom-12" />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* ESPACIADOR DINÁMICO: Empuja el banner hacia abajo */}
+      {/* ESPACIADOR DINÁMICO */}
       <div className={`transition-all duration-700 ${
           isScrolled 
-            ? 'h-[64px] md:h-[70px]' // Altura de la barra negra sola
-            : 'h-[250px] md:h-[250px]' // Altura del logo gigante + barra negra
+            ? 'h-[64px] md:h-[70px]' 
+            : 'h-[250px] md:h-[250px]'
         }`} 
       />
       
-     {/* --- SECCIÓN PRINCIPAL: SLIDER EDITORIAL (UNIFICADO) --- */}
+     {/* --- SECCIÓN PRINCIPAL --- */}
       <section className="relative w-full h-[80vh] md:h-[120vh] bg-negro overflow-hidden">
         
         <div 
@@ -240,12 +234,12 @@ export default function Home() {
                     </h2>
                   </Link>
 
-                  {/* Bajada: Estilo cita como en la foto */}
-                  <p className="mt-4 font-montserrat italic text-blanco/90 text-sm md:text-lg lg:text-xl max-w-[85vw] md:max-w-3xl leading-relaxed">
+                  {/* Bajada*/}
+                  <p className="mt-4 font-montserrat text-blanco/90 text-sm md:text-lg lg:text-xl max-w-[85vw] md:max-w-3xl leading-relaxed">
                     "{nota.bajada}"
                   </p>
 
-                  {/* SECCIÓN AUTOR: Estilo image_82f5d0.png */}
+                  {/* SECCIÓN AUTOR*/}
                   <div className="mt-6 flex items-center gap-3 font-mono text-[10px] md:text-[12px] uppercase tracking-[0.5em]">
                     <span className="text-white/40">POR</span>
                     <span className="text-naranja font-black">
@@ -253,7 +247,7 @@ export default function Home() {
                     </span>
                   </div>
 
-                  {/* Botón: Más minimalista */}
+                  {/* Botón*/}
                   <Link href={`/notas/${nota.slug}`} className="mt-10 group/btn flex items-center gap-3 text-white/60 hover:text-white transition-colors font-bold uppercase text-[9px] tracking-[0.3em]">
                     <span className="border-b border-white/20 pb-1 group-hover/btn:border-naranja transition-all">Seguir leyendo</span>
                     <span className="text-lg group-hover/btn:translate-x-1 transition-transform">→</span>
@@ -283,7 +277,7 @@ export default function Home() {
       </section>
 
       {/* --- SECCIÓN DIVISORA: COMUNIDAD (SLIM & EDITORIAL) --- */}
-      <section className="relative w-full py-16 md:py-20 bg-[#f8f7f2] overflow-hidden border-y border-negro/5">
+      <section className="relative w-full py-10 md:py-12 bg-[#f8f7f2] overflow-hidden border-y border-negro/5 m-0">
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-20">
             
@@ -310,12 +304,9 @@ export default function Home() {
             {/* DERECHA: Contenido Compacto */}
             <div className="flex-1 text-center md:text-left">
               <div className="flex flex-col md:flex-row md:items-end gap-4 mb-6">
-                <h2 className="font-sansita font-bold text-4xl md:text-5xl text-negro leading-none lowercase">
+                <h2 className="font-sansita font-bold text-4xl md:text-5xl text-negro leading-none">
                   hacé que este <span className="text-bordo">grito</span> siga sonando.
                 </h2>
-                <span className="hidden md:block text-negro/20 font-mono text-[10px] mb-1 tracking-widest uppercase">
-                  /// est. 2024
-                </span>
               </div>
 
               <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
@@ -323,7 +314,7 @@ export default function Home() {
                   Si te gusta lo que hacemos, sumate y llevate el nuevo libro. Tu apoyo es lo que nos permite seguir gritando.
                 </p>
 
-                {/* BOTÓN: Versión más estilizada */}
+                {/* BOTÓN */}
                 <Link 
                   href="/apoyanos" 
                   onMouseEnter={() => setIsHovered(true)}
@@ -344,12 +335,13 @@ export default function Home() {
       </section>
 
 
-      {/* --- SECCIÓN: ARCHIVO DE NOTAS (ESTILO HOJA PEGADA) --- */}
-      <section className="bg-[#f8f7f2] pb-24 px-4 md:px-10">
-        
+     {/* --- SECCIÓN: ARCHIVO DE NOTAS --- */}
+      <section className="bg-[#f8f7f2] pb-24 px-4 -mt-1 pt-16 md:pt-20">
+        {/* Este div controla el ancho y lo centra */}
+        <div className="max-w-[80%] mx-auto"> 
 
-          {/* Grilla Ajustada a 3 columnas */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 mt-12">
+          {/* Grilla */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 mt-0">
             {(notasGrilla.length > 0 ? notasGrilla : notas.slice(0, 4)).map((nota, i) => {
               const colorDeNota = coloresCategorias[nota.categoria] || coloresCategorias.default;
               
@@ -360,68 +352,61 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.6 }}
                   key={nota.id || i} 
-                  className="group flex flex-col h-full"
+                  className="group flex flex-col h-full max-w-[320px] mx-auto lg:mx-0" 
                 >
 
-                  {/* 2. IMAGEN CON EFECTO STACK */}
-                  <Link href={`/notas/${nota.slug}`} className="relative block mb-6 overflow-visible">
-                    <div className="relative aspect-[3/4] overflow-hidden border border-negro z-10 bg-white transition-all duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1">
+                  {/* 1. IMAGEN */}
+                  <Link href={`/notas/${nota.slug}`} className="relative block mb-4 overflow-visible">
+                    <div className="relative aspect-[4/4] overflow-hidden border border-blanco z-10 bg-[#f8f7f2] transition-all duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1">
                       <img 
                         src={nota.imagen} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale-[0.3] group-hover:grayscale-0" 
                         alt={nota.titulo} 
                       />
                     </div>
-                    {/* Sombra de color sutil */}
                     <div 
                       style={{ backgroundColor: colorDeNota }}
-                      className="absolute inset-0 translate-x-2 translate-y-2 opacity-10 -z-10 transition-transform group-hover:translate-x-3 group-hover:translate-y-3"
+                      className="absolute inset-0 translate-x-1.5 translate-y-1.5 opacity-10 -z-10"
                     ></div>
                   </Link>
 
-                  {/* 1. CATEGORÍA (MÁS LIMPIA) */}
+                  {/* 2. CATEGORÍA */}
                   <span 
                     style={{ color: colorDeNota }}
-                    className="font-mono text-[10px] font-black uppercase tracking-widest mb-4"
+                    className="font-montserrat text-[9px] font-black uppercase tracking-[0.3em] mb-1"
                   >
-                    // {nota.categoria}
+                    {nota.categoria}
                   </span>
 
-                  {/* 3. TEXTO Y TITULAR */}
+                  {/* 3. TEXTO */}
                   <div className="flex flex-col flex-grow">
                     <Link href={`/notas/${nota.slug}`}>
-                      <h4 className="font-sansita font-bold text-2xl leading-none text-negro group-hover:text-naranja transition-colors lowercase mb-4">
+                      <h4 className="font-sansita font-bold text-[18px] leading-tight text-negro group-hover:text-bordo transition-colors  mb-1">
                         {nota.titulo}
                       </h4>
                     </Link>
 
-                    <p className="font-montserrat text-negro/70 text-[12px] leading-snug line-clamp-3 mb-6">
+                    <p className="font-montserrat text-negro/70 text-[11px] leading-snug line-clamp-2 mb-4">
                       {nota.bajada}
                     </p>
 
-                    {/* 4. PIE DE CARD: REACCIÓN CROMÁTICA */}
-                    <div className="mt-auto pt-4 border-t border-negro/10 flex justify-between items-end">
-                      
-                      {/* Info de Autoría */}
+                    {/* 4. PIE DE CARD */}
+                    <div className="mt-auto pt-1 border-t border-negro/10 flex justify-between items-end">
                       <div className="flex flex-col gap-0.5">
-                        <span className="font-mono text-[7px] uppercase text-negro/40 font-black tracking-[0.2em]">
+                        <span className="font-mono text-[8px] uppercase text-negro/40 font-black tracking-[0.2em]">
                           Escrito por
                         </span>
-                        <p className="font-mono text-[10px] uppercase font-black text-negro group-hover:underline decoration-2 underline-offset-2"
+                        <p className="font-mono text-[9px] uppercase font-black text-negro group-hover:underline decoration-1 underline-offset-2"
                           style={{ textDecorationColor: colorDeNota }}>
                           {nota.autor}
                         </p>
                       </div>
                       
-                      {/* Botón Dinámico */}
+                      {/* Botón */}
                       <Link 
                         href={`/notas/${nota.slug}`}
-                        style={{ 
-                          borderColor: colorDeNota,
-                          color: colorDeNota 
-                        }}
-                        className="relative w-10 h-10 border-2 flex items-center justify-center transition-all duration-300 
-                                  hover:text-white group-hover:shadow-[4px_4px_0px_rgba(0,0,0,0.1)] overflow-hidden"
+                        style={{ borderColor: colorDeNota, color: colorDeNota }}
+                        className="relative w-6 h-6 border flex items-center justify-center transition-all duration-300 hover:text-white overflow-hidden"
                         onMouseEnter={(e) => {
                           e.currentTarget.style.backgroundColor = colorDeNota;
                           e.currentTarget.style.color = '#ffffff';
@@ -431,10 +416,7 @@ export default function Home() {
                           e.currentTarget.style.color = colorDeNota;
                         }}
                       >
-                        {/* Flecha con un ligero desplazamiento en hover en vez de rotar */}
-                        <span className="text-xl font-bold transition-transform duration-300 group-hover:translate-x-1">
-                          →
-                        </span>
+                        <span className="text-lg font-bold">→</span>
                       </Link>
                     </div>
                   </div>
@@ -442,41 +424,53 @@ export default function Home() {
               );
             })}
           </div>
+        </div>
       </section>
 
-     {/* --- BANNER INTERMEDIO / FOTOPERIODISMO (ESTILO DIVISOR) --- */}
-      <section className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden bg-black my-12 group">
-        {/*<img 
-          src="/fotoperiodismo.png" 
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.5] contrast-125 grayscale hover:grayscale-0 transition-all duration-1000" 
-          alt="Fotoperiodismo"
-        />*/}
+     {/* --- SECCIÓN DIVISORA: FOTOPERIODISMO (ESTILO HERO) --- */}
+      <section className="relative w-full py-20 md:py-24 bg-negro overflow-hidden border-y border-white/5">
         
-        {/* OVERLAY: Gradiente para asegurar legibilidad */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
-
-        <div className="relative h-full w-full max-w-7xl mx-auto px-6 flex flex-col justify-center items-center text-center">
-          
-          <span className="text-celeste font-mono text-xs md:text-sm uppercase tracking-[0.4em] mb-4 drop-shadow-md">
-            Fotoperiodismo
-          </span>
-
-          <h2 className="font-sansita font-[700] text-4xl md:text-6xl text-white leading-none  max-w-4xl drop-shadow-2xl">
-            Miradas que <span className="text-bordo">Gritan</span>
-          </h2>
-
-          <div className="mt-8">
-            <button className="bg-transparent text-white border-2 border-white px-8 py-2 font-black text-xs uppercase hover:bg-white hover:text-black transition-all tracking-widest">
-              Ver Galería
-            </button>
-          </div>
+        {/* IMAGEN DE FONDO (Traída del banner) */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {notasBanner && notasBanner[0] ? (
+            <img 
+              src={notasBanner[0].imagen} 
+              alt="Background"
+              className="w-full h-full object-cover opacity-70 grayscale" 
+            />
+          ) : (
+            // Imagen de respaldo por si el array está vacío
+            <div className="w-full h-full bg-[#0a0a0a]" /> 
+          )}
         </div>
 
-        {/* TEXTO DE FONDO (MARCA DE AGUA) */}
-        <div className="absolute -bottom-4 left-0 w-full overflow-hidden opacity-10 pointer-events-none select-none">
-          <p className="font-sansita font-[900] text-[12vw] text-white whitespace-nowrap leading-none uppercase">
-            ALERTA FLEQUILLO • ALERTA FLEQUILLO • ALERTA FLEQUILLO
-          </p>
+        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center gap-8"
+          >
+
+            {/* Título Centrado y Gigante */}
+            <h2 className="font-sansita font-bold text-5xl md:text-8xl text-blanco leading-none lowercase tracking-tighter">
+              fotoperiodismo<span className="text-celeste">.</span>
+            </h2>
+
+            {/* BOTÓN CENTRADO */}
+            <Link 
+              href="/galeria-fotoperiodismo" 
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="group relative inline-flex items-center gap-4 bg-blanco text-negro px-10 py-4 font-bold uppercase text-[11px] tracking-[0.3em] transition-all 
+                        shadow-[6px_6px_0px_#1C8394] 
+                        hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] shrink-0"
+            >
+              Ver Galería
+              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -619,7 +613,7 @@ export default function Home() {
         {/* Columna 3: */}
         <div className="flex flex-col gap-4 font-mono uppercase text-sm">
           <span className="text-celeste font-black mb-2 tracking-widest">— CONTACTO</span>
-          <a href="mailto:alertaflequillo@gmail.com" className="hover:text-white/60 underline decoration-bordo underline-offset-4 text-xs lowercase">
+          <a href="mailto:alertaflequillo@gmail.com" className="hover:text-white/60 underline decoration-bordo underline-offset-4 text-xs">
             alertaflequillo@gmail.com
           </a>
           
