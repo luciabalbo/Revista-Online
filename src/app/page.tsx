@@ -442,19 +442,22 @@ export default function Home() {
       {/* --- SECCIÓN DIVISORA: FOTOPERIODISMO --- */}
       <section className="relative w-full py-28 md:py-36 bg-[#f8f5f0] overflow-hidden border-y border-negro/5">
         
-        {/* IMAGEN DE FONDO: Ahora ocupa todo el contenedor con object-cover */}
+        {/* IMAGEN DE FONDO CORREGIDA */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {notasBanner && notasBanner[0] ? (
             <img 
               src={notasBanner[0].imagen} 
               alt="Background Illustration"
-              className="w-full h-full object-cover opacity-20 mix-blend-multiply grayscale hover:grayscale-0 transition-all duration-1000" 
+              className="w-full h-full object-cover 
+                         grayscale brightness-[1.1] contrast-[1.4] opacity-30 
+                         mix-blend-multiply transition-all duration-1000" 
             />
           ) : (
             <div className="w-full h-full bg-[#f8f5f0]" /> 
           )}
-          {/* Overlay extra para suavizar los bordes si la imagen es muy fuerte */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#f8f5f0] via-transparent to-[#f8f5f0] opacity-60" />
+          {/* Overlay de desvanecimiento para que no se corte en los bordes */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f8f5f0] via-transparent to-[#f8f5f0] opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-transparent to-[#f8f5f0] opacity-80" />
         </div>
 
         <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
