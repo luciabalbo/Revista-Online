@@ -210,7 +210,7 @@ export default function Home() {
           className="flex h-full overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
         >
           {notasBanner.map((nota) => {
-            const colorCategoria = coloresCategorias[nota.categoria] || coloresCategorias["default"];
+            const colorCategoria = coloresCategorias[nota.volanta] || coloresCategorias["default"];
 
             return (
               <div key={nota.id} className="min-w-full h-full snap-center relative flex-shrink-0 group">
@@ -235,7 +235,7 @@ export default function Home() {
                       className="mb-4 font-montserrat text-[10px] md:text-[12px] uppercase tracking-[0.4em] font-black"
                       style={{ color: colorCategoria }}
                     >
-                      {nota.categoria || "CULTURA"}
+                      {nota.volanta || "CULTURA"}
                     </span>
 
                     {/* Título */}
@@ -317,7 +317,7 @@ export default function Home() {
             <div className="flex-1 text-center md:text-left">
               <div className="flex flex-col md:flex-row md:items-end gap-4 mb-6">
                 <h2 className="font-sansita font-bold text-4xl md:text-5xl text-negro leading-none">
-                  hacé que este <span className="text-bordo">grito</span> siga sonando.
+                  Hacé que este <span className="text-bordo">grito</span> siga sonando.
                 </h2>
               </div>
 
@@ -355,7 +355,7 @@ export default function Home() {
           {/* Grilla */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 mt-0">
             {(notasGrilla.length > 0 ? notasGrilla : notas.slice(0, 4)).map((nota, i) => {
-              const colorDeNota = coloresCategorias[nota.categoria] || coloresCategorias.default;
+              const colorDeNota = coloresCategorias[nota.volanta] || coloresCategorias.default;
               
               return (
                 <motion.article 
@@ -387,7 +387,7 @@ export default function Home() {
                     style={{ color: colorDeNota }}
                     className="font-montserrat text-[9px] font-black uppercase tracking-[0.3em] mb-1"
                   >
-                    {nota.categoria}
+                    {nota.volanta}
                   </span>
 
                   {/* 3. TEXTO */}
