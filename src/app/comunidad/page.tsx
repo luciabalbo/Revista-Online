@@ -147,7 +147,7 @@ export default function ComunidadPage() {
                 </div>
                 <a 
                     href="mailto:alertaflequillo@gmail.com" 
-                    className="inline-block bg-black text-white text-xl font-sansita italic px-12 py-6 hover:bg-[#FB9160] hover:text-black transition-all transform hover:-rotate-2"
+                    className="inline-block bg-black text-white text-xl font-sansita px-12 py-6 hover:bg-[#FB9160] hover:text-black transition-all transform hover:-rotate-2"
                 >
                     alertaflequillo@gmail.com
                 </a>
