@@ -5,14 +5,34 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function NosotrasPage() {
+export default function ComunidadPage() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const planes = [
+    { 
+        nombre: "Cortate el flequillo", 
+        precio: "$3.000", 
+        desc: "Aporte mensual básico para sostener la red.",
+        estilo: "bg-white text-black shadow-[10px_10px_0px_#A52502] border-2 border-black" 
+    },
+    { 
+        nombre: "Lo personal es flequillo", 
+        precio: "$6.000", 
+        desc: "Aporte medio para impulsar nuevas notas.",
+        estilo: "bg-[#A52502] text-white shadow-[10px_10px_0px_#000] border-2 border-black" 
+    },
+    { 
+        nombre: "El flequillo ya no es un prejuicio, es una orden de restricción", 
+        precio: "$10.000", 
+        desc: "Aporte premium para bancar la autogestión total.",
+        estilo: "bg-black text-white shadow-[10px_10px_0px_#A52502] border-2 border-white/20" 
+    }
+  ];
+
   return (
     <article className="min-h-screen bg-[#f8f7f2] text-black selection:bg-[#FB9160] selection:text-white overflow-x-hidden">
-       {/* TEXTURA DE GRANO (Overlay sutil para look analógico) */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[200] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-
-      {/* NAVBAR CON BLUR Y ANIMACIÓN */}
+      {/* TEXTURA ANALÓGICA */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.04] z-[200] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+			{/* NAVBAR CON BLUR Y ANIMACIÓN */}
       <nav className="fixed top-0 w-full z-[150] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
           <Link href="/" className="h-full flex items-center group">
@@ -43,97 +63,97 @@ export default function NosotrasPage() {
           </button>
         </div>
       </nav>
-      {/* HEADER MANIFIESTO */}
-      <header className="pt-40 pb-20 px-6 max-w-6xl mx-auto text-center">
-        <motion.span 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="inline-block text-[#390D02] font-bold text-xs uppercase tracking-[0.8em] mb-8"
-        >
-          Manifiesto
-        </motion.span>
-        
-        <motion.h1 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="font-sansita font-bold text-5xl md:text-[7vw] leading-[0.8] tracking-tighter"
-        >
-          Nosotras <span className="text-[#A52502]">.</span>
-        </motion.h1>
+      {/* HEADER TIPO COLLAGE */}
+      <header className="pt-40 pb-20 px-6 relative">
+        <div className="max-w-6xl mx-auto text-center">
+            <motion.div 
+                initial={{ rotate: -5, scale: 0.9, opacity: 0 }}
+                animate={{ rotate: -2, scale: 1, opacity: 1 }}
+                className="inline-block bg-black text-white px-6 py-2 mb-8 font-mono text-xs tracking-[0.8em] uppercase"
+            >
+                Comunidad
+            </motion.div>
+            <h1 className="font-sansita text-3xl md:text-[5vw] leading-[0.8] tracking-tighter ">
+                Bancá el periodismo <br/> 
+                <span className="text-[#A52502] relative">
+                    feminista
+                    <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 20" fill="none"><path d="M5 15C50 5 150 5 295 15" stroke="#FB9160" strokeWidth="4" strokeLinecap="round"/></svg>
+                </span>
+            </h1>
+        </div>
       </header>
 
-      {/* FOTO GRUPAL (Placeholder para que pongas la suya) */}
-      <section className="px-6 max-w-7xl mx-auto mb-32">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative h-[60vh] md:h-[80vh] overflow-hidden rounded-sm grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl"
-        >
-          <img 
-            src="/foto-integrantes.jpg" // CAMBIÁ ESTO POR TU FOTO EN /public
-            alt="Integrantes de Alerta Flequillo"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-          <p className="absolute bottom-8 left-8 font-mono text-white text-[10px] uppercase tracking-widest">
-            Tanti, Córdoba — 2024/2026
-          </p>
-        </motion.div>
-      </section>
-
-			{/* MANIFIESTO - COLUMNA ÚNICA */}
-      <main className="max-w-3xl mx-auto px-6 pb-40">
+      <main className="max-w-6xl mx-auto px-6 pb-40">
         
-        <div className="text-justify font-montserrat text-lg md:text-xl leading-[1.9] text-gray-800 space-y-12">
-          <p className="first-letter:text-8xl first-letter:font-sansita first-letter:mr-4 first-letter:float-left first-letter:text-[#FB9160]">
-            Alerta flequillo comienza como una iniciativa radial en el interior de nuestra provincia. En el 2024 nos encontramos en el centro cultural Otilia, en la localidad de Tanti, con la idea de construir un canal que privilegie el protagonismo de las mujeres y disidencias, una red que invite a compañeras a conectarse y discutir ideas.
-          </p>
-          
-          <p>
-            En esta revista confluyen nuestras iniciativas, en parte impulsadas por el incipiente gobierno de Javier Milei, que desde sus comienzos marcó sus ideales fascistas, su explícito antifeminismo y rechazo ante cualquier tipo de diversidad. Acompañados por afirmaciones concretas sobre la no existencia de la desigualdad de género, que podemos encontrar pregonadas en su canal oficial de comunicación, al que dedica varias horas diarias de trabajo: su cuenta de Twitter.
-          </p>
+        {/* SECCIÓN INTRODUCCIÓN CON EFECTO PAPEL */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-center">
+            <div className="lg:col-span-7 bg-white p-10 md:p-16 border border-black/10 shadow-sm relative">
+                {/* Bordes rasgados decorativos (simulados) */}
+                <div className="absolute top-0 left-0 w-full h-2 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')] opacity-10"></div>
+                
+                <div className="font-montserrat text-xl md:text-2xl leading-[1.8] text-gray-900 space-y-8 text-justify">
+                    <p>
+                        En un contexto de sobreinformación, donde las fake news y twitter parecen colonizar nuestras conexiones, seguimos apostando por la comunicación colectiva, por el periodismo crítico y feminista, en la militancia y la participación política.
+                    </p>
+                    <p className="font-sansita text-3xl italic text-[#1C8394]">
+                        Ayúdanos y se parte de nuestra comunidad. Sumate a Alerta Flequillo con una suscripción mensual.
+                    </p>
+                </div>
+            </div>
 
-          <p>
-            Somos estudiantes de comunicación social y letras, pero esperamos ser muchas más y de diferentes sectores, lugares y localidades.
-          </p>
-        </div>
+            {/* CAJA DEL LIBRO (LOOK STICKER/RECORTADO) */}
+            <motion.div 
+                whileHover={{ rotate: 0 }}
+                className="lg:col-span-5 bg-black text-white p-10 rotate-3 border-2 border-dashed border-[#FB9160] relative group"
+            >
+                <span className="absolute -top-4 -right-4 bg-[#FB9160] text-black font-mono text-xs font-bold px-4 py-2 rounded-full group-hover:scale-110 transition-transform">¡REGALO!</span>
+                <h3 className="font-sansita text-3xl mb-6 italic lowercase">¿Sabías que...?</h3>
+                <p className="font-montserrat text-lg leading-relaxed opacity-90">
+                    con un año de suscripción te regalamos un libro para leer juntas en el verano. Mandanos un mail solicitándolo y coordinamos el envío.
+                </p>
+            </motion.div>
+        </section>
 
-        {/* 1º SEPARADOR */}
-        <motion.div 
-          whileInView={{ opacity: [0, 1] }}
-          className="py-24 my-20 border-y border-black/5 text-center px-4"
-        >
-          <p className="font-sansita font-bold text-1xl md:text-3xl  leading-tight">
-            "Como parte de la universidad pública, nos parece de suma importancia aclarar que <span className="text-[#A52502]">esas manos de estudiante son las que redactan</span>."
-          </p>
-        </motion.div>
+        {/* GRILLA DE PLANES (BRUTALISMO) */}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-40">
+            {planes.map((plan, i) => (
+                <motion.div 
+                    key={i}
+                    whileHover={{ y: -10 }}
+                    className={`${plan.estilo} p-10 flex flex-col justify-between min-h-[400px] cursor-pointer group`}
+                >
+                    <div>
+                        <h3 className="font-sansita text-3xl leading-tight mb-4">{plan.nombre}</h3>
+                        <p className="font-montserrat text-sm opacity-80 mb-8">{plan.desc}</p>
+                    </div>
+                    <div className="mt-auto">
+                        <span className="font-sansita text-5xl block mb-6">{plan.precio}</span>
+                        <div className="w-full py-4 border-t border-current font-mono text-[10px] uppercase tracking-widest flex justify-between items-center group-hover:text-[#FB9160] transition-colors">
+                            Suscribirme <span>→</span>
+                        </div>
+                    </div>
+                </motion.div>
+            ))}
+        </section>
 
-        <div className="text-justify font-montserrat text-lg md:text-xl leading-[1.9] text-gray-800 space-y-12">
-          <p>
-            Nos proponemos esta instancia como una más en nuestro recorrido universitario y como personas. 
-          </p>
-          
-          <p>
-            Pensamos en Alerta Flequillo como un espacio de encuentro y comunidad. Ya sea de forma radial o gráfica. Un lugar donde podamos compartir ideas, no solo desde la universidad y multimedia, sino también sobre historias cercanas, cotidianas, las que podamos caminar y relatar. Creemos fielmente que no hace falta ir muy lejos para encontrar a quienes por siglos realizaron y realizan los trabajos de cuidado, las que nos criaron, las que se organizan, las que mueven el mundo.
-          </p>
-        </div>
-
-        {/* 2º SEPARADOR */}
-        <motion.div 
-          whileInView={{ scaleX: [0.9, 1] }}
-          className="py-24 my-20 bg-[#390D02] text-white px-10 text-center"
-        >
-          <p className="font-sansita font-bold text-3xl md:text-5xl leading-tight ">
-            Allí donde los medios hegemónicos no llegan, o prefieren no llegar, <span className="text-[#FB9160]">donde no hay negocio</span>.
-          </p>
-        </motion.div>
-
-        <div className="text-justify font-montserrat text-lg md:text-xl leading-[1.9] text-gray-800 space-y-12">
-          <p>
-          	Discutiendo no solo sobre feminismos, pero comprendiendo que estos nos conforman como militantes, estudiantes, trabajadoras, mamás. Desde la comunicación colectiva y autogestionada, desde el pensamiento crítico, por fuera de la inconcebible búsqueda de la objetividad.
-          </p>
-        </div>
-
+        {/* SECCIÓN ESCRIBIR (LOOK MANIFIESTO) */}
+        <section className="relative overflow-hidden bg-white p-12 md:p-24 text-center">
+            <div className="relative z-10 max-w-3xl mx-auto">
+                <h2 className="font-sansita text-3xl md:text-6xl mb-12 tracking-tighter">
+                    ¿Queres escribir <br/> <span className="text-[#FB9160]">con nosotras?</span>
+                </h2>
+                <div className="font-montserrat text-xl leading-[1.8] mb-12 text-gray-700">
+                    <p>Como un medio que pone resistencia a los tiempos que acechan, creemos que es importante priorizar la pluralidad de voces. Si consideras que podés hacer algún aporte ya sea desde la redacción, diseño gráfico o el fotoperiodismo, contactanos.</p>
+                </div>
+                <a 
+                    href="mailto:alertaflequillo@gmail.com" 
+                    className="inline-block bg-black text-white text-xl font-sansita italic px-12 py-6 hover:bg-[#FB9160] hover:text-black transition-all transform hover:-rotate-2"
+                >
+                    alertaflequillo@gmail.com
+                </a>
+                <p className="mt-10 font-mono text-[10px] uppercase tracking-[0.5em] text-black/40">¡Ayudanos a hacer crecer este proyecto!</p>
+            </div>
+        </section>
       </main>
 
 			{/* --- FOOTER --- */}

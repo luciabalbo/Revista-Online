@@ -30,13 +30,13 @@ export default function NotaPage({ params }: { params: Promise<{ slug: string }>
           </Link>
 
           <div className="hidden lg:flex items-center gap-10 font-montserrat text-[10px] uppercase tracking-[0.3em] font-bold">
-            {['Arte y Cultura', 'Feminismo', 'Streaming', 'Nosotras'].map((item) => (
-              <Link key={item} href="#" className="relative group overflow-hidden">
+            {['Arte y Cultura', 'Feminismo y poítica', 'Streaming', 'Nosotras'].map((item) => (
+              <Link key={item} href="/" className="relative group overflow-hidden">
                 <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">{item}</span>
                 <span className="absolute top-full left-0 text-[#FB9160] transition-transform duration-300 group-hover:-translate-y-full">{item}</span>
               </Link>
             ))}
-            <Link href="/apoyanos" className="bg-black text-white px-6 py-2 shadow-[4px_4px_0px_#FB9160] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all uppercase text-[9px]">
+            <Link href="/comunidad" className="bg-black text-white px-6 py-2 shadow-[4px_4px_0px_#FB9160] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all uppercase text-[9px]">
               Comunidad
             </Link>
           </div>

@@ -125,7 +125,7 @@ export default function Home() {
                 ))}
 
                   <Link 
-                    href="/apoyanos" 
+                    href="/comunidad" 
                     className="bg-white text-negro font-black uppercase tracking-[0.2em] transition-all hover:bg-bordo hover:text-white px-5 py-2 text-[10px] rotate-1 hover:rotate-0 shadow-[4px_4px_0px_rgba(255,255,255,0.1)] ml-4"
                   >
                     Sumate a la comunidad
@@ -183,7 +183,7 @@ export default function Home() {
               ))}
               
               <Link 
-                href="/apoyanos" 
+                href="/comunidad" 
                 onClick={() => setIsMenuOpen(false)}
                 className="mt-4 bg-blanco text-naranja px-8 py-3 font-bold uppercase tracking-widest shadow-[6px_6px_0px_#000] active:translate-y-1 active:shadow-none transition-all"
               >
@@ -328,7 +328,7 @@ export default function Home() {
 
                 {/* BOTÓN */}
                 <Link 
-                  href="/apoyanos" 
+                  href="/comunidad" 
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                   className="group relative inline-flex items-center gap-4 bg-negro text-blanco px-8 py-3.5 font-bold uppercase text-[10px] tracking-[0.2em] transition-all 
@@ -617,9 +617,9 @@ export default function Home() {
               <span className="w-8 h-[2px] bg-bordo"></span> SECCIONES
             </span>
             <div className="flex flex-col gap-4 font-sansita text-2xl">
-              <a href="#" className="hover:text-celeste transition-colors hover:pl-2 duration-300">feminismo y política</a>
-              <a href="#" className="hover:text-naranja transition-colors hover:pl-2 duration-300">arte y cultura</a>
-              <a href="#" className="hover:text-lila transition-colors hover:pl-2 duration-300">streaming</a>
+              <a href="feminismo-politica" className="hover:text-celeste transition-colors hover:pl-2 duration-300">feminismo y política</a>
+              <a href="/arte-cultura" className="hover:text-naranja transition-colors hover:pl-2 duration-300">arte y cultura</a>
+              <a href="/streaming" className="hover:text-lila transition-colors hover:pl-2 duration-300">streaming</a>
               <a href="/nosotras" className="hover:text-verde transition-colors hover:pl-2 duration-300">nosotras</a>
             </div>
           </div>
