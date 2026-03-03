@@ -48,7 +48,7 @@ export default function NosotrasPage() {
         <motion.span 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="inline-block text-[#FB9160] font-bold text-xs uppercase tracking-[0.8em] mb-8"
+          className="inline-block text-[#390D02] font-bold text-xs uppercase tracking-[0.8em] mb-8"
         >
           Manifiesto
         </motion.span>
@@ -56,9 +56,9 @@ export default function NosotrasPage() {
         <motion.h1 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="font-sansita font-bold text-7xl md:text-[10vw] leading-[0.8] tracking-tighter"
+          className="font-sansita font-bold text-5xl md:text-[7vw] leading-[0.8] tracking-tighter"
         >
-          Nosotras <span className="text-[#FB9160]">.</span>
+          Nosotras <span className="text-[#A52502]">.</span>
         </motion.h1>
       </header>
 
@@ -81,51 +81,152 @@ export default function NosotrasPage() {
         </motion.div>
       </section>
 
-      {/* CUERPO DEL TEXTO (Formato Editorial) */}
-      <main className="max-w-7xl mx-auto px-6 pb-40 grid grid-cols-1 lg:grid-cols-12 gap-10">
+{/* MANIFIESTO - COLUMNA ÚNICA */}
+      <main className="max-w-3xl mx-auto px-6 pb-40">
         
-        {/* Columna Izquierda: Introducción fuerte */}
-        <div className="lg:col-span-5 lg:col-start-2">
-          <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="font-sansita text-4xl md:text-5xl italic leading-tight mb-12"
-          >
-            "Construir un canal que privilegie el protagonismo de las mujeres y disidencias."
-          </motion.p>
-          <div className="h-[1px] w-20 bg-[#FB9160] mb-12"></div>
-        </div>
-
-        {/* Columna Derecha: El texto principal justificado */}
-        <div className="lg:col-span-5 text-justify font-montserrat text-lg md:text-xl leading-[1.8] text-gray-800 space-y-8">
-          <p className="first-letter:text-7xl first-letter:font-sansita first-letter:mr-3 first-letter:float-left first-letter:text-[#FB9160]">
+        <div className="text-justify font-montserrat text-lg md:text-xl leading-[1.9] text-gray-800 space-y-12">
+          <p className="first-letter:text-8xl first-letter:font-sansita first-letter:mr-4 first-letter:float-left first-letter:text-[#FB9160]">
             Alerta flequillo comienza como una iniciativa radial en el interior de nuestra provincia. En el 2024 nos encontramos en el centro cultural Otilia, en la localidad de Tanti, con la idea de construir un canal que privilegie el protagonismo de las mujeres y disidencias, una red que invite a compañeras a conectarse y discutir ideas.
           </p>
           
           <p>
-            En esta revista confluyen nuestras iniciativas, en parte impulsadas por el incipiente gobierno de Javier Milei, que desde sus comienzos marcó sus ideales fascistas, su explícito antifeminismo y rechazo ante cualquier tipo de diversidad.
-          </p>
-
-          <blockquote className="py-10 border-y border-black/5 font-sansita text-3xl italic text-center text-black">
-            La comunicación colectiva y autogestionada por fuera de la objetividad.
-          </blockquote>
-
-          <p>
-            Somos estudiantes de comunicación social y letras, pero esperamos ser muchas más y de diferentes sectores, lugares y localidades. Como parte de la universidad pública, nos parece de suma importancia aclarar que <strong>esas manos de estudiante son las que redactan</strong>. Nos proponemos esta instancia como una más en nuestro recorrido universitario y como personas.
+            En esta revista confluyen nuestras iniciativas, en parte impulsadas por el incipiente gobierno de Javier Milei, que desde sus comienzos marcó sus ideales fascistas, su explícito antifeminismo y rechazo ante cualquier tipo de diversidad. Acompañados por afirmaciones concretas sobre la no existencia de la desigualdad de género, que podemos encontrar pregonadas en su canal oficial de comunicación, al que dedica varias horas diarias de trabajo: su cuenta de Twitter.
           </p>
 
           <p>
-            Creemos fielmente que no hace falta ir muy lejos para encontrar a quienes por siglos realizaron y realizan los trabajos de cuidado, las que nos criaron, las que se organizan, las que mueven el mundo. Allí donde los medios hegemónicos no llegan, o prefieren no llegar, donde no hay negocio.
+            Somos estudiantes de comunicación social y letras, pero esperamos ser muchas más y de diferentes sectores, lugares y localidades.
           </p>
         </div>
+
+        {/* 1º SEPARADOR */}
+        <motion.div 
+          whileInView={{ opacity: [0, 1] }}
+          className="py-24 my-20 border-y border-black/5 text-center px-4"
+        >
+          <p className="font-sansita font-bold text-1xl md:text-3xl  leading-tight">
+            "Como parte de la universidad pública, nos parece de suma importancia aclarar que <span className="text-[#A52502]">esas manos de estudiante son las que redactan</span>."
+          </p>
+        </motion.div>
+
+        <div className="text-justify font-montserrat text-lg md:text-xl leading-[1.9] text-gray-800 space-y-12">
+          <p>
+            Nos proponemos esta instancia como una más en nuestro recorrido universitario y como personas. 
+          </p>
+          
+          <p>
+            Pensamos en Alerta Flequillo como un espacio de encuentro y comunidad. Ya sea de forma radial o gráfica. Un lugar donde podamos compartir ideas, no solo desde la universidad y multimedia, sino también sobre historias cercanas, cotidianas, las que podamos caminar y relatar. Creemos fielmente que no hace falta ir muy lejos para encontrar a quienes por siglos realizaron y realizan los trabajos de cuidado, las que nos criaron, las que se organizan, las que mueven el mundo.
+          </p>
+        </div>
+
+        {/* 2º SEPARADOR */}
+        <motion.div 
+          whileInView={{ scaleX: [0.9, 1] }}
+          className="py-24 my-20 bg-[#390D02] text-white px-10 text-center"
+        >
+          <p className="font-sansita font-bold text-3xl md:text-5xl leading-tight ">
+            Allí donde los medios hegemónicos no llegan, o prefieren no llegar, <span className="text-[#FB9160]">donde no hay negocio</span>.
+          </p>
+        </motion.div>
+
+        <div className="text-justify font-montserrat text-lg md:text-xl leading-[1.9] text-gray-800 space-y-12">
+          <p>
+          	Discutiendo no solo sobre feminismos, pero comprendiendo que estos nos conforman como militantes, estudiantes, trabajadoras, mamás. Desde la comunicación colectiva y autogestionada, desde el pensamiento crítico, por fuera de la inconcebible búsqueda de la objetividad.
+          </p>
+        </div>
+
       </main>
 
-      {/* FOOTER - BOTÓN VOLVER */}
-      <footer className="bg-black py-32 px-6 text-center">
-        <Link href="/" className="group inline-block">
-          <span className="font-mono text-[10px] text-white/40 uppercase tracking-[0.5em] mb-4 block">Volver a la realidad</span>
-          <h2 className="font-sansita text-5xl md:text-7xl text-white italic group-hover:text-[#FB9160] transition-colors">ir a la portada →</h2>
-        </Link>
+			{/* --- FOOTER --- */}
+      <footer className="bg-negro text-white pt-28 pb-12 px-6 border-t-[12px] border-bordo relative overflow-hidden">
+
+        {/* CONTENEDOR PRINCIPAL: Ahora con grid de 3 columnas para alineación simétrica */}
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10 items-start">
+          
+          {/* COLUMNA 1: LOGO (Alineado a la izquierda) */}
+          <div className="flex justify-start">
+            <div className="relative w-56 h-56 md:w-64 md:h-64 group">
+              <div className="absolute inset-0 border-2 border-dashed border-white/20 rounded-full animate-[spin_20s_linear_infinite] group-hover:border-bordo/50"></div>
+              <div className="absolute inset-2 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700"></div>
+              
+              <div className="absolute inset-2 rounded-full overflow-hidden bg-negro shadow-2xl z-20 border-[4px] border-white/10">
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  disablePictureInPicture
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/videologo.mp4" type="video/mp4" />
+                  <div className="w-full h-full bg-bordo flex items-center justify-center text-white font-bold text-4xl font-sansita">af</div>
+                </video>
+              </div>
+            </div>
+          </div>
+
+          {/* COLUMNA 2: NAVEGACIÓN (Centro) */}
+          <div className="flex flex-col gap-6 md:pl-8">
+            <span className="text-bordo font-mono font-black text-xs tracking-[0.5em] mb-2 flex items-center gap-2">
+              <span className="w-8 h-[2px] bg-bordo"></span> SECCIONES
+            </span>
+            <div className="flex flex-col gap-4 font-sansita text-2xl">
+              <a href="/feminismo-politica" className="hover:text-celeste transition-colors hover:pl-2 duration-300">feminismo y política</a>
+              <a href="/arte-cultura" className="hover:text-naranja transition-colors hover:pl-2 duration-300">arte y cultura</a>
+              <a href="/streaming" className="hover:text-lila transition-colors hover:pl-2 duration-300">streaming</a>
+              <a href="/nosotras" className="hover:text-verde transition-colors hover:pl-2 duration-300">nosotras</a>
+            </div>
+          </div>
+
+          {/* COLUMNA 3: CONTACTO (Derecha) */}
+          <div className="flex flex-col gap-6 md:pl-8">
+            <span className="text-celeste font-mono font-black text-xs tracking-[0.5em] mb-2 flex items-center gap-2">
+              <span className="w-8 h-[2px] bg-celeste"></span> CONTACTO
+            </span>
+            
+            <a href="mailto:alertaflequillo@gmail.com" className="font-sansita text-2xl hover:text-bordo transition-colors break-all underline underline-offset-8 decoration-white/20">
+              alertaflequillo@gmail.com
+            </a>
+
+            <div className="flex gap-3 mt-4">
+              {['IG', 'TK', 'YT'].map((social) => (
+                <a 
+                  key={social} 
+                  href="#" 
+                  className="w-10 h-10 bg-negro border-2 border-white flex items-center justify-center font-mono font-black text-xs relative group overflow-hidden shadow-[3px_3px_0px_#fff] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all"
+                >
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">{social}</span>
+                  <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 -z-0 ${
+                    social === 'IG' ? 'bg-lila' : social === 'TK' ? 'bg-naranja' : 'bg-verde'
+                  }`}></div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECCIÓN DE CRÉDITOS: Sticker integrado al medio */}
+        <div className="w-[80vw] mx-auto mt-24 pt-12 border-t border-white/10 relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+            
+            {/* Lado Izquierdo */}
+            <p className="text-[10px] font-mono uppercase tracking-[0.5em] text-white/30 text-center md:text-left">
+              © 2026 ALERTA FLEQUILLO — <span className="text-white/60">HECHO CON AMOR</span>
+            </p>
+
+            {/* STICKER CENTRAL: Ahora ubicado entre los dos textos de créditos */}
+            <div className="group relative">
+              <div className="bg-white text-negro px-4 py-2 font-mono font-black text-[10px] -rotate-2 shadow-[5px_5px_0px_#A52502] group-hover:rotate-0 group-hover:scale-110 transition-all duration-300 cursor-pointer uppercase whitespace-nowrap">
+                Design by Lula
+              </div>
+            </div>
+
+            {/* Lado Derecho */}
+            <div className="flex gap-8 text-[10px] font-mono uppercase tracking-[0.5em] text-white/30">
+              <span className="hover:text-white cursor-help transition-colors italic">privacidad?</span>
+              <span className="text-white/60">Córdoba, Argentina</span>
+            </div>
+          </div>
+        </div>
       </footer>
     </article>
   );
