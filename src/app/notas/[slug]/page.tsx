@@ -65,20 +65,20 @@ export default function NotaPage({ params }: { params: Promise<{ slug: string }>
       </AnimatePresence>
 
       {/* 1. HEADER: Entrada Cinematográfica */}
-      <header className="pt-52 pb-32 px-6 max-w-6xl mx-auto text-center">
+      <header className="pt-44 pb-33 px-6 max-w-6xl mx-auto text-center">
         <motion.span 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="inline-block text-[#FB9160] font-bold text-xs uppercase tracking-[0.8em] mb-10"
+          className="inline-block text-[#FB9160] font-bold text-xs uppercase tracking-[0.8em] mb-4"
         >
-          {nota.categoria}
+          {nota.volanta}
         </motion.span>
         
         <motion.h2 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="font-montserrat font-light text-xl md:text-3xl leading-relaxed text-gray-500 mb-12 italic max-w-4xl mx-auto"
+          className="font-montserrat font-light text-xl md:text-2xl leading-relaxed text-gray-500 mb-6 italic max-w-4xl mx-auto"
         >
           {nota.bajada}
         </motion.h2>
@@ -87,7 +87,7 @@ export default function NotaPage({ params }: { params: Promise<{ slug: string }>
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="font-sansita font-bold text-7xl md:text-[13vw] leading-[0.75] tracking-tighter italic lowercase mb-16"
+          className="font-sansita font-bold text-3xl md:text-[5vw] leading-[0.85] tracking-tighter italic  mb-10"
         >
           {nota.titulo}
         </motion.h1>
@@ -119,35 +119,41 @@ export default function NotaPage({ params }: { params: Promise<{ slug: string }>
           viewport={{ once: true }}
           className="lg:col-span-8 lg:col-start-3"
         >
-          <div className="font-montserrat text-xl md:text-[26px] leading-[1.8] text-gray-900 space-y-16 first-letter:text-8xl first-letter:font-sansita first-letter:mr-4 first-letter:float-left first-letter:text-[#FB9160]">
+          {/* CUERPO DE LA NOTA (Justificado para look editorial) */}
+          <div className="font-montserrat text-xl md:text-[26px] leading-[1.8] text-gray-900 text-justify first-letter:text-8xl first-letter:font-sansita first-letter:mr-4 first-letter:float-left first-letter:text-[#FB9160] mb-24">
             {nota.cuerpo || "Escribiendo la historia..."}
-            
-            <motion.div 
-              whileInView={{ scaleX: [0, 1] }}
-              className="py-24 border-y border-black/5 text-center relative"
-            >
-               <p className="font-sansita font-bold text-4xl md:text-7xl italic leading-none lowercase text-black/20 absolute inset-0 flex items-center justify-center select-none">
-                 resistencia
-               </p>
-               <p className="font-sansita font-bold text-3xl md:text-5xl italic leading-tight lowercase relative z-10">
-                 la comunicación es un acto de rebeldía constante.
-               </p>
-            </motion.div>
           </div>
+
+          {/* CTA SECCIÓN COMUNIDAD (Fuera del div del cuerpo) */}
+          <Link href="/apoyanos" className="block group">
+            <motion.div 
+              whileInView={{ scaleX: [0.9, 1], opacity: [0, 1] }}
+              className="py-24 border-y border-black/5 text-center relative cursor-pointer"
+            >
+               <div className="relative z-10 flex flex-col items-center gap-4">
+                 <p className="font-sansita font-bold text-3xl md:text-5xl leading-tight group-hover:text-[#390D02] transition-colors">
+                   Sumate a la comunidad
+                 </p>
+                 <span className="font-mono text-[15px] tracking-[0.4em] text-[#A52502] opacity-0 group-hover:opacity-100 transition-opacity">
+                   Bancá el periodismo feminista  →
+                 </span>
+               </div>
+            </motion.div>
+          </Link>
         </motion.div>
       </main>
 
       {/* 4. RELACIONADOS: Grid Dinámico */}
       <section className="bg-black py-40 px-6">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-sansita text-white text-5xl md:text-8xl italic mb-20 lowercase tracking-tighter">
-            seguí explorando <span className="text-[#FB9160]">.</span>
+          <h2 className="font-sansita text-white text-5xl md:text-8xl mb-20 tracking-tighter">
+            Seguí explorando <span className="text-[#FB9160]">.</span>
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1px bg-white/10 border border-white/10">
             {notas.slice(0, 3).map((rel, i) => (
               <Link key={rel.slug} href={`/notas/${rel.slug}`} className="group relative bg-black p-10 overflow-hidden transition-colors hover:bg-[#FB9160]">
-                <span className="font-mono text-[9px] text-white/40 group-hover:text-black uppercase mb-8 block">0{i+1} / {rel.categoria}</span>
+                <span className="font-mono text-[9px] text-white/40 group-hover:text-black uppercase mb-8 block">0{i+1} / {rel.volanta}</span>
                 <h3 className="font-sansita text-3xl text-white group-hover:text-black leading-none italic lowercase mb-20">{rel.titulo}</h3>
                 <div className="absolute bottom-10 right-10 text-white group-hover:text-black text-4xl transition-transform group-hover:translate-x-2">→</div>
               </Link>
@@ -156,22 +162,96 @@ export default function NotaPage({ params }: { params: Promise<{ slug: string }>
         </div>
       </section>
 
-      {/* 5. FOOTER: Wes Anderson Brutalism */}
-      <footer className="bg-[#FB9160] py-40 px-6 text-center relative">
-        <motion.h2 
-          animate={{ x: [-20, 20] }}
-          transition={{ duration: 5, repeat: Infinity, repeatType: "mirror" }}
-          className="font-sansita font-black text-[20vw] leading-none text-white/20 absolute top-10 left-0 whitespace-nowrap select-none"
-        >
-          ALERTA FLEQUILLO ALERTA FLEQUILLO
-        </motion.h2>
-        
-        <div className="relative z-10">
-          <p className="font-mono text-[10px] uppercase tracking-[0.5em] text-white mb-8">¿te gustó esta nota?</p>
-          <h3 className="font-sansita text-6xl md:text-9xl text-white italic lowercase mb-16 leading-none">unite a la <br/> revolución.</h3>
-          <Link href="/" className="inline-block bg-black text-white px-16 py-6 rounded-full font-sansita font-bold text-xl hover:bg-white hover:text-black transition-all">
-            Ir a la portada
-          </Link>
+      {/* --- FOOTER --- */}
+      <footer className="bg-negro text-white pt-28 pb-12 px-6 border-t-[12px] border-bordo relative overflow-hidden">
+
+        {/* CONTENEDOR PRINCIPAL: Ahora con grid de 3 columnas para alineación simétrica */}
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10 items-start">
+          
+          {/* COLUMNA 1: LOGO (Alineado a la izquierda) */}
+          <div className="flex justify-start">
+            <div className="relative w-56 h-56 md:w-64 md:h-64 group">
+              <div className="absolute inset-0 border-2 border-dashed border-white/20 rounded-full animate-[spin_20s_linear_infinite] group-hover:border-bordo/50"></div>
+              <div className="absolute inset-2 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700"></div>
+              
+              <div className="absolute inset-2 rounded-full overflow-hidden bg-negro shadow-2xl z-20 border-[4px] border-white/10">
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  disablePictureInPicture
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/videologo.mp4" type="video/mp4" />
+                  <div className="w-full h-full bg-bordo flex items-center justify-center text-white font-bold text-4xl font-sansita">af</div>
+                </video>
+              </div>
+            </div>
+          </div>
+
+          {/* COLUMNA 2: NAVEGACIÓN (Centro) */}
+          <div className="flex flex-col gap-6 md:pl-8">
+            <span className="text-bordo font-mono font-black text-xs tracking-[0.5em] mb-2 flex items-center gap-2">
+              <span className="w-8 h-[2px] bg-bordo"></span> SECCIONES
+            </span>
+            <div className="flex flex-col gap-4 font-sansita text-2xl">
+              <a href="#" className="hover:text-celeste transition-colors hover:pl-2 duration-300">feminismo y política</a>
+              <a href="#" className="hover:text-naranja transition-colors hover:pl-2 duration-300">arte y cultura</a>
+              <a href="#" className="hover:text-lila transition-colors hover:pl-2 duration-300">streaming</a>
+              <a href="#" className="hover:text-verde transition-colors hover:pl-2 duration-300">nosotras</a>
+            </div>
+          </div>
+
+          {/* COLUMNA 3: CONTACTO (Derecha) */}
+          <div className="flex flex-col gap-6 md:pl-8">
+            <span className="text-celeste font-mono font-black text-xs tracking-[0.5em] mb-2 flex items-center gap-2">
+              <span className="w-8 h-[2px] bg-celeste"></span> CONTACTO
+            </span>
+            
+            <a href="mailto:alertaflequillo@gmail.com" className="font-sansita text-2xl hover:text-bordo transition-colors break-all underline underline-offset-8 decoration-white/20">
+              alertaflequillo@gmail.com
+            </a>
+
+            <div className="flex gap-3 mt-4">
+              {['IG', 'TK', 'YT'].map((social) => (
+                <a 
+                  key={social} 
+                  href="#" 
+                  className="w-10 h-10 bg-negro border-2 border-white flex items-center justify-center font-mono font-black text-xs relative group overflow-hidden shadow-[3px_3px_0px_#fff] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all"
+                >
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-300">{social}</span>
+                  <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 -z-0 ${
+                    social === 'IG' ? 'bg-lila' : social === 'TK' ? 'bg-naranja' : 'bg-verde'
+                  }`}></div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECCIÓN DE CRÉDITOS: Sticker integrado al medio */}
+        <div className="w-[80vw] mx-auto mt-24 pt-12 border-t border-white/10 relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+            
+            {/* Lado Izquierdo */}
+            <p className="text-[10px] font-mono uppercase tracking-[0.5em] text-white/30 text-center md:text-left">
+              © 2026 ALERTA FLEQUILLO — <span className="text-white/60">HECHO CON AMOR</span>
+            </p>
+
+            {/* STICKER CENTRAL: Ahora ubicado entre los dos textos de créditos */}
+            <div className="group relative">
+              <div className="bg-white text-negro px-4 py-2 font-mono font-black text-[10px] -rotate-2 shadow-[5px_5px_0px_#A52502] group-hover:rotate-0 group-hover:scale-110 transition-all duration-300 cursor-pointer uppercase whitespace-nowrap">
+                Design by Lula
+              </div>
+            </div>
+
+            {/* Lado Derecho */}
+            <div className="flex gap-8 text-[10px] font-mono uppercase tracking-[0.5em] text-white/30">
+              <span className="hover:text-white cursor-help transition-colors italic">privacidad?</span>
+              <span className="text-white/60">Córdoba, Argentina</span>
+            </div>
+          </div>
         </div>
       </footer>
     </article>

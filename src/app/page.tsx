@@ -620,7 +620,7 @@ export default function Home() {
               <a href="#" className="hover:text-celeste transition-colors hover:pl-2 duration-300">feminismo y política</a>
               <a href="#" className="hover:text-naranja transition-colors hover:pl-2 duration-300">arte y cultura</a>
               <a href="#" className="hover:text-lila transition-colors hover:pl-2 duration-300">streaming</a>
-              <a href="#" className="hover:text-verde transition-colors hover:pl-2 duration-300">nosotras</a>
+              <a href="/nosotras" className="hover:text-verde transition-colors hover:pl-2 duration-300">nosotras</a>
             </div>
           </div>
 
