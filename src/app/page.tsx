@@ -1,55 +1,62 @@
 "use client";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from "next/image";
 import Link from "next/link"; 
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import notas from '@/app/notas.json';
 
 export default function Home() {
   // 1. Estados
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false); 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [bgHover, setBgHover] = useState('#000B0D');
+  const [searchTerm, setSearchTerm] = useState(''); // Inicializado vacío para evitar error de consola
   
-  // NUEVOS ESTADOS PARA EL CURSOR
+  // Cursor Custom
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
-  // 2. Referencias y Scroll
   const scrollRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll();
 
-  // 3. Efectos
+  // 2. Lógica de Filtrado ÚNICA (Corregido: eliminada la duplicación que rompía todo)
+  const notasFiltradas = useMemo(() => {
+    const term = searchTerm.toLowerCase().trim();
+    if (!term) return notas;
+    return notas.filter((nota) => {
+      const target = `${nota.titulo} ${nota.autor} ${nota.volanta} ${nota.bajada} ${nota.fecha}`.toLowerCase();
+      return target.includes(term);
+    });
+  }, [searchTerm]);
+
+  // 3. Distribución de notas (Separadas para que el banner no desaparezca al buscar)
+  const notasBanner = notas.slice(0, 3); // EL BANNER QUEDA FIJO (No se rompe)
+  const notasGrilla = notasFiltradas;    // LA GRILLA REACCIONA A LA BÚSQUEDA
+
   useEffect(() => {
-    // Manejo de Scroll para el Navbar
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    // Manejo de Mouse para el Cursor Custom
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleMouseMove = (e: MouseEvent) => setMousePos({ x: e.clientX, y: e.clientY });
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('mousemove', handleMouseMove);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
-  // 4. Lógica de Datos 
-  const notasBanner = notas.slice(0, 3);
-  const notasGrilla = notas.slice(3, 6);
-
-  // 5. Funciones de Navegación del Slider
+  // RECUPERADO: Función de las flechitas (No se borra más)
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
       const scrollTo = direction === "left" ? scrollLeft - clientWidth : scrollLeft + clientWidth;
       scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+    }
+  };
+
+  const ejecutarBusqueda = (termino: string) => {
+    setSearchTerm(termino);
+    const section = document.getElementById('archivo-notas');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -123,7 +130,34 @@ export default function Home() {
                     </span>
                   </Link>
                 ))}
-
+                {/* LUPITA BUSCADOR */}
+                <div className="flex items-center gap-2">
+                  <AnimatePresence>
+                    {isSearchOpen && (
+                      <motion.input
+                        initial={{ width: 0, opacity: 0 }}
+                        animate={{ width: 150, opacity: 1 }}
+                        exit={{ width: 0, opacity: 0 }}
+                        autoFocus
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        // TAMBIÉN ACÁ PARA LA LUPITA:
+                        onKeyDown={(e) => e.key === 'Enter' && ejecutarBusqueda(searchTerm)}
+                        placeholder="BUSCAR..."
+                        className="bg-transparent border-b border-white text-white font-mono text-[10px] outline-none"
+                      />
+                    )}
+                  </AnimatePresence>
+                  <button 
+                    onClick={() => setIsSearchOpen(!isSearchOpen)}
+                    className="text-white hover:text-naranja transition-colors p-2"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                  </button>
+                </div>
                   <Link 
                     href="/comunidad" 
                     className="bg-white text-negro font-black uppercase tracking-[0.2em] transition-all hover:bg-bordo hover:text-white px-5 py-2 text-[10px] rotate-1 hover:rotate-0 shadow-[4px_4px_0px_rgba(255,255,255,0.1)] ml-4"
@@ -348,7 +382,7 @@ export default function Home() {
 
 
      {/* --- SECCIÓN: ARCHIVO DE NOTAS --- */}
-      <section className="bg-[#f8f7f2] pb-24 px-4 -mt-1 pt-16 md:pt-20">
+      <section id="archivo-notas" className="bg-[#f8f7f2] pb-24 px-4 -mt-1 pt-16 md:pt-20">
         {/* Este div controla el ancho y lo centra */}
         <div className="max-w-[80%] mx-auto"> 
 
@@ -538,50 +572,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- SECCIÓN: BUSCADOR EN EL CAOS --- */}
-      <section className="relative w-full py-32 bg-blanco overflow-hidden">
-        {/* Imagen de fondo con opacidad baja para no molestar la lectura */}
-        <div className="absolute inset-0 z-0 opacity-20 grayscale grayscale-100">
-          <img 
-            src="/banner_buscar.png" 
-            className="w-full h-full object-cover"
-            alt="Fondo Buscador"
-          />
-        </div>
+    {/* --- SECCIÓN: BUSCADOR EN EL CAOS --- */}
+    <section className="relative w-full py-32 bg-blanco overflow-hidden">
+      <div className="absolute inset-0 z-0 opacity-20 grayscale grayscale-100">
+        <img src="/banner_buscar.png" className="w-full h-full object-cover" alt="Fondo Buscador" />
+      </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-sansita text-4xl md:text-6xl text-negro mb-8 leading-[1]">
-            Un espacio de encuentro y comuinidad, de historias cercanas que podemos caminar.
-          </h2>
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <h2 className="font-sansita text-4xl md:text-6xl text-negro mb-8 leading-[1]">
+          Un espacio de encuentro y comuinidad, de historias cercanas que podemos caminar.
+        </h2>
+        
+        <div className="relative group max-w-2xl mx-auto">
+          <div className="absolute -top-4 left-4 bg-celeste text-negro font-bold text-[10px] px-3 py-1 uppercase tracking-widest border border-negro z-20 shadow-[2px_2px_0px_#000]">
+            Buscar
+          </div>
           
-          {/* Formulario de Búsqueda Estilo Fanzine */}
-          <div className="relative group max-w-2xl mx-auto">
-            <div className="absolute -top-4 left-4 bg-celeste text-negro font-bold text-[10px] px-3 py-1 uppercase tracking-widest border border-negro z-20 shadow-[2px_2px_0px_#000]">
-              Buscar
-            </div>
-            
-            <div className="flex flex-col md:flex-row gap-0 shadow-[10px_10px_0px_#000] border-2 border-negro transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1">
-              <input 
-                type="text" 
-                placeholder="..." 
-                className="w-full bg-white/80 backdrop-blur-sm p-6 font-mono text-sm uppercase tracking-widest outline-none placeholder:text-negro/30"
-              />
-              <button className="bg-negro text-white px-10 py-6 font-black uppercase text-xs tracking-widest hover:bg-naranja transition-colors">
-                Ir →
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <span className="font-mono text-[12px] text-negro/40 uppercase">Tendencias:</span>
-            {['Cultura', 'Aborto', 'Streaming', 'IA'].map((tag) => (
-              <button key={tag} className="font-mono text-[12px] font-bold uppercase underline decoration-naranja hover:text-bordo transition-colors">
-                #{tag}
-              </button>
-            ))}
+          <div className="flex flex-col md:flex-row gap-0 shadow-[10px_10px_0px_#000] border-2 border-negro transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1">
+            <input 
+              type="text" 
+              placeholder="..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              // ESTO HACE QUE AL APRETAR ENTER TE LLEVE ABAJO:
+              onKeyDown={(e) => e.key === 'Enter' && ejecutarBusqueda(searchTerm)}
+              className="w-full bg-white/80 backdrop-blur-sm p-6 font-mono text-sm uppercase tracking-widest outline-none placeholder:text-negro/30"
+            />
+            <button 
+              onClick={() => ejecutarBusqueda(searchTerm)}
+              className="bg-negro text-white px-10 py-6 font-black uppercase text-xs tracking-widest hover:bg-naranja transition-colors"
+            >
+              Ir →
+            </button>
           </div>
         </div>
-      </section>
+
+        <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <span className="font-mono text-[12px] text-negro/40 uppercase">Tendencias:</span>
+          {['Cultura', 'Aborto', 'Streaming', 'IA'].map((tag) => (
+            <button 
+              key={tag} 
+              onClick={() => ejecutarBusqueda(tag)}
+              className="font-mono text-[12px] font-bold uppercase underline decoration-naranja hover:text-bordo transition-colors"
+            >
+              #{tag}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
       
      {/* --- FOOTER --- */}
       <footer className="bg-negro text-white pt-28 pb-12 px-6 border-t-[12px] border-bordo relative overflow-hidden">
