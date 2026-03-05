@@ -12,7 +12,7 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false); 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(''); // Inicializado vacío para evitar error de consola
+  const [searchTerm, setSearchTerm] = useState(''); 
   
   // Cursor Custom
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -30,9 +30,9 @@ export default function Home() {
     });
   }, [searchTerm]);
 
-  // 3. Distribución de notas (Separadas para que el banner no desaparezca al buscar)
-  const notasBanner = notas.slice(0, 3); // EL BANNER QUEDA FIJO (No se rompe)
-  const notasGrilla = notasFiltradas;    // LA GRILLA REACCIONA A LA BÚSQUEDA
+  // 3. Distribución de notas
+  const notasBanner = notas.slice(0, 3); 
+  const notasGrilla = notasFiltradas;    
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -53,7 +53,7 @@ export default function Home() {
     }
   }, [isMenuOpen]);
 
-  // RECUPERADO: Función de las flechitas (No se borra más)
+  //Función de las flechitas 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
@@ -133,7 +133,7 @@ export default function Home() {
                 </AnimatePresence>
               </div>
 
-              {/* MENÚ DESKTOP (Se oculta en mobile) */}
+              {/* MENÚ DESKTOP */}
               <div className="hidden lg:flex items-center gap-6 xl:gap-10">
                 {['Arte y Cultura', 'Feminismo y Política', 'Streaming', 'Nosotras', 'Contacto'].map((item) => (
                   <Link 
@@ -171,7 +171,7 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* BOTONES MOBILE (Hamburguesa y Lupa) */}
+              {/* BOTONES MOBILE */}
               <div className="flex lg:hidden items-center gap-4">
                 <button 
                   onClick={() => setIsMenuOpen(true)} 
@@ -194,7 +194,7 @@ export default function Home() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
-            initial={{ x: '100%' }} // Entra de costado
+            initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
@@ -271,16 +271,15 @@ export default function Home() {
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-negro/90 via-negro/20 to-transparent z-10" />
                 
-                {/* CONTENEDOR DE TEXTO: Centrado vertical y horizontal */}
+                {/* CONTENEDOR DE TEXTO */}
                 <div className="relative h-full w-full flex flex-col justify-center items-center text-center z-20 px-4">
                   
                   <div className="max-w-[90vw] md:max-w-5xl flex flex-col items-center">
                     
-                    {/* CATEGORÍA: Color dinámico aplicado aquí */}
+                    {/* CATEGORÍA*/}
                     <span 
                       className="mb-6 inline-block bg-white text-negro font-montserrat text-[8px] md:text-[9px] uppercase tracking-[0.2em] font-black px-4 py-1.5  transition-all duration-300 hover:rotate-0 hover:text-white"
                       style={{ 
-                        // Usamos una variable de CSS para pasarle el color dinámico al hover
                         ['--hover-color' as any]: colorCategoria 
                       }}
                       onMouseEnter={(e) => e.currentTarget.style.backgroundColor = colorCategoria}
@@ -339,13 +338,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- SECCIÓN DIVISORA COMPACTA ---*/}
+      {/* --- SECCIÓN DIVISORA  ---*/}
       <section className="relative w-full py-8 md:py-12 bg-[#f8f7f2] overflow-hidden border-y border-negro/5 m-0">
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          {/* Reduje el gap de 10 a 6 en mobile para que no haya tanto aire */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-20">
             
-            {/* IZQUIERDA: Imagen más pequeña en mobile */}
+            {/* IZQUIERDA */}
             <motion.div 
               whileHover={{ rotate: -2, scale: 1.05 }}
               className="relative shrink-0"
@@ -366,7 +364,7 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            {/* DERECHA: Texto y botón más integrados */}
+            {/* DERECHA */}
             <div className="flex-1 text-center md:text-left">
               <div className="mb-4 md:mb-6">
                 <h2 className="font-sansita font-bold text-2xl md:text-5xl text-negro leading-[1.1]">
@@ -376,12 +374,11 @@ export default function Home() {
 
               {/* Contenedor de párrafo y botón */}
               <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
-                {/* Texto más pequeño y gris más suave */}
                 <p className="font-montserrat font-medium text-negro/60 text-xs md:text-base max-w-sm md:max-w-md leading-relaxed">
                   Si te gusta lo que hacemos, sumate y llevate el nuevo libro. Tu apoyo nos permite seguir gritando.
                 </p>
 
-                {/* BOTÓN: Versión Mini para mobile */}
+                {/* BOTÓN */}
                 <Link 
                   href="/comunidad" 
                   onMouseEnter={() => setIsHovered(true)}
@@ -403,7 +400,6 @@ export default function Home() {
 
      {/* --- SECCIÓN: ARCHIVO DE NOTAS --- */}
       <section id="archivo-notas" className="bg-[#f8f7f2] pb-24 px-4 -mt-1 pt-16 md:pt-20">
-        {/* Este div controla el ancho y lo centra */}
         <div className="max-w-[80%] mx-auto"> 
 
           {/* Grilla */}
@@ -496,7 +492,7 @@ export default function Home() {
       {/* --- SECCIÓN DIVISORA: FOTOPERIODISMO --- */}
       <section className="relative w-full py-28 md:py-36 bg-[#f8f5f0] overflow-hidden border-y border-negro/5">
         
-        {/* IMAGEN DE FONDO CORREGIDA */}
+        {/* IMAGEN DE FONDO */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {notasBanner && notasBanner[0] ? (
             <img 
@@ -509,7 +505,6 @@ export default function Home() {
           ) : (
             <div className="w-full h-full bg-[#f8f5f0]" /> 
           )}
-          {/* Overlay de desvanecimiento para que no se corte en los bordes */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#f8f5f0] via-transparent to-[#f8f5f0] opacity-80" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-transparent to-[#f8f5f0] opacity-80" />
         </div>
@@ -523,7 +518,7 @@ export default function Home() {
             className="flex flex-col items-center gap-10"
           >
 
-            {/* Título: Gigante y con tracking apretado */}
+            {/* Título */}
             <h2 className="font-sansita font-bold text-2xl md:text-[4rem] text-negro leading-[0.8] tracking-tighter drop-shadow-sm">
               Fotoperiodismo<span className="text-celeste">.</span>
             </h2>
@@ -551,7 +546,7 @@ export default function Home() {
       <section className="w-full bg-[#f8f7f2]">
         <div className="max-w-6xl mx-auto px-6 py-12 md:py-24 relative overflow-hidden">
           
-          {/* Título de sección: Reducido en mobile */}
+          {/* Título de sección */}
           <div className="mb-10 md:mb-16 relative">
             <h3 className="text-2xl md:text-5xl font-sansita relative z-10 border-l-[8px] md:border-l-[12px] border-bordo pl-4 md:pl-6 tracking-tighter">
               Alerta Flequillo <span className="text-bordo font-mono text-sm md:text-2xl align-middle ml-1 md:ml-2">- hecho con amor</span>
@@ -604,9 +599,8 @@ export default function Home() {
         {/* CONTENEDOR PRINCIPAL */}
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 relative z-10 items-start">
           
-          {/* COLUMNA 1: LOGO (Centrado en mobile) */}
+          {/* COLUMNA 1 */}
           <div className="flex justify-center md:justify-start">
-            {/* Achicamos el círculo de w-56 a w-40 en mobile */}
             <div className="relative w-40 h-40 md:w-64 md:h-64 group">
               <div className="absolute inset-0 border-2 border-dashed border-white/20 rounded-full animate-[spin_20s_linear_infinite] group-hover:border-bordo/50"></div>
               
@@ -619,7 +613,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* COLUMNA 2: NAVEGACIÓN (Centrado en mobile) */}
+          {/* COLUMNA 2: NAVEGACIÓN */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4 md:gap-6">
             <span className="text-bordo font-mono font-black text-[10px] md:text-xs tracking-[0.3em] md:tracking-[0.5em] mb-2 flex items-center gap-2">
               <span className="hidden md:block w-8 h-[2px] bg-bordo"></span> SECCIONES <span className="md:hidden w-8 h-[2px] bg-bordo"></span>
@@ -632,7 +626,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* COLUMNA 3: CONTACTO (Centrado en mobile) */}
+          {/* COLUMNA 3: CONTACTO */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4 md:gap-6">
             <span className="text-celeste font-mono font-black text-[10px] md:text-xs tracking-[0.3em] md:tracking-[0.5em] mb-2 flex items-center gap-2">
               <span className="hidden md:block w-8 h-[2px] bg-celeste"></span> CONTACTO <span className="md:hidden w-8 h-[2px] bg-celeste"></span>
@@ -652,7 +646,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* SECCIÓN DE CRÉDITOS: Sticker integrado al medio */}
+        {/* SECCIÓN DE CRÉDITOS */}
         <div className="w-[80vw] mx-auto mt-24 pt-12 border-t border-white/10 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-10">
             
@@ -661,7 +655,7 @@ export default function Home() {
               © 2026 ALERTA FLEQUILLO — <span className="text-white/60">HECHO CON AMOR</span>
             </p>
 
-            {/* STICKER CENTRAL: Ahora ubicado entre los dos textos de créditos */}
+            {/* STICKER CENTRAL */}
             <div className="group relative">
               <div className="bg-white text-negro px-3 py-1 font-mono font-black text-[8px] -rotate-2 shadow-[5px_5px_0px_#A52502] group-hover:rotate-0 group-hover:scale-110 transition-all duration-300 cursor-pointer uppercase whitespace-nowrap">
                 Design by Lula
