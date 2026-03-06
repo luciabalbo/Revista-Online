@@ -18,7 +18,7 @@ export default function FeminismoYPolitica() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // El color estrella de esta sección
-  const colorSeccion = "#A52502"; 
+  const colorSeccion = "#4F136C"; 
 
   // 2. FILTRADO: Solo notas de "Feminismo" o "Política" (según como las tengas en el JSON)
   const notasCategoria = useMemo(() => {
@@ -73,7 +73,7 @@ export default function FeminismoYPolitica() {
                 {['Arte y Cultura', 'Feminismo y Politica', 'Streaming', 'Nosotras'].map((item) => {
                   const slug = item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
                   return (
-                    <Link key={item} href={`/${slug}`} className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-white hover:text-bordo transition-colors">
+                    <Link key={item} href={`/${slug}`} className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-white hover:text-lila transition-colors">
                       {item}
                     </Link>
                   );
@@ -111,11 +111,10 @@ export default function FeminismoYPolitica() {
       <section className="max-w-7xl mx-auto px-6 pt-20 pb-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b-4 border-negro pb-6">
           <h1 className="font-sansita text-6xl md:text-8xl text-negro leading-none tracking-tighter">
-            feminismo <span className="text-bordo">& política</span>
+            feminismo <span className="text-lila">& política</span>
           </h1>
           <div className="flex items-center gap-4 mt-4 md:mt-0">
-             <div className="w-12 h-12 rounded-full border-2 border-dashed border-bordo animate-spin-slow flex items-center justify-center">
-                <span className="text-bordo font-black text-xs">AF</span>
+             <div className="w-12 h-12 rounded-full border-2 border-dashed border-lila animate-spin-slow flex items-center justify-center">
              </div>
              <p className="font-mono text-[10px] uppercase tracking-[0.5em] text-negro/40">Periodismo con flequillo</p>
           </div>
