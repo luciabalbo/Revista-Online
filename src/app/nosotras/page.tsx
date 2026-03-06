@@ -87,56 +87,51 @@ export default function NosotrasPage() {
         </motion.div>
       </section>
 
-			{/* MANIFIESTO - COLUMNA ÚNICA */}
-      <main className="max-w-3xl mx-auto px-6 pb-40">
+{/* MANIFIESTO - ESTILO ENFANT TERRIBLE */}
+      <main className="max-w-6xl mx-auto px-6 pb-40">
         
-        <div className="text-justify font-montserrat text-lg md:text-xl leading-[1.9] text-gray-800 space-y-12">
-          <p className="first-letter:text-8xl first-letter:font-sansita first-letter:mr-4 first-letter:float-left first-letter:text-[#FB9160]">
+        {/* BLOQUE DE DOS COLUMNAS */}
+        <div className="md:columns-2 gap-12 text-justify font-montserrat text-base md:text-lg leading-[1.8] text-gray-800 space-y-6 md:space-y-0">
+          <p className="mb-6 first-letter:text-8xl first-letter:font-sansita first-letter:mr-4 first-letter:float-left first-letter:text-[#FB9160] first-letter:leading-[0.8]">
             Alerta flequillo comienza como una iniciativa radial en el interior de nuestra provincia. En el 2024 nos encontramos en el centro cultural Otilia, en la localidad de Tanti, con la idea de construir un canal que privilegie el protagonismo de las mujeres y disidencias, una red que invite a compañeras a conectarse y discutir ideas.
           </p>
           
-          <p>
+          <p className="mb-6">
             En esta revista confluyen nuestras iniciativas, en parte impulsadas por el incipiente gobierno de Javier Milei, que desde sus comienzos marcó sus ideales fascistas, su explícito antifeminismo y rechazo ante cualquier tipo de diversidad. Acompañados por afirmaciones concretas sobre la no existencia de la desigualdad de género, que podemos encontrar pregonadas en su canal oficial de comunicación, al que dedica varias horas diarias de trabajo: su cuenta de Twitter.
+            Somos estudiantes de comunicación social y letras, pero esperamos ser muchas más y de diferentes sectores, lugares y localidades. 
           </p>
 
-          <p>
-            Somos estudiantes de comunicación social y letras, pero esperamos ser muchas más y de diferentes sectores, lugares y localidades.
-          </p>
-        </div>
-
-        {/* 1º SEPARADOR */}
-        <motion.div 
-          whileInView={{ opacity: [0, 1] }}
-          className="py-24 my-20 border-y border-black/5 text-center px-4"
-        >
-          <p className="font-sansita font-bold text-1xl md:text-3xl  leading-tight">
-            "Como parte de la universidad pública, nos parece de suma importancia aclarar que <span className="text-[#A52502]">esas manos de estudiante son las que redactan</span>."
-          </p>
-        </motion.div>
-
-        <div className="text-justify font-montserrat text-lg md:text-xl leading-[1.9] text-gray-800 space-y-12">
-          <p>
-            Nos proponemos esta instancia como una más en nuestro recorrido universitario y como personas. 
+          <p className="mb-6">
+            Como parte de la universidad pública, nos parece de suma importancia aclarar que esas manos de estudiante son las que redactan. Nos proponemos esta instancia como una más en nuestro recorrido universitario y como personas.
           </p>
           
-          <p>
-            Pensamos en Alerta Flequillo como un espacio de encuentro y comunidad. Ya sea de forma radial o gráfica. Un lugar donde podamos compartir ideas, no solo desde la universidad y multimedia, sino también sobre historias cercanas, cotidianas, las que podamos caminar y relatar. Creemos fielmente que no hace falta ir muy lejos para encontrar a quienes por siglos realizaron y realizan los trabajos de cuidado, las que nos criaron, las que se organizan, las que mueven el mundo.
+          <p className="mb-6">
+            Pensamos en Alerta Flequillo como un espacio de encuentro y comunidad. Ya sea de forma radial o gráfica. Un lugar donde podamos compartir ideas, no solo desde la universidad y multimedia, sino también sobre historias cercanas, cotidianas, las que podamos caminar y relatar.
+          </p>
+
+          <p className="mb-6">
+            Creemos fielmente que no hace falta ir muy lejos para encontrar a quienes por siglos realizaron y realizan los trabajos de cuidado, las que nos criaron, las que se organizan, las que mueven el mundo. Allí donde los medios hegemónicos no llegan, o prefieren no llegar, donde no hay negocio.
           </p>
         </div>
 
-        {/* 2º SEPARADOR */}
+        {/* SEPARADOR ESTILO CITA */}
         <motion.div 
-          whileInView={{ scaleX: [0.9, 1] }}
-          className="py-24 my-20 bg-[#390D02] text-white px-10 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="py-2 my-2 border-y border-black/10 text-center"
         >
-          <p className="font-sansita font-bold text-3xl md:text-5xl leading-tight ">
-            Allí donde los medios hegemónicos no llegan, o prefieren no llegar, <span className="text-[#FB9160]">donde no hay negocio</span>.
-          </p>
+
         </motion.div>
 
-        <div className="text-justify font-montserrat text-lg md:text-xl leading-[1.9] text-gray-800 space-y-12">
+        {/* BLOQUE FINAL - UNA SOLA COLUMNA ANCHA */}
+        <div className="max-w-4xl mx-auto text-justify md:text-justify font-montserrat text-2xl md:text-2xl leading-tight text-gray-800">
           <p>
-          	Discutiendo no solo sobre feminismos, pero comprendiendo que estos nos conforman como militantes, estudiantes, trabajadoras, mamás. Desde la comunicación colectiva y autogestionada, desde el pensamiento crítico, por fuera de la inconcebible búsqueda de la objetividad.
+            Discutiendo no solo sobre feminismos, pero comprendiendo que estos nos conforman como militantes, estudiantes, trabajadoras, mamás.
+          </p>
+
+          {/* LA FRASE ESTILO ENFANT */}
+          <p className="text-2xl md:text-2xl font-bold text-negro leading-tight pt-2 border-t border-black/5">
+            Desde la comunicación colectiva y autogestionada, desde el pensamiento crítico, por fuera de la inconcebible búsqueda de la objetividad.
           </p>
         </div>
 
