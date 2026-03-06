@@ -58,74 +58,92 @@ export default function NotaPage({ params }: { params: Promise<{ slug: string }>
             className="fixed inset-0 bg-[#FB9160] z-[140] flex flex-col items-center justify-center gap-6"
           >
             {['Inicio', 'Arte', 'Feminismo', 'Nosotras'].map((l) => (
-              <Link key={l} href="#" className="font-sansita text-6xl text-white italic hover:tracking-widest transition-all">{l}</Link>
+              <Link key={l} href="/" className="font-sansita text-6xl text-white italic hover:tracking-widest transition-all">{l}</Link>
             ))}
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* 1. HEADER: Entrada Cinematográfica */}
-      <header className="pt-44 pb-33 px-6 max-w-6xl mx-auto text-center">
+      {/* 1. HEADER REESTRUCTURADO */}
+      <header className="pt-32 md:pt-44 pb-16 px-6 max-w-5xl mx-auto text-center">
+        {/* VOLANTA (Categoría) */}
         <motion.span 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="inline-block text-[#FB9160] font-bold text-xs uppercase tracking-[0.8em] mb-4"
+          className="inline-block text-[#FB9160] font-black text-[10px] md:text-xs uppercase tracking-[0.6em] mb-6"
         >
-          {nota.volanta}
+          {nota.volanta || "CULTURA"}
         </motion.span>
         
-        <motion.h2 
+        {/* BAJADA  */}
+        <motion.p 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="font-montserrat font-light text-xl md:text-2xl leading-relaxed text-gray-500 mb-6 italic max-w-4xl mx-auto"
+          className="font-montserrat font-medium text-sm md:text-base leading-relaxed text-gray-400 mb-5 uppercase tracking-widest max-w-3xl mx-auto"
         >
           {nota.bajada}
-        </motion.h2>
+        </motion.p>
 
+        {/* TITULO */}
         <motion.h1 
-          initial={{ scale: 0.9, opacity: 0 }}
+          initial={{ scale: 0.95, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="font-sansita font-bold text-3xl md:text-[5vw] leading-[0.85] tracking-tighter italic  mb-10"
+          className="font-sansita font-bold text-2xl md:text-[3.3vw] leading-[0.9] tracking-tighter mb-8"
         >
           {nota.titulo}
         </motion.h1>
 
-        <div className="flex items-center justify-center gap-4 font-mono text-[10px] uppercase tracking-widest text-black/40">
-          <span>{nota.autor}</span>
-          <div className="w-12 h-[1px] bg-black/10"></div>
+        {/* COPETE (Resumen destacado) */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="font-montserrat text-lg md:text-1xl leading-relaxed text-gray-700 max-w-3xl mx-auto mb-5 font-medium"
+        >
+          {nota.copete || "Un resumen atrapante sobre lo que vas a leer a continuación en esta nota especial de Alerta Flequillo."}
+        </motion.div>
+
+        {/* AUTOR Y FECHA */}
+        <div className="flex items-center justify-center gap-4 font-mono text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-black/60">
+          <span className="font-bold">Por {nota.autor}</span>
+          <div className="w-8 md:w-12 h-[1px] bg-black/20"></div>
           <span>{nota.fecha || '2026'}</span>
         </div>
       </header>
 
-      {/* 2. IMAGEN PARALLAX CON ZOOM */}
-      <section className="relative w-full h-[70vh] md:h-[110vh] overflow-hidden">
+      {/* 2. IMAGEN PARALLAX */}
+      <section className="relative w-full h-[60vh] md:h-[90vh] overflow-hidden">
         <motion.div 
-          initial={{ scale: 1.2 }}
+          initial={{ scale: 1.1 }}
           whileInView={{ scale: 1 }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 2 }}
           className="absolute inset-0 bg-fixed bg-center bg-cover"
           style={{ backgroundImage: `url(${nota.imagen})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f8f7f2] via-transparent to-transparent h-40"></div>
+        {/* Fade superior para suavizar la entrada */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f8f7f2] via-transparent to-transparent h-32"></div>
       </section>
 
-      {/* 3. CONTENIDO: Tipografía de lujo y espaciado */}
-      <main className="max-w-7xl mx-auto px-6 py-32 grid grid-cols-1 lg:grid-cols-12 gap-20">
+      {/* 3. CONTENIDO: CUERPO ALINEADO A LA IZQUIERDA */}
+      <main className="max-w-7xl mx-auto px-6 py-20 md:py-32 grid grid-cols-1 lg:grid-cols-12">
         <motion.div 
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="lg:col-span-8 lg:col-start-3"
         >
-          {/* CUERPO DE LA NOTA (Justificado para look editorial) */}
-          <div className="font-montserrat text-xl md:text-[26px] leading-[1.8] text-gray-900 text-justify first-letter:text-8xl first-letter:font-sansita first-letter:mr-4 first-letter:float-left first-letter:text-[#FB9160] mb-24">
+          {/* CUERPO DE LA NOTA (Alineación izquierda y tipografía legible) */}
+          <div className="font-montserrat text-lg md:text-[20px] leading-[1.7] text-gray-900 text-left 
+                          first-letter:text-7xl md:first-letter:text-8xl first-letter:font-sansita 
+                          first-letter:mr-4 first-letter:float-left first-letter:text-[#FB9160] 
+                          first-letter:leading-none mb-24 whitespace-pre-line">
             {nota.cuerpo || "Escribiendo la historia..."}
           </div>
 
           {/* CTA SECCIÓN COMUNIDAD (Fuera del div del cuerpo) */}
-          <Link href="/apoyanos" className="block group">
+          <Link href="/comunidad" className="block group">
             <motion.div 
               whileInView={{ scaleX: [0.9, 1], opacity: [0, 1] }}
               className="py-24 border-y border-black/5 text-center relative cursor-pointer"
