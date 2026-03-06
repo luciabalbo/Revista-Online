@@ -12,19 +12,19 @@ export default function ComunidadPage() {
         nombre: "Cortate el flequillo", 
         precio: "$3.000", 
         desc: "Aporte mensual básico para sostener la red.",
-        estilo: "bg-white text-black shadow-[10px_10px_0px_#A52502] border-2 border-black" 
+        estilo: "bg-white text-black shadow-[10px_10px_0px_#FB9160] border-2 border-black" 
     },
     { 
         nombre: "Lo personal es flequillo", 
         precio: "$6.000", 
         desc: "Aporte medio para impulsar nuevas notas.",
-        estilo: "bg-[#A52502] text-white shadow-[10px_10px_0px_#000] border-2 border-black" 
+        estilo: "bg-[#FB9160] text-white shadow-[10px_10px_0px_#000] border-2 border-black" 
     },
     { 
         nombre: "El flequillo ya no es un prejuicio, es una orden de restricción", 
         precio: "$10.000", 
         desc: "Aporte premium para bancar la autogestión total.",
-        estilo: "bg-black text-white shadow-[10px_10px_0px_#A52502] border-2 border-white/20" 
+        estilo: "bg-black text-white shadow-[10px_10px_0px_#FB9160] border-2 border-white/20" 
     }
   ];
 
@@ -32,7 +32,7 @@ export default function ComunidadPage() {
     <article className="min-h-screen bg-[#f8f7f2] text-black selection:bg-[#FB9160] selection:text-white overflow-x-hidden">
       {/* TEXTURA ANALÓGICA */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.04] z-[200] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-			{/* NAVBAR CON BLUR Y ANIMACIÓN */}
+      {/* NAVBAR CON BLUR Y ANIMACIÓN */}
       <nav className="fixed top-0 w-full z-[150] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
           <Link href="/" className="h-full flex items-center group">
@@ -45,13 +45,19 @@ export default function ComunidadPage() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-10 font-montserrat text-[10px] uppercase tracking-[0.3em] font-bold">
-            {['Arte y Cultura', 'Feminismo', 'Streaming', 'Nosotras'].map((item) => (
-              <Link key={item} href="#" className="relative group overflow-hidden">
-                <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">{item}</span>
-                <span className="absolute top-full left-0 text-[#FB9160] transition-transform duration-300 group-hover:-translate-y-full">{item}</span>
-              </Link>
+            {['Arte y Cultura', 'Feminismo y politica', 'Streaming', 'Nosotras'].map((item) => (
+            <Link 
+              key={item} 
+              href={`/${item.toLowerCase().replace(/ /g, '-')}`} 
+              className="relative group block font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-negro whitespace-nowrap"
+            >
+              <div className="relative overflow-hidden h-[20px] flex flex-col justify-start"> 
+                <span className="block transition-transform duration-500 group-hover:-translate-y-full">{item}</span>
+                <span className="absolute top-full left-0 text-naranja transition-transform duration-500 group-hover:-translate-y-full text-sm tracking-normal font-montserrat">{item}</span>
+              </div>
+            </Link>
             ))}
-            <Link href="/apoyanos" className="bg-black text-white px-6 py-2 shadow-[4px_4px_0px_#FB9160] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all uppercase text-[9px]">
+            <Link href="/comunidad" className="bg-black text-white px-6 py-2 shadow-[4px_4px_0px_#FB9160] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all uppercase text-[9px]">
               Comunidad
             </Link>
           </div>
@@ -128,7 +134,7 @@ export default function ComunidadPage() {
                     </div>
                     <div className="mt-auto">
                         <span className="font-sansita text-5xl block mb-6">{plan.precio}</span>
-                        <div className="w-full py-4 border-t border-current font-mono text-[10px] uppercase tracking-widest flex justify-between items-center group-hover:text-[#FB9160] transition-colors">
+                        <div className="w-full py-4 border-t border-current font-mono text-[10px] uppercase tracking-widest flex justify-between items-center group-hover:text-[#1C8394] transition-colors">
                             Suscribirme <span>→</span>
                         </div>
                     </div>

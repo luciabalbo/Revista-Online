@@ -51,42 +51,43 @@ export default function FeminismoYPolitica() {
   return (
     <main className="min-h-screen bg-[#f8f7f2] overflow-x-hidden">
       
-      {/* NAVBAR */}
-      <nav className={`fixed top-0 w-full z-[150] transition-all duration-700 ${
-          isScrolled ? 'bg-negro/95 backdrop-blur-md py-2 shadow-2xl' : 'bg-transparent' 
-        }`}>
-        <div className="flex flex-col items-center w-full">
-          <div className={`w-full flex justify-center items-center transition-all duration-700 overflow-hidden ${
-            isScrolled ? 'h-0 opacity-0' : 'bg-[#f8f7f2] py-10 md:py-14 opacity-100'
-          }`}>
-            <Link href="/" className="px-6">
-              <img src="/logo_sinfondo.png" alt="Logo" className="h-28 md:h-44 object-contain" />
+      {/* NAVBAR CON BLUR Y ANIMACIÓN */}
+      <nav className="fixed top-0 w-full z-[150] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
+          <Link href="/" className="h-full flex items-center group">
+            <motion.img 
+              whileHover={{ scale: 1.05, rotate: -2 }}
+              src="/AlertaFlequillo.png" 
+              alt="Logo" 
+              className="h-[70%] md:h-[90%] w-auto object-contain transition-all" 
+            />
+          </Link>
+
+          <div className="hidden lg:flex items-center gap-10 font-montserrat text-[10px] uppercase tracking-[0.3em] font-bold">
+            {['Arte y Cultura', 'Feminismo y politica', 'Streaming', 'Nosotras'].map((item) => (
+            <Link 
+              key={item} 
+              href={`/${item.toLowerCase().replace(/ /g, '-')}`} 
+              className="relative group block font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-negro whitespace-nowrap"
+            >
+              <div className="relative overflow-hidden h-[20px] flex flex-col justify-start"> 
+                <span className="block transition-transform duration-500 group-hover:-translate-y-full">{item}</span>
+                <span className="absolute top-full left-0 text-lila transition-transform duration-500 group-hover:-translate-y-full text-sm tracking-normal font-montserrat">{item}</span>
+              </div>
+            </Link>
+            ))}
+            <Link href="/comunidad" className="bg-black text-white px-6 py-2 shadow-[4px_4px_0px_#FB9160] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all uppercase text-[9px]">
+              Comunidad
             </Link>
           </div>
-          <div className="w-full bg-negro py-2">
-            <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-12">
-              <Link href="/" className="flex items-center">
-                 <img src="/logo_sinfondo.png" alt="Logo" className={`h-10 transition-opacity ${isScrolled ? 'opacity-100' : 'opacity-0'}`} />
-              </Link>
-              
-              <div className="hidden lg:flex items-center gap-10">
-                {['Arte y Cultura', 'Feminismo y Politica', 'Streaming', 'Nosotras'].map((item) => {
-                  const slug = item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
-                  return (
-                    <Link key={item} href={`/${slug}`} className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-white hover:text-lila transition-colors">
-                      {item}
-                    </Link>
-                  );
-                })}
-              </div>
 
-              <button onClick={() => setIsMenuOpen(true)} className="lg:hidden text-white font-mono text-xs">MENÚ</button>
-            </div>
-          </div>
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden p-2 z-[160]">
+            <div className={`h-0.5 w-8 bg-black mb-1.5 transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
+            <div className={`h-0.5 w-8 bg-black transition-all ${isMenuOpen ? 'opacity-0' : ''}`}></div>
+            <div className={`h-0.5 w-8 bg-black mt-1.5 transition-all ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
+          </button>
         </div>
       </nav>
-
-      <div className={isScrolled ? 'h-[64px]' : 'h-[250px] md:h-[280px]'} />
 
       {/* --- BANNER --- */}
       <section className="relative w-full h-[70vh] md:h-[85vh] bg-negro overflow-hidden">

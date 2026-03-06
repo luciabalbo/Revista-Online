@@ -18,27 +18,41 @@ export default function Streaming() {
   return (
     <main className="min-h-screen bg-[#0f0f0f] text-white overflow-x-hidden">
       
-      {/* NAVBAR ADAPTADA A MODO OSCURO */}
-      <nav className={`fixed top-0 w-full z-[150] transition-all duration-700 ${
-          isScrolled ? 'bg-black/90 backdrop-blur-md py-2' : 'bg-transparent' 
-        }`}>
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className="flex items-center gap-2">
-            <img src="/logo_sinfondo.png" alt="Logo" className="h-10 md:h-14 " />
+      {/* NAVBAR CON BLUR Y ANIMACIÓN */}
+      <nav className="fixed top-0 w-full z-[150] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
+          <Link href="/" className="h-full flex items-center group">
+            <motion.img 
+              whileHover={{ scale: 1.05, rotate: -2 }}
+              src="/AlertaFlequillo.png" 
+              alt="Logo" 
+              className="h-[70%] md:h-[90%] w-auto object-contain transition-all" 
+            />
           </Link>
-          
-          <div className="hidden lg:flex items-center gap-10">
-            {['Arte y Cultura', 'Feminismo y Política', 'Streaming', 'Nosotras'].map((item) => {
-              const slug = item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
-              return (
-                <Link key={item} href={`/${slug}`} className="font-montserrat text-[10px] font-black uppercase tracking-[0.3em] hover:text-bordo transition-colors">
-                  {item}
-                </Link>
-              );
-            })}
+
+          <div className="hidden lg:flex items-center gap-10 font-montserrat text-[10px] uppercase tracking-[0.3em] font-bold">
+            {['Arte y Cultura', 'Feminismo y politica', 'Streaming', 'Nosotras'].map((item) => (
+            <Link 
+              key={item} 
+              href={`/${item.toLowerCase().replace(/ /g, '-')}`} 
+              className="relative group block font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-negro whitespace-nowrap"
+            >
+              <div className="relative overflow-hidden h-[20px] flex flex-col justify-start"> 
+                <span className="block transition-transform duration-500 group-hover:-translate-y-full">{item}</span>
+                <span className="absolute top-full left-0 text-bordo transition-transform duration-500 group-hover:-translate-y-full text-sm tracking-normal font-montserrat">{item}</span>
+              </div>
+            </Link>
+            ))}
+            <Link href="/comunidad" className="bg-black text-white px-6 py-2 shadow-[4px_4px_0px_#FB9160] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all uppercase text-[9px]">
+              Comunidad
+            </Link>
           </div>
 
-          <button onClick={() => setIsMenuOpen(true)} className="lg:hidden font-mono text-xs border border-white px-3 py-1">MENÚ</button>
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden p-2 z-[160]">
+            <div className={`h-0.5 w-8 bg-black mb-1.5 transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
+            <div className={`h-0.5 w-8 bg-black transition-all ${isMenuOpen ? 'opacity-0' : ''}`}></div>
+            <div className={`h-0.5 w-8 bg-black mt-1.5 transition-all ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
+          </button>
         </div>
       </nav>
 

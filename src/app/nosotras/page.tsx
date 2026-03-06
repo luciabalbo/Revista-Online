@@ -25,13 +25,19 @@ export default function NosotrasPage() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-10 font-montserrat text-[10px] uppercase tracking-[0.3em] font-bold">
-            {['Arte y Cultura', 'Feminismo', 'Streaming', 'Nosotras'].map((item) => (
-              <Link key={item} href="#" className="relative group overflow-hidden">
-                <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">{item}</span>
-                <span className="absolute top-full left-0 text-[#FB9160] transition-transform duration-300 group-hover:-translate-y-full">{item}</span>
-              </Link>
+            {['Arte y Cultura', 'Feminismo y politica', 'Streaming', 'Nosotras'].map((item) => (
+            <Link 
+              key={item} 
+              href={`/${item.toLowerCase().replace(/ /g, '-')}`} 
+              className="relative group block font-montserrat text-[10px] font-black uppercase tracking-[0.3em] text-negro whitespace-nowrap"
+            >
+              <div className="relative overflow-hidden h-[20px] flex flex-col justify-start"> 
+                <span className="block transition-transform duration-500 group-hover:-translate-y-full">{item}</span>
+                <span className="absolute top-full left-0 text-celeste transition-transform duration-500 group-hover:-translate-y-full text-sm tracking-normal font-montserrat">{item}</span>
+              </div>
+            </Link>
             ))}
-            <Link href="/apoyanos" className="bg-black text-white px-6 py-2 shadow-[4px_4px_0px_#FB9160] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all uppercase text-[9px]">
+            <Link href="/comunidad" className="bg-black text-white px-6 py-2 shadow-[4px_4px_0px_#FB9160] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all uppercase text-[9px]">
               Comunidad
             </Link>
           </div>
@@ -58,7 +64,7 @@ export default function NosotrasPage() {
           animate={{ opacity: 1, scale: 1 }}
           className="font-sansita font-bold text-5xl md:text-[7vw] leading-[0.8] tracking-tighter"
         >
-          Nosotras <span className="text-[#A52502]">.</span>
+          Nosotras <span className="text-[#1C8394]">.</span>
         </motion.h1>
       </header>
 
