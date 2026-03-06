@@ -74,9 +74,9 @@ export default function Home() {
     "Comunicación": "#390D02",
     "Feminismo": "#4F136C",
     "Cultura": "#154B52",
-    "Streaming": "#1C8394",
-    "Política": "#000000",
-    "Arte y Cultura": "#059669", 
+    "Streaming": "#A52502",
+    "Política": "#1C8394",
+    "Arte y Cultura": "#154B52", 
     "default": "#FB9160"
   };
 
@@ -135,7 +135,7 @@ export default function Home() {
 
               {/* MENÚ DESKTOP */}
               <div className="hidden lg:flex items-center gap-6 xl:gap-10">
-                {['Arte y Cultura', 'Feminismo y Política', 'Streaming', 'Nosotras', 'Contacto'].map((item) => (
+                {['Arte y Cultura', 'Feminismo y Politica', 'Streaming', 'Nosotras', 'Contacto'].map((item) => (
                   <Link 
                     key={item} 
                     href={`/${item.toLowerCase().replace(/ /g, '-')}`} 
