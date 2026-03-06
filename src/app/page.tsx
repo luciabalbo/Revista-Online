@@ -524,7 +524,7 @@ export default function Home() {
             </h2>
 
             <Link 
-              href="/galeria-fotoperiodismo" 
+              href="/fotoperiodismo" 
               className="group relative inline-flex items-center gap-3 md:gap-4 bg-blanco text-negro 
                         px-3 py-2 md:px-6 md:py-3 
                         font-black uppercase 
