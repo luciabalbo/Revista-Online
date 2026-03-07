@@ -206,22 +206,34 @@ export default function ComunidadPage() {
             ))}
         </section>
 
-        {/* SECCIÓN ESCRIBIR (LOOK MANIFIESTO) */}
-        <section className="relative overflow-hidden bg-white p-12 md:p-24 text-center">
-            <div className="relative z-10 max-w-3xl mx-auto">
-                <h2 className="font-sansita text-3xl md:text-6xl mb-12 tracking-tighter">
-                    ¿Queres escribir <br/> <span className="text-[#FB9160]">con nosotras?</span>
+        {/* SECCIÓN ESCRIBIR (LOOK MANIFIESTO - OPTIMIZADO MOBILE) */}
+        <section className="relative overflow-hidden bg-white py-20 px-4 md:p-24 text-center">
+            <div className="relative z-10 max-w-[90vw] md:max-w-3xl mx-auto flex flex-col items-center">
+                
+                {/* Título: Ajustado a 4xl en mobile para que el <br/> no genere huecos raros */}
+                <h2 className="font-sansita text-4xl md:text-7xl mb-10 tracking-tighter leading-[0.9]">
+                    ¿Querés escribir <br className="hidden md:block"/> 
+                    <span className="text-[#FB9160]">con nosotras?</span>
                 </h2>
-                <div className="font-montserrat text-xl leading-[1.8] mb-12 text-gray-700">
-                    <p>Como un medio que pone resistencia a los tiempos que acechan, creemos que es importante priorizar la pluralidad de voces. Si consideras que podés hacer algún aporte ya sea desde la redacción, diseño gráfico o el fotoperiodismo, contactanos.</p>
+
+                {/* Texto: Reducido a text-lg en mobile para mejor legibilidad */}
+                <div className="font-montserrat text-lg md:text-xl leading-relaxed md:leading-[1.8] mb-12 text-gray-700 max-w-[85vw] md:max-w-none">
+                    <p>
+                        Como un medio que pone resistencia a los tiempos que acechan, creemos que es importante priorizar la pluralidad de voces. Si considerás que podés hacer algún aporte ya sea desde la redacción, diseño gráfico o el fotoperiodismo, contactanos.
+                    </p>
                 </div>
+
+                {/* Botón: Ahora es responsivo (text-sm en mobile) y no se desborda */}
                 <a 
                     href="mailto:alertaflequillo@gmail.com" 
-                    className="inline-block bg-black text-white text-xl font-sansita px-12 py-6 hover:bg-[#FB9160] hover:text-black transition-all transform hover:-rotate-2"
+                    className="w-full md:w-auto inline-block bg-black text-white text-sm md:text-xl font-sansita px-6 md:px-12 py-5 md:py-6 hover:bg-[#FB9160] hover:text-black transition-all transform hover:-rotate-2 shadow-xl"
                 >
                     alertaflequillo@gmail.com
                 </a>
-                <p className="mt-10 font-mono text-[10px] uppercase tracking-[0.5em] text-black/40">¡Ayudanos a hacer crecer este proyecto!</p>
+
+                <p className="mt-10 font-mono text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.5em] text-black/40">
+                    ¡Ayudanos a hacer crecer este proyecto!
+                </p>
             </div>
         </section>
       </main>
@@ -252,8 +264,8 @@ export default function ComunidadPage() {
               <span className="hidden md:block w-8 h-[2px] bg-bordo"></span> SECCIONES <span className="md:hidden w-8 h-[2px] bg-bordo"></span>
             </span>
             <div className="flex flex-col gap-3 md:gap-4 font-sansita text-[15px] md:text-2xl">
-              <a href="/feminismo-politica" className="hover:text-lila transition-colors hover:scale-105 duration-300">Feminismo y política</a>
-              <a href="/arte-cultura" className="hover:text-verde transition-colors hover:scale-105 duration-300">Arte y cultura</a>
+              <a href="/feminismo-y-politica" className="hover:text-lila transition-colors hover:scale-105 duration-300">Feminismo y política</a>
+              <a href="/arte-y-cultura" className="hover:text-verde transition-colors hover:scale-105 duration-300">Arte y cultura</a>
               <a href="/streaming" className="hover:text-bordo transition-colors hover:scale-105 duration-300">Streaming</a>
               <a href="/nosotras" className="hover:text-celeste transition-colors hover:scale-105 duration-300">Nosotras</a>
             </div>

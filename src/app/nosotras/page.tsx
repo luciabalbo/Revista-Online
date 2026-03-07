@@ -140,18 +140,18 @@ export default function NosotrasPage() {
           className="relative h-[60vh] md:h-[80vh] overflow-hidden rounded-sm grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl"
         >
           <img 
-            src="/foto-integrantes.jpg" // CAMBIÁ ESTO POR TU FOTO EN /public
+            src="/nosotras.PNG" // CAMBIÁ ESTO POR TU FOTO EN /public
             alt="Integrantes de Alerta Flequillo"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-          <p className="absolute bottom-8 left-8 font-mono text-white text-[10px] uppercase tracking-widest">
+          {/*<p className="absolute bottom-8 left-8 font-mono text-white text-[10px] uppercase tracking-widest">
             Tanti, Córdoba — 2024/2026
-          </p>
+          </p>*/}
         </motion.div>
       </section>
 
-{/* MANIFIESTO - ESTILO ENFANT TERRIBLE */}
+      {/* MANIFIESTO - ESTILO ENFANT TERRIBLE */}
       <main className="max-w-6xl mx-auto px-6 pb-40">
         
         {/* BLOQUE DE DOS COLUMNAS */}
@@ -178,28 +178,98 @@ export default function NosotrasPage() {
           </p>
         </div>
 
-        {/* SEPARADOR ESTILO CITA */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="py-2 my-2 border-y border-black/10 text-center"
-        >
-
-        </motion.div>
-
-        {/* BLOQUE FINAL - UNA SOLA COLUMNA ANCHA */}
-        <div className="max-w-4xl mx-auto text-justify md:text-justify font-montserrat text-2xl md:text-2xl leading-tight text-gray-800">
+        {/* BLOQUE FINAL - MISMO ANCHO QUE LAS COLUMNAS (6xl) */}
+        <div className="max-w-6xl mx-auto mt-8 text-justify font-montserrat md:text-lg leading-[1.8] text-gray-800">
           <p>
-            Discutiendo no solo sobre feminismos, pero comprendiendo que estos nos conforman como militantes, estudiantes, trabajadoras, mamás.
-          </p>
-
-          {/* LA FRASE ESTILO ENFANT */}
-          <p className="text-2xl md:text-2xl font-bold text-negro leading-tight pt-2 border-t border-black/5">
-            Desde la comunicación colectiva y autogestionada, desde el pensamiento crítico, por fuera de la inconcebible búsqueda de la objetividad.
+            Discutiendo no solo sobre feminismos, pero comprendiendo que estos nos conforman como militantes, estudiantes, trabajadoras, mamás.{" "}
+            <span className="font-bold text-black">
+              Desde la comunicación colectiva y autogestionada, desde el pensamiento crítico, por fuera de la inconcebible búsqueda de la objetividad.
+            </span>
           </p>
         </div>
-
       </main>
+
+      {/* --- SECCIÓN EQUIPO / INTEGRANTES --- */}
+      <section className="max-w-6xl mx-auto px-6 py-20 border-t border-black/5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
+          
+          {/* REPETIR ESTE BLOQUE POR CADA INTEGRANTE */}
+          <div className="flex items-center gap-6 group">
+            {/* Foto Circular */}
+            <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+              <div className="absolute inset-0 bg-[#FB9160] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
+              <img 
+                src="/nosotras.PNG" // Cambiar por ruta real
+                alt="Nombre Integrante"
+                className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+
+            {/* Información */}
+            <div className="flex flex-col">
+              <span className="text-[#1C8394] font-mono text-[10px] uppercase tracking-widest font-black mb-1">
+                Redacción
+              </span>
+              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">
+                Valentina Terrango
+              </h3>
+              <button className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/40 hover:text-[#FB9160] transition-colors flex items-center gap-2">
+                + Info
+              </button>
+            </div>
+          </div>
+          {/* FIN BLOQUE INTEGRANTE */}
+
+          {/* EJEMPLO 2 */}
+          <div className="flex items-center gap-6 group">
+            <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+              <div className="absolute inset-0 bg-[#1C8394] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
+              <img 
+                src="/integrantes/foto2.jpg"
+                className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[#FB9160] font-mono text-[10px] uppercase tracking-widest font-black mb-1">
+                Arte
+              </span>
+              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">
+                Celeste
+              </h3>
+              <button className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/40 hover:text-[#1C8394] transition-colors flex items-center gap-2">
+                + Info
+              </button>
+            </div>
+          </div>
+
+                    {/* REPETIR ESTE BLOQUE POR CADA INTEGRANTE */}
+          <div className="flex items-center gap-6 group">
+            {/* Foto Circular */}
+            <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+              <div className="absolute inset-0 bg-[#FB9160] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
+              <img 
+                src="/integrantes/foto1.jpg" // Cambiar por ruta real
+                alt="Nombre Integrante"
+                className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+
+            {/* Información */}
+            <div className="flex flex-col">
+              <span className="text-[#1C8394] font-mono text-[10px] uppercase tracking-widest font-black mb-1">
+                Redacción
+              </span>
+              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">
+                Clara
+              </h3>
+              <button className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/40 hover:text-[#FB9160] transition-colors flex items-center gap-2">
+                + Info
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
 
       {/* --- FOOTER --- */}
       <footer className="bg-negro text-white pt-16 md:pt-28 pb-10 px-6 border-t-[8px] md:border-t-[12px] border-bordo relative overflow-hidden">
@@ -227,8 +297,8 @@ export default function NosotrasPage() {
               <span className="hidden md:block w-8 h-[2px] bg-bordo"></span> SECCIONES <span className="md:hidden w-8 h-[2px] bg-bordo"></span>
             </span>
             <div className="flex flex-col gap-3 md:gap-4 font-sansita text-[15px] md:text-2xl">
-              <a href="/feminismo-politica" className="hover:text-lila transition-colors hover:scale-105 duration-300">Feminismo y política</a>
-              <a href="/arte-cultura" className="hover:text-verde transition-colors hover:scale-105 duration-300">Arte y cultura</a>
+              <a href="/feminismo-y-politica" className="hover:text-lila transition-colors hover:scale-105 duration-300">Feminismo y política</a>
+              <a href="/arte-y-cultura" className="hover:text-verde transition-colors hover:scale-105 duration-300">Arte y cultura</a>
               <a href="/streaming" className="hover:text-bordo transition-colors hover:scale-105 duration-300">Streaming</a>
               <a href="/nosotras" className="hover:text-celeste transition-colors hover:scale-105 duration-300">Nosotras</a>
             </div>

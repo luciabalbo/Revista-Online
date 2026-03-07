@@ -245,8 +245,8 @@ export default function Streaming() {
               <span className="hidden md:block w-8 h-[2px] bg-bordo"></span> SECCIONES <span className="md:hidden w-8 h-[2px] bg-bordo"></span>
             </span>
             <div className="flex flex-col gap-3 md:gap-4 font-sansita text-[15px] md:text-2xl">
-              <a href="/feminismo-politica" className="hover:text-lila transition-colors hover:scale-105 duration-300">Feminismo y política</a>
-              <a href="/arte-cultura" className="hover:text-verde transition-colors hover:scale-105 duration-300">Arte y cultura</a>
+              <a href="/feminismo-y-politica" className="hover:text-lila transition-colors hover:scale-105 duration-300">Feminismo y política</a>
+              <a href="/arte-y-cultura" className="hover:text-verde transition-colors hover:scale-105 duration-300">Arte y cultura</a>
               <a href="/streaming" className="hover:text-bordo transition-colors hover:scale-105 duration-300">Streaming</a>
               <a href="/nosotras" className="hover:text-celeste transition-colors hover:scale-105 duration-300">Nosotras</a>
             </div>
