@@ -3,56 +3,72 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from "next/image";
 import Link from "next/link"; 
-import { motion, AnimatePresence, useScroll, useSpring, Variants } from 'framer-motion';
-import notas from '@/app/notas.json';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+// 1. IMPORTAMOS EL CLIENTE DE SANITY
+import { client } from '@/sanity/lib/client'; 
 
 export default function FeminismoYPolitica() {
   const router = useRouter();
   
-  // 1. Estados de UI
+  // 2. NUEVOS ESTADOS PARA SANITY
+  const [notas, setNotas] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Estados de UI
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false); 
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });  
-  
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // El color estrella de esta sección
   const colorSeccion = "#4F136C"; 
 
-  // 2. FILTRADO: Solo notas de "Feminismo" o "Política" (según como las tengas en el JSON)
-  const notasCategoria = useMemo(() => {
-    return notas.filter(nota => 
-      nota.volanta === "Feminismo" || 
-      nota.volanta === "Política" || 
-      nota.volanta === "Feminismo y Política"
-    );
+  // 3. EFECTO PARA TRAER NOTAS FILTRADAS DESDE SANITY
+  useEffect(() => {
+    const fetchNotas = async () => {
+      // Pedimos notas que tengan alguna de esas 3 variantes en la volanta
+      const query = `*[_type == "post" && (volanta == "Feminismo" || volanta == "Política" || volanta == "Feminismo y Política")] | order(fecha desc) {
+        "id": _id,
+        titulo,
+        volanta,
+        bajada,
+        autor,
+        fecha,
+        "slug": slug.current,
+        "imagen": imagen.asset->url
+      }`;
+      const data = await client.fetch(query);
+      setNotas(data);
+      setLoading(false);
+    };
+    fetchNotas();
   }, []);
 
-  // 3. Lógica de búsqueda
+  // 4. LÓGICA DE BÚSQUEDA (Actualizada para usar el estado 'notas')
   const notasFiltradas = useMemo(() => {
     const term = searchTerm.toLowerCase().trim();
-    if (!term) return notasCategoria;
-    return notasCategoria.filter((nota) => {
+    if (!term) return notas;
+    return notas.filter((nota) => {
       const target = `${nota.titulo} ${nota.autor} ${nota.bajada}`.toLowerCase();
       return target.includes(term);
     });
-  }, [searchTerm, notasCategoria]);
+  }, [searchTerm, notas]);
 
-  const notasBanner = notasCategoria.slice(0, 3); 
+  const notasBanner = notas.slice(0, 3); 
   const notasGrilla = notasFiltradas;    
 
+  // ... (Tus otros useEffect y funciones de slug quedan igual)
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Limpiador de slugs para los links del nav
   const getSlug = (item: string) => item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
 
+  if (loading) return <div className="min-h-screen bg-[#f8f7f2] flex items-center justify-center font-sansita text-2xl">Cargando sección...</div>;
 
   return (
     <main className="min-h-screen bg-[#f8f7f2] overflow-x-hidden">
