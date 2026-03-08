@@ -3,36 +3,60 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from "next/image";
 import Link from "next/link"; 
-import { motion, AnimatePresence, useScroll, useSpring, Variants } from 'framer-motion';
-import notas from '@/app/notas.json';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+// 1. IMPORTAMOS EL CLIENTE DE SANITY
+import { client } from '@/sanity/lib/client'; 
 
 export default function Home() {
   const router = useRouter();
-  // 1. Estados
+  
+  // 2. NUEVO ESTADO PARA LAS NOTAS DE SANITY
+  const [notas, setNotas] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Estados que ya tenías
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false); 
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const { scrollYProgress } = useScroll(); 
   
-  // Cursor Custom
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-
   const scrollRef = useRef<HTMLDivElement>(null);
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
-  // 2. Lógica de Filtrado ÚNICA (Corregido: eliminada la duplicación que rompía todo)
+  // 3. EFECTO PARA TRAER LAS NOTAS DE SANITY AL CARGAR
+  useEffect(() => {
+    const fetchNotas = async () => {
+      const query = `*[_type == "post"] | order(fecha desc) {
+        "id": _id,
+        titulo,
+        volanta,
+        bajada,
+        autor,
+        fecha,
+        "slug": slug.current,
+        "imagen": imagen.asset->url
+      }`;
+      const data = await client.fetch(query);
+      setNotas(data);
+      setLoading(false);
+    };
+    fetchNotas();
+  }, []);
+
+  // 4. TU LÓGICA DE FILTRADO (Ahora usa el estado 'notas')
   const notasFiltradas = useMemo(() => {
     const term = searchTerm.toLowerCase().trim();
     if (!term) return notas;
     return notas.filter((nota) => {
-      const target = `${nota.titulo} ${nota.autor} ${nota.volanta} ${nota.bajada} ${nota.fecha}`.toLowerCase();
+      const target = `${nota.titulo} ${nota.autor} ${nota.volanta} ${nota.bajada}`.toLowerCase();
       return target.includes(term);
     });
-  }, [searchTerm]);
+  }, [searchTerm, notas]); // <-- IMPORTANTE: agregamos 'notas' aquí
 
-  // 3. Distribución de notas
+  // 5. DISTRIBUCIÓN
   const notasBanner = notas.slice(0, 3); 
   const notasGrilla = notasFiltradas;    
 
