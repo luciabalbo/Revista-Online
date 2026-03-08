@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from "next/image";
 import Link from "next/link"; 
-import { motion, AnimatePresence, useScroll } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring, Variants } from 'framer-motion';
 import notas from '@/app/notas.json';
 
 export default function Home() {
@@ -12,13 +12,15 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false); 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(''); 
+  const [searchTerm, setSearchTerm] = useState('');
+  const { scrollYProgress } = useScroll(); 
   
   // Cursor Custom
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   // 2. Lógica de Filtrado ÚNICA (Corregido: eliminada la duplicación que rompía todo)
   const notasFiltradas = useMemo(() => {
@@ -82,6 +84,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
+      {/* BARRA DE PROGRESO */}
+      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-[#A52502] z-[300] origin-left" style={{ scaleX }} />
       {/* NAVBAR */}
       <nav className={`fixed top-0 w-full z-[150] transition-all duration-700 ease-in-out ${
           isScrolled 
@@ -211,7 +215,7 @@ export default function Home() {
             </button>
 
             <div className="flex flex-col items-center gap-6 px-10 text-center">
-              {['Arte y Cultura', 'Feminismo y Politica', 'Streaming', 'Nosotras', 'Contacto'].map((item, idx) => (
+              {['Arte y Cultura', 'Feminismo y Politica', 'Streaming', 'Nosotras', 'Contacto', 'fotoperiodismo'].map((item, idx) => (
                 <motion.div
                   key={item}
                   initial={{ opacity: 0, x: 20 }}
@@ -589,6 +593,57 @@ export default function Home() {
               </h4>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECCIÓN BUSCADOR  --- */}
+      <section className="relative w-full py-20 md:py-32 bg-white overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-10 md:opacity-20 grayscale pointer-events-none">
+          <img src="/banner_buscar.png" className="w-full h-full object-cover" alt="Fondo Buscador" />
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="font-sansita text-3xl md:text-6xl text-black mb-10 md:mb-12 leading-[1.1] max-w-[90vw] mx-auto">
+            Un espacio de encuentro y comunidad, de historias cercanas que podemos caminar.
+          </h2>
+          
+          <div className="relative group max-w-lg md:max-w-2xl mx-auto">
+            <div className="absolute -top-3 left-4 bg-[#1C8394] text-black font-black text-[9px] md:text-[10px] px-3 py-1 uppercase tracking-widest border border-black z-20 shadow-[2px_2px_0px_#000]">
+              Buscar
+            </div>
+      
+            <div className="flex flex-col md:flex-row shadow-[8px_8px_0px_#000] md:shadow-[12px_12px_0px_#000] border-2 border-black transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1">
+              <input 
+                type="text" 
+                placeholder="Escribí aquí..." 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && ejecutarBusqueda(searchTerm)}
+                className="w-full bg-white/90 backdrop-blur-sm p-5 md:p-6 font-mono text-xs md:text-sm uppercase tracking-widest outline-none placeholder:text-black/30"
+              />
+              <button 
+                onClick={() => ejecutarBusqueda(searchTerm)}
+                className="bg-black text-white px-8 py-5 md:py-6 font-black uppercase text-[10px] md:text-xs tracking-[0.2em] hover:bg-[#FB9160] transition-colors"
+              >
+                Ir →
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-10 md:mt-12 flex flex-wrap justify-center items-center gap-x-4 gap-y-2 px-2">
+            <span className="font-mono text-[10px] md:text-[12px] text-black/40 uppercase tracking-widest">Tendencias:</span>
+            <div className="flex flex-wrap justify-center gap-4">
+              {['Cultura', 'Aborto', 'Streaming', 'IA'].map((tag) => (
+                <button 
+                  key={tag} 
+                  onClick={() => ejecutarBusqueda(tag)}
+                  className="font-mono text-[10px] md:text-[12px] font-bold uppercase underline decoration-[#FB9160] decoration-2 underline-offset-4 hover:text-[#1C8394] transition-colors"
+                >
+                  #{tag}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>

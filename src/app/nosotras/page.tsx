@@ -3,18 +3,20 @@ import { useState, use } from 'react';
 import notas from '@/app/notas.json'; 
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring, Variants } from 'framer-motion';
 
 export default function NosotrasPage() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 }); 
   // Limpiador de slugs para los links del nav
   const getSlug = (item: string) => item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
   return (
     <article className="min-h-screen bg-[#f8f7f2] text-black selection:bg-[#FB9160] selection:text-white overflow-x-hidden">
        {/* TEXTURA DE GRANO (Overlay sutil para look analógico) */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[200] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-
-{/* NAVBAR ESTILO "FEMINISMO Y POLÍTICA" */}
+      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-[#1C8394] z-[300] origin-left" style={{ scaleX }} />
+      {/* NAVBAR ESTILO "FEMINISMO Y POLÍTICA" */}
       <nav className="fixed top-0 w-full z-[250] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
           <Link href="/" className="h-full flex items-center group">

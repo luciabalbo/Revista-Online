@@ -3,10 +3,12 @@ import { useState, use } from 'react';
 import notas from '@/app/notas.json'; 
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring, Variants } from 'framer-motion';
 
 export default function ComunidadPage() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   const planes = [
     { 
         nombre: "Cortate el flequillo", 
@@ -34,6 +36,7 @@ export default function ComunidadPage() {
     <article className="min-h-screen bg-[#f8f7f2] text-black selection:bg-[#FB9160] selection:text-white overflow-x-hidden">
       {/* TEXTURA ANALÓGICA */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.04] z-[200] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-[#FB9160] z-[300] origin-left" style={{ scaleX }} />
 {/* NAVBAR ESTILO "FEMINISMO Y POLÍTICA" */}
       <nav className="fixed top-0 w-full z-[250] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-24">

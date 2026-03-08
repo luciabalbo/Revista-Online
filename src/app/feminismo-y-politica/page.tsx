@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from "next/image";
 import Link from "next/link"; 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring, Variants } from 'framer-motion';
 import notas from '@/app/notas.json';
 
 export default function FeminismoYPolitica() {
@@ -13,7 +13,9 @@ export default function FeminismoYPolitica() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false); 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(''); 
+  const [searchTerm, setSearchTerm] = useState('');
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });  
   
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -54,8 +56,9 @@ export default function FeminismoYPolitica() {
 
   return (
     <main className="min-h-screen bg-[#f8f7f2] overflow-x-hidden">
+      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-[#4F136C] z-[300] origin-left" style={{ scaleX }} />
       
-{/* NAVBAR ESTILO "FEMINISMO Y POLÍTICA" */}
+      {/* NAVBAR ESTILO "FEMINISMO Y POLÍTICA" */}
       <nav className="fixed top-0 w-full z-[250] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
           <Link href="/" className="h-full flex items-center group">

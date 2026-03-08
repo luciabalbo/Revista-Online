@@ -3,11 +3,13 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from "next/image";
 import Link from "next/link"; 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring, Variants } from 'framer-motion';
 import notas from '@/app/notas.json';
 
 export default function ArteYCultura() {
   const router = useRouter();
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 }); 
   
   // 1. Estados de UI
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,7 +68,8 @@ export default function ArteYCultura() {
 
   return (
     <main className="min-h-screen bg-[#f8f7f2] overflow-x-hidden">
-      
+      {/* BARRA DE PROGRESO */}
+      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-[#154B52] z-[300] origin-left" style={{ scaleX }} />
 {/* NAVBAR ESTILO "FEMINISMO Y POLÍTICA" */}
       <nav className="fixed top-0 w-full z-[250] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
