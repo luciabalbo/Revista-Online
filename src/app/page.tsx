@@ -96,9 +96,11 @@ export default function Home() {
     }
   };
 
+  const getSlug = (item: string) => item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+
   const coloresCategorias: { [key: string]: string } = {
     "Comunicación": "#390D02",
-    "Feminismo": "#4F136C",
+    "Feminismo y Política": "#4F136C",
     "Cultura": "#154B52",
     "Streaming": "#A52502",
     "Política": "#1C8394",
@@ -426,59 +428,48 @@ export default function Home() {
       </section>
 
 
-     {/* --- SECCIÓN: ARCHIVO DE NOTAS --- */}
+      {/* --- SECCIÓN: ARCHIVO DE NOTAS --- */}
       <section id="archivo-notas" className="bg-[#f8f7f2] pb-24 px-4 -mt-1 pt-16 md:pt-20">
         <div className="max-w-[80%] mx-auto"> 
 
-          {/* Grilla */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 mt-0">
-            {(notasGrilla.length > 0 ? notasGrilla : notas.slice(0, 4)).map((nota, i) => {
+          {/* Grilla: items-stretch para que las columnas midan lo mismo */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 mt-0 items-stretch">
+            {(notasFiltradas.length > 0 ? notasFiltradas : notas.slice(0, 4)).map((nota, i) => {
               const colorDeNota = coloresCategorias[nota.volanta] || coloresCategorias.default;
               
               return (
                 <motion.article 
+                  key={nota.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.6 }}
-                  key={nota.id || i} 
-                  className="group flex flex-col h-full max-w-[320px] mx-auto lg:mx-0" 
+                  transition={{ delay: (i % 3) * 0.1 }}
+                  className="group h-full"
                 >
-
-                  {/* 1. IMAGEN */}
-                  <Link href={`/notas/${nota.slug}`} className="relative block mb-4 overflow-visible">
-                    <div className="relative aspect-[4/4] overflow-hidden border border-blanco z-10 bg-[#f8f7f2] transition-all duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1">
-                      <img 
-                        src={nota.imagen} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale-[0.3] group-hover:grayscale-0" 
-                        alt={nota.titulo} 
-                      />
+                  {/* LINK PADRE ÚNICO */}
+                  <Link href={`/notas/${nota.slug}`} className="flex flex-col h-full">
+                    
+                    <div className="relative aspect-square mb-4 overflow-hidden border-2 border-negro shadow-[8px_8px_0px_#000] group-hover:shadow-none group-hover:translate-x-2 group-hover:translate-y-2 transition-all duration-300">
+                      <img src={nota.imagen} className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700" alt={nota.titulo} />
                     </div>
-                    <div 
-                      style={{ backgroundColor: colorDeNota }}
-                      className="absolute inset-0 translate-x-1.5 translate-y-1.5 opacity-10 -z-10"
-                    ></div>
-                  </Link>
+                    
+                    <span 
+                      className="inline-block font-black text-[var(--cat-color)] font-montserrat text-[9px] px-2 py-0.5 uppercase tracking-widest mb-2 self-start transition-colors duration-300 group-hover:bg-negro group-hover:text-white"
+                      style={{ '--cat-color': colorDeNota } as any}
+                    >
+                      {nota.volanta}
+                    </span>
 
-                  {/* 2. CATEGORÍA */}
-                  <span 
-                    style={{ color: colorDeNota }}
-                    className="font-montserrat text-[9px] font-black uppercase tracking-[0.3em] mb-1"
-                  >
-                    {nota.volanta}
-                  </span>
+                    <h3 className="font-sansita text-2xl text-negro leading-none group-hover:text-bordo transition-colors">
+                      {nota.titulo}
+                    </h3>
 
-                  {/* 3. TEXTO */}
-                  <div className="flex flex-col flex-grow">
-                    <Link href={`/notas/${nota.slug}`}>
-                      <h4 className="font-sansita font-bold text-[18px] leading-tight text-negro group-hover:text-bordo transition-colors  mb-1">
-                        {nota.titulo}
-                      </h4>
-                    </Link>
-
-                    <p className="font-montserrat text-negro/70 text-[11px] leading-snug line-clamp-2 mb-4">
+                    <p className="font-montserrat text-sm text-negro/60 mt-2 mb-4 line-clamp-2">
                       {nota.bajada}
                     </p>
+
+                    {/* Div empujador */}
+                    <div className="flex-grow" />
 
                     {/* 4. PIE DE CARD */}
                     <div className="mt-auto pt-1 border-t border-negro/10 flex justify-between items-end">
@@ -491,12 +482,11 @@ export default function Home() {
                           {nota.autor}
                         </p>
                       </div>
-                      
-                      {/* Botón */}
-                      <Link 
-                        href={`/notas/${nota.slug}`}
+
+                      {/* BOTÓN: Cambiado de <Link> a <div> para evitar error de anidación */}
+                      <div 
                         style={{ borderColor: colorDeNota, color: colorDeNota }}
-                        className="relative w-6 h-6 border flex items-center justify-center transition-all duration-300 hover:text-white overflow-hidden"
+                        className="relative w-6 h-6 flex items-center justify-center transition-all duration-300 hover:text-white overflow-hidden"
                         onMouseEnter={(e) => {
                           e.currentTarget.style.backgroundColor = colorDeNota;
                           e.currentTarget.style.color = '#ffffff';
@@ -507,9 +497,9 @@ export default function Home() {
                         }}
                       >
                         <span className="text-lg font-bold">→</span>
-                      </Link>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.article>
               );
             })}
@@ -581,11 +571,14 @@ export default function Home() {
             </h3>
           </div>
 
-          {/* Grid: Gap más chico en mobile */}
+{/* Grid: Gap más chico en mobile */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
             
             {/* CARD 1: Feminismo y Política */}
             <div className="bg-bordo rounded-[30px] md:rounded-[40px] p-6 md:p-8 h-[200px] md:h-[280px] relative overflow-hidden group cursor-pointer shadow-[0_15px_30px_rgba(165,37,2,0.2)] transition-all duration-500 hover:-translate-y-2 flex items-center justify-center text-center border-2 border-transparent hover:border-white/20">
+              {/* LINK ABSOLUTO: Sin contenido interno para no anidar <a> */}
+              <Link href={`/${getSlug('Feminismo y Politica')}`} className="absolute inset-0 z-30" aria-label="Feminismo y Política" />
+              
               <div className="absolute top-6 right-6 w-14 h-14 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors" />
               
               <h4 className="text-3xl md:text-5xl font-sansita text-white leading-[0.85] tracking-tighter relative z-10">
@@ -596,6 +589,8 @@ export default function Home() {
 
             {/* CARD 2: Arte y Cultura */}
             <div className="bg-white rounded-[30px] md:rounded-[40px] border-[2px] md:border-[3px] border-negro p-2 h-[200px] md:h-[280px] relative overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 shadow-[6px_6px_0px_rgba(0,0,0,0.05)] md:shadow-[10px_10px_0px_rgba(0,0,0,0.05)]">
+              <Link href={`/${getSlug('Arte y Cultura')}`} className="absolute inset-0 z-30" aria-label="Arte y Cultura" />
+              
               <div className="w-full h-full rounded-[22px] md:rounded-[30px] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-1000">
                 <img src="/stikers/fondo.jpg" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Cultura" />
                 
@@ -609,6 +604,8 @@ export default function Home() {
 
             {/* CARD 3: Comunidad */}
             <div className="bg-negro rounded-[30px] md:rounded-[40px] p-6 md:p-8 h-[200px] md:h-[280px] group cursor-pointer relative overflow-hidden transition-all duration-500 hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] flex items-center justify-center text-center border-2 border-white/5 hover:border-naranja/30">
+              <Link href="/comunidad" className="absolute inset-0 z-30" aria-label="Comunidad" />
+              
               <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-naranja/10 rounded-full blur-3xl group-hover:bg-naranja/20 transition-colors" />
               
               <h4 className="text-3xl md:text-5xl font-sansita text-naranja leading-[0.85] tracking-tighter relative z-10">
@@ -616,7 +613,6 @@ export default function Home() {
                 <span className="text-white group-hover:text-naranja transition-colors duration-500">comunidad</span>
               </h4>
             </div>
-
           </div>
         </div>
       </section>
