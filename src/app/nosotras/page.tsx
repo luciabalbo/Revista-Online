@@ -116,21 +116,13 @@ export default function NosotrasPage() {
       {/* ESPACIADOR PARA EL NAV FIJO */}
       <div className="h-5" />
       {/* HEADER MANIFIESTO */}
-      <header className="pt-40 pb-20 px-6 max-w-6xl mx-auto text-center">
-        <motion.span 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="inline-block text-[#390D02] font-bold text-xs uppercase tracking-[0.8em] mb-8"
-        >
-          Manifiesto
-        </motion.span>
-        
+      <header className="pt-40 pb-20 px-6 max-w-6xl mx-auto text-center">   
         <motion.h1 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="font-sansita font-bold text-5xl md:text-[7vw] leading-[0.8] tracking-tighter"
         >
-          Nosotras <span className="text-[#1C8394]">.</span>
+          Nosotras <span className="text-[#1C8394]"></span>
         </motion.h1>
       </header>
 
@@ -142,7 +134,7 @@ export default function NosotrasPage() {
           className="relative h-[60vh] md:h-[80vh] overflow-hidden rounded-sm grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl"
         >
           <img 
-            src="/nosotras.PNG" // CAMBIÁ ESTO POR TU FOTO EN /public
+            src="/nosotras.PNG" 
             alt="Integrantes de Alerta Flequillo"
             className="w-full h-full object-cover"
           />
@@ -317,9 +309,19 @@ export default function NosotrasPage() {
             </a>
 
             <div className="flex gap-3 mt-2 md:mt-4">
-              {['IG', 'TK', 'YT'].map((social) => (
-                <a key={social} href="#" className="w-7 h-7 md:w-10 md:h-10 bg-negro border-2 border-white flex items-center justify-center font-mono font-black text-[10px] md:text-xs shadow-[3px_3px_0px_#fff] active:shadow-none active:translate-x-[3px] active:translate-y-[3px] transition-all">
-                  {social}
+              {[
+                { name: 'IG', url: 'https://www.instagram.com/alerta_flequillo?igsh=MWt0Y2lxczBqMWxyeA==' },
+                { name: 'TK', url: 'https://www.tiktok.com/@alerta_flequillo?_r=1&_t=ZS-94X9xQvScia' },
+                { name: 'YT', url: 'https://youtube.com/@alertaflequillo-y3p?si=dzuH3SKIKCjRytf3' }
+              ].map((social) => (
+                <a 
+                  key={social.name} 
+                  href={social.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 md:w-10 md:h-10 bg-negro border-2 border-white flex items-center justify-center font-mono font-black text-[10px] md:text-xs text-white shadow-[3px_3px_0px_#fff] active:shadow-none active:translate-x-[3px] active:translate-y-[3px] transition-all hover:bg-white hover:text-negro"
+                >
+                  {social.name}
                 </a>
               ))}
             </div>
