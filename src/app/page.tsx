@@ -157,7 +157,7 @@ export default function Home() {
                         router.push('/'); 
                       }}
                     >
-                      <img src="/logo_sinfondo.png" alt="Logo" className="h-10 md:h-13 w-auto object-contain" />
+                      <img src="/logo_peloblanco.png" alt="Logo" className="h-10 md:h-13 w-auto object-contain" />
                     </motion.div>
                   )}
                 </AnimatePresence>
