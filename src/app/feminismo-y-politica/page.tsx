@@ -246,7 +246,7 @@ export default function FeminismoYPolitica() {
       </section>
 
       {/* --- GRILLA --- */}
-      <section className="max-w-7xl mx-auto px-6 pb-32">
+{/*      <section className="max-w-7xl mx-auto px-6 pb-32">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
           {notasGrilla.map((nota, i) => (
             <motion.article 
@@ -278,6 +278,79 @@ export default function FeminismoYPolitica() {
               </Link>
             </motion.article>
           ))}
+        </div>
+      </section>/*}
+
+{/* --- SECCIÓN: ARCHIVO DE NOTAS --- */}
+      <section id="archivo-notas" className="bg-[#f8f7f2] pb-24 px-4 -mt-1 pt-16 md:pt-20">
+        <div className="max-w-[80%] mx-auto"> 
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 mt-0 items-stretch">
+            {notasGrilla.map((nota, i) => (
+                <motion.article 
+                  key={nota.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: (i % 3) * 0.1 }}
+                  className="group flex" // Flex para que el Link ocupe todo el alto
+                >
+                  <Link href={`/notas/${nota.slug}`} className="flex flex-col w-full">
+                    
+                    <div className="relative aspect-square mb-4 overflow-hidden border-2 border-negro shadow-[8px_8px_0px_#000] group-hover:shadow-none group-hover:translate-x-2 group-hover:translate-y-2 transition-all duration-300">
+                      <img src={nota.imagen} className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700" alt={nota.titulo} />
+                    </div>
+                    
+                    {/* Contenedor de texto con flex-grow */}
+                    <div className="flex flex-col flex-grow">
+                      <span 
+                        className="inline-block font-black text-[var(--cat-color)] font-montserrat text-[9px] px-2 py-0.5 uppercase tracking-widest mb-2 self-start transition-colors duration-300 group-hover:bg-negro group-hover:text-white"
+                        style={{ '--cat-color': colorSeccion } as any}
+                      >
+                        {nota.volanta}
+                      </span>
+
+                      <h3 className="font-sansita text-2xl text-negro leading-none group-hover:text-bordo transition-colors">
+                        {nota.titulo}
+                      </h3>
+
+                      <p className="font-montserrat text-sm text-negro/60 mt-2 mb-4 line-clamp-2">
+                        {nota.bajada}
+                      </p>
+                    </div>
+
+                    {/* PIE DE CARD: El mt-auto lo clava abajo */}
+                    <div className="mt-auto pt-1 border-t border-negro/10 flex justify-between items-end">
+                      <div className="flex flex-col gap-0.5">
+                        <span className="font-mono text-[8px] uppercase text-negro/40 font-black tracking-[0.2em]">
+                          Escrito por
+                        </span>
+                        <p className="font-mono text-[9px] uppercase font-black text-negro group-hover:underline decoration-1 underline-offset-2"
+                          style={{ textDecorationColor: colorSeccion }}>
+                          {nota.autor}
+                        </p>
+                      </div>
+
+                      {/* Tu botón original intacto */}
+                      <div 
+                        style={{ borderColor: colorSeccion, color: colorSeccion }}
+                        className="relative w-6 h-6 flex items-center justify-center transition-all duration-300 hover:text-white overflow-hidden"
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = colorSeccion;
+                          e.currentTarget.style.color = '#ffffff';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.color = colorSeccion;
+                        }}
+                      >
+                        <span className="text-lg font-bold">→</span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.article>
+              ))}
+          </div>
         </div>
       </section>
 
