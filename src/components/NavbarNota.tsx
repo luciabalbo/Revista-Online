@@ -57,7 +57,7 @@ export default function NavbarNota() {
         </div>
       </nav>
 
-{/* OVERLAY DEL MENÚ MOBILE (IGUAL AL HOME) */}
+      {/* OVERLAY DEL MENÚ MOBILE (IGUAL AL HOME) */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 

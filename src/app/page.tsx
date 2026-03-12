@@ -165,7 +165,7 @@ export default function Home() {
 
               {/* MENÚ DESKTOP */}
               <div className="hidden lg:flex items-center gap-6 xl:gap-10">
-                {['Arte y Cultura', 'Feminismo y Politica', 'Streaming', 'Nosotras', 'Contacto'].map((item) => (
+                {['Arte y Cultura', 'Feminismo y Politica', 'Streaming', 'Nosotras'].map((item) => (
                   <Link 
                     key={item} 
                     href={`/${item.toLowerCase().replace(/ /g, '-')}`} 
