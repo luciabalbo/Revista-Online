@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { MotionDiv } from "@/components/FramerWrapper";
 import Link from 'next/link';
 import { client } from "@/sanity/lib/client";
 import { GALERIA_DETALLE_QUERY } from "@/sanity/lib/queries";
@@ -31,13 +31,13 @@ export default async function GaleriaDetalle({ params }: { params: { slug: strin
           ← Volver a fotoperiodismo
         </Link>
         
-        <motion.h1 
+        <MotionDiv 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="font-sansita text-5xl md:text-8xl leading-[0.9] italic mb-6"
         >
           {galeria.titulo}
-        </motion.h1>
+        </MotionDiv>
 
         <div className="flex flex-col md:flex-row md:items-center gap-4 border-t border-black/10 pt-6">
           <p className="font-montserrat font-bold text-sm uppercase tracking-tighter">
@@ -58,7 +58,7 @@ export default async function GaleriaDetalle({ params }: { params: { slug: strin
       {/* FLUJO DE IMÁGENES DINÁMICO */}
       <section className="max-w-6xl mx-auto px-4 space-y-4 md:space-y-12 pb-32">
         {galeria.fotos?.map((foto: string, index: number) => (
-          <motion.div 
+          <MotionDiv 
             key={index}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -77,7 +77,7 @@ export default async function GaleriaDetalle({ params }: { params: { slug: strin
               <span className="font-mono text-[9px] uppercase">Registro #{index + 1}</span>
               <span className="font-mono text-[9px] uppercase">Alerta Flequillo © 2026</span>
             </div>
-          </motion.div>
+          </MotionDiv>
         ))}
       </section>
 
