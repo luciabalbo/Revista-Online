@@ -6,9 +6,17 @@ import NavbarNota from '@/components/NavbarNota';
 // Revalidar cada 1 minuto para ver cambios nuevos
 export const revalidate = 60;
 
-export default async function GaleriaDetalle({ params }: { params: { slug: string } }) {
-  // 1. Buscamos la data en Sanity usando el slug de la URL
-  const galeria = await client.fetch(GALERIA_DETALLE_QUERY, { slug: params.slug });
+// Agregamos Promise a la definición de params
+export default async function GaleriaDetalle({ 
+  params 
+}: { 
+  params: Promise<{ slug: string }> 
+}) {
+  // ESPERAMOS a que los params lleguen
+  const { slug } = await params; 
+
+  // Ahora usamos el slug que ya extrajimos
+  const galeria = await client.fetch(GALERIA_DETALLE_QUERY, { slug });
 
   // Si no encuentra la galería, mostramos un aviso
   if (!galeria) {
