@@ -9,6 +9,7 @@ export const revalidate = 60;
 export default async function Fotoperiodismo() {
   // Traemos la data de Sanity
   const galerias = await client.fetch(GALERIAS_QUERY);
+  console.log("DATOS DE SANITY:", galerias);
 
   return (
     <main className="min-h-screen bg-[#f8f7f2] text-black selection:bg-[#00AEEF] selection:text-white overflow-x-hidden">
@@ -22,7 +23,7 @@ export default async function Fotoperiodismo() {
       <header className="pt-20 pb-12 px-6 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-baseline gap-4 border-b-4 border-negro pb-8">
           <h1 className="font-sansita text-5xl md:text-7xl leading-none tracking-tighter">
-            foto<span className="text-[#1C8394]">periodismo</span>.
+            Foto<span className="text-[#1C8394]">periodismo</span>.
           </h1>
           <p className="font-mono text-[7px] md:text-[10px] uppercase tracking-[0.5em] text-negro/40">
             Crónicas visuales / {galerias.length} Coberturas
