@@ -397,15 +397,15 @@ export default function Home() {
             {/* DERECHA */}
             <div className="flex-1 text-center md:text-left">
               <div className="mb-4 md:mb-6">
-                <h2 className="font-sansita font-bold text-2xl md:text-5xl text-negro leading-[1.1]">
-                  Hacé que este <span className="text-bordo">grito</span> <br className="md:hidden" /> siga sonando.
+                <h2 className="font-sansita font-bold text-2xl md:text-4xl text-negro leading-[1.1]">
+                  Ayudanos y se parte de nuestra <span className="text-bordo">comunidad</span> 
                 </h2>
               </div>
 
               {/* Contenedor de párrafo y botón */}
               <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
                 <p className="font-montserrat font-medium text-negro/60 text-xs md:text-base max-w-sm md:max-w-md leading-relaxed">
-                  Si te gusta lo que hacemos, sumate y llevate el nuevo libro. Tu apoyo nos permite seguir gritando.
+                  Sumate a alerta y con un año de suscripción te regalamos un libro para leer juntas en el verano.
                 </p>
 
                 {/* BOTÓN */}
@@ -620,7 +620,7 @@ export default function Home() {
       {/* --- SECCIÓN BUSCADOR  --- */}
       <section className="relative w-full py-20 md:py-32 bg-white overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-10 md:opacity-20 grayscale pointer-events-none">
-          <img src="/banner_buscar.png" className="w-full h-full object-cover" alt="Fondo Buscador" />
+          <img src="/buscador.png" className="w-full h-full object-cover" alt="Fondo Buscador" />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-6 text-center">

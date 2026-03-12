@@ -14,18 +14,21 @@ export default function ComunidadPage() {
         nombre: "Cortate el flequillo", 
         precio: "$3.000", 
         desc: "Aporte mensual básico para sostener la red.",
+        link: "https://mpago.la/2Jusorn",
         estilo: "bg-white text-black shadow-[10px_10px_0px_#FB9160] border-2 border-black" 
     },
     { 
         nombre: "Lo personal es flequillo", 
         precio: "$6.000", 
         desc: "Aporte medio para impulsar nuevas notas.",
+        link: "https://mpago.la/111BpX1",
         estilo: "bg-[#FB9160] text-white shadow-[10px_10px_0px_#000] border-2 border-black" 
     },
     { 
         nombre: "El flequillo ya no es un prejuicio, es una orden de restricción", 
         precio: "$10.000", 
         desc: "Aporte premium para bancar la autogestión total.",
+        link: "https://mpago.la/2gCxXY6",
         estilo: "bg-black text-white shadow-[10px_10px_0px_#FB9160] border-2 border-white/20" 
     }
   ];
@@ -188,10 +191,13 @@ export default function ComunidadPage() {
         {/* GRILLA DE PLANES */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-40">
             {planes.map((plan, i) => (
-                <motion.div 
+                <motion.a 
                     key={i}
+                    href={plan.link} // <--- ¡ESTO ES LO QUE FALTABA!
+                    target="_blank"  // <--- Para que se abra en otra pestaña
+                    rel="noopener noreferrer" // Por seguridad al abrir links externos
                     whileHover={{ y: -10 }}
-                    className={`${plan.estilo} p-10 flex flex-col justify-between min-h-[400px] cursor-pointer group`}
+                    className={`${plan.estilo} p-10 flex flex-col justify-between min-h-[400px] cursor-pointer group no-underline`}
                 >
                     <div>
                         <h3 className="font-sansita text-3xl leading-tight mb-4">{plan.nombre}</h3>
@@ -203,7 +209,7 @@ export default function ComunidadPage() {
                             Suscribirme <span>→</span>
                         </div>
                     </div>
-                </motion.div>
+                </motion.a>
             ))}
         </section>
 

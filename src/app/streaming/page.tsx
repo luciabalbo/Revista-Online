@@ -223,7 +223,7 @@ export default function Streaming() {
                 target="_blank" 
                 className="inline-block border-b-2 border-[#A52502] text-[#A52502] font-black text-xs pb-1 hover:text-white hover:border-white transition-all uppercase tracking-widest"
               >
-                VER TODA LA PLAYLIST +
+                VER MÁS +
               </Link>
             </div>
           </div>
