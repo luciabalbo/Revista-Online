@@ -20,11 +20,9 @@ export default function Fotoperiodismo() {
 
   return (
     <main className="min-h-screen bg-[#f8f7f2] text-black selection:bg-[#00AEEF] selection:text-white overflow-x-hidden">
-      
-      {/* TEXTURA DE GRANO (Look analógico de Nosotras) */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[200] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
 
-{/* NAVBAR ESTILO "FEMINISMO Y POLÍTICA" */}
+      {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-[250] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
           <Link href="/" className="h-full flex items-center group">
@@ -55,14 +53,13 @@ export default function Fotoperiodismo() {
             </Link>
           </div>
 
-{/* BOTONES MOBILE UNIFICADOS */}
+          {/* BOTONES MOBILE UNIFICADOS */}
           <div className="flex lg:hidden items-center gap-4">
             <button 
               onClick={() => setIsMenuOpen(true)} 
               className="p-2"
             >
               <div className="flex flex-col gap-1.5 items-end">
-                {/* Usamos bg-black si tu nav de esa página es blanco */}
                 <div className="w-8 h-1 bg-black"></div>
                 <div className="w-5 h-1 bg-black"></div>
                 <div className="w-8 h-1 bg-black"></div>
@@ -72,7 +69,7 @@ export default function Fotoperiodismo() {
         </div>
       </nav>
 
-{/* OVERLAY DEL MENÚ MOBILE (IGUAL AL HOME) */}
+      {/* OVERLAY DEL MENÚ MOBILE */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 

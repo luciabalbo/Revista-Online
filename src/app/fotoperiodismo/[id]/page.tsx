@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 export default function GaleriaDetalle() {
-  // Estos datos vendrían de tu notas.json o una API según el ID
+  // Estos datos vendrían de notas.json o una API según el ID
   const galeria = {
     titulo: "Paro nacional docente",
     bajada: "Desde las primeras horas de la mañana, las calles del centro cordobés se tiñeron de guardapolvos blancos. Un reclamo que trasciende lo salarial y se convierte en defensa de la educación pública.",
@@ -19,7 +19,6 @@ export default function GaleriaDetalle() {
 
   return (
     <main className="min-h-screen bg-[#f8f7f2] text-black overflow-x-hidden">
-      {/* TEXTURA DE GRANO */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[200] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
 
       {/* HEADER DE LA NOTA FOTOGRÁFICA */}
@@ -71,7 +70,7 @@ export default function GaleriaDetalle() {
               />
             </div>
             
-            {/* Pie de foto sutil (opcional) */}
+            {/* Pie de foto */}
             <div className="mt-2 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
               <span className="font-mono text-[9px] uppercase">Registro #{index + 1}</span>
               <span className="font-mono text-[9px] uppercase">Alerta Flequillo © 2026</span>

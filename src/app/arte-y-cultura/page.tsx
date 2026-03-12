@@ -70,7 +70,8 @@ export default function ArteYCultura() {
     <main className="min-h-screen bg-[#f8f7f2] overflow-x-hidden">
       {/* BARRA DE PROGRESO */}
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-[#154B52] z-[300] origin-left" style={{ scaleX }} />
-{/* NAVBAR ESTILO "FEMINISMO Y POLÍTICA" */}
+      
+      {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-[250] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
           <Link href="/" className="h-full flex items-center group">
@@ -101,14 +102,13 @@ export default function ArteYCultura() {
             </Link>
           </div>
 
-{/* BOTONES MOBILE UNIFICADOS */}
+          {/* BOTONES MOBILE UNIFICADOS */}
           <div className="flex lg:hidden items-center gap-4">
             <button 
               onClick={() => setIsMenuOpen(true)} 
               className="p-2"
             >
               <div className="flex flex-col gap-1.5 items-end">
-                {/* Usamos bg-black si tu nav de esa página es blanco */}
                 <div className="w-8 h-1 bg-black"></div>
                 <div className="w-5 h-1 bg-black"></div>
                 <div className="w-8 h-1 bg-black"></div>
@@ -118,7 +118,7 @@ export default function ArteYCultura() {
         </div>
       </nav>
 
-{/* OVERLAY DEL MENÚ MOBILE (IGUAL AL HOME) */}
+      {/* OVERLAY DEL MENÚ MOBILE */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
@@ -179,17 +179,17 @@ export default function ArteYCultura() {
           {notasBanner.map((nota) => (
             <div key={nota.id} className="min-w-full h-full snap-center relative flex-shrink-0 group">
               
-              {/* IMAGEN: Filtro de brillo ajustado para mobile y centrado */}
+              {/* IMAGEN */}
               <img 
                 src={nota.imagen} 
                 className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.6] md:brightness-[0.8]" 
                 alt={nota.titulo} 
               />
               
-              {/* Overlay: Gradiente oscuro desde abajo para que el texto blanco resalte siempre */}
+              {/* Overlay: Gradiente oscuro desde abajo para que el texto blanco resalte */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent z-10" />
               
-              {/* CONTENEDOR DE TEXTO: Centrado absoluto con padding de seguridad */}
+              {/* CONTENEDOR DE TEXTO */}
               <div className="relative h-full w-full flex flex-col justify-center items-center text-center z-20 px-4">
                 
                 <div className="max-w-[90vw] md:max-w-5xl flex flex-col items-center">
@@ -199,19 +199,19 @@ export default function ArteYCultura() {
                     Destacado de hoy
                   </span>
 
-                  {/* Título: Ajustado a 4xl en mobile para evitar desbordes laterales */}
+                  {/* Título */}
                   <Link href={`/notas/${nota.slug}`}>
                     <h2 className="font-sansita font-bold text-4xl md:text-7xl text-white leading-[0.95] tracking-tighter italic hover:text-[#154B52] transition-all duration-500 drop-shadow-2xl">
                       {nota.titulo}
                     </h2>
                   </Link>
 
-                  {/* Bajada: Limitada al 85% del ancho de pantalla y máximo 3 líneas en mobile */}
+                  {/* Bajada */}
                   <p className="mt-4 font-montserrat text-white/90 text-sm md:text-xl max-w-[85vw] md:max-w-3xl leading-relaxed line-clamp-3 md:line-clamp-none">
                     {nota.bajada}
                   </p>
 
-                  {/* Botón: Estilo minimalista con borde inferior */}
+                  {/* Botón */}
                   <Link 
                     href={`/notas/${nota.slug}`} 
                     className="mt-8 md:mt-10 group/btn flex items-center gap-3 text-white uppercase text-[9px] md:text-[10px] tracking-[0.3em] font-black transition-all"
@@ -369,7 +369,7 @@ export default function ArteYCultura() {
         </div>
       </footer>
 
-      {/* MENÚ MOBILE (Reusado de la home) */}
+      {/* MENÚ MOBILE */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} className="fixed inset-0 bg-verde z-[200] flex flex-col items-center justify-center text-white">

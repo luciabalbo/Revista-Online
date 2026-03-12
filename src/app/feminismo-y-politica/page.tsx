@@ -46,7 +46,7 @@ export default function FeminismoYPolitica() {
     fetchNotas();
   }, []);
 
-  // 4. LÓGICA DE BÚSQUEDA (Actualizada para usar el estado 'notas')
+  // 4. LÓGICA DE BÚSQUEDA
   const notasFiltradas = useMemo(() => {
     const term = searchTerm.toLowerCase().trim();
     if (!term) return notas;
@@ -59,7 +59,6 @@ export default function FeminismoYPolitica() {
   const notasBanner = notas.slice(0, 3); 
   const notasGrilla = notasFiltradas;    
 
-  // ... (Tus otros useEffect y funciones de slug quedan igual)
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
@@ -74,7 +73,7 @@ export default function FeminismoYPolitica() {
     <main className="min-h-screen bg-[#f8f7f2] overflow-x-hidden">
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-[#4F136C] z-[300] origin-left" style={{ scaleX }} />
       
-      {/* NAVBAR ESTILO "FEMINISMO Y POLÍTICA" */}
+      {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-[250] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
           <Link href="/" className="h-full flex items-center group">
@@ -105,14 +104,13 @@ export default function FeminismoYPolitica() {
             </Link>
           </div>
 
-{/* BOTONES MOBILE UNIFICADOS */}
+          {/* BOTONES MOBILE UNIFICADOS */}
           <div className="flex lg:hidden items-center gap-4">
             <button 
               onClick={() => setIsMenuOpen(true)} 
               className="p-2"
             >
               <div className="flex flex-col gap-1.5 items-end">
-                {/* Usamos bg-black si tu nav de esa página es blanco */}
                 <div className="w-8 h-1 bg-black"></div>
                 <div className="w-5 h-1 bg-black"></div>
                 <div className="w-8 h-1 bg-black"></div>
@@ -122,7 +120,7 @@ export default function FeminismoYPolitica() {
         </div>
       </nav>
 
-{/* OVERLAY DEL MENÚ MOBILE (IGUAL AL HOME) */}
+      {/* OVERLAY DEL MENÚ MOBILE */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
@@ -182,8 +180,6 @@ export default function FeminismoYPolitica() {
         >
           {notasBanner.map((nota) => (
             <div key={nota.id} className="min-w-full h-full snap-center relative flex-shrink-0 group">
-              
-              {/* IMAGEN: Filtro de brillo ajustado para mobile y centrado */}
               <img 
                 src={nota.imagen} 
                 className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.6] md:brightness-[0.8]" 
@@ -193,7 +189,7 @@ export default function FeminismoYPolitica() {
               {/* Overlay: Gradiente oscuro desde abajo para que el texto blanco resalte siempre */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent z-10" />
               
-              {/* CONTENEDOR DE TEXTO: Centrado absoluto con padding de seguridad */}
+              {/* CONTENEDOR DE TEXTO */}
               <div className="relative h-full w-full flex flex-col justify-center items-center text-center z-20 px-4">
                 
                 <div className="max-w-[90vw] md:max-w-5xl flex flex-col items-center">
@@ -215,7 +211,7 @@ export default function FeminismoYPolitica() {
                     {nota.bajada}
                   </p>
 
-                  {/* Botón: Estilo minimalista con borde inferior */}
+                  {/* Botón */}
                   <Link 
                     href={`/notas/${nota.slug}`} 
                     className="mt-8 md:mt-10 group/btn flex items-center gap-3 text-white uppercase text-[9px] md:text-[10px] tracking-[0.3em] font-black transition-all"
@@ -245,43 +241,7 @@ export default function FeminismoYPolitica() {
         </div>
       </section>
 
-      {/* --- GRILLA --- */}
-{/*      <section className="max-w-7xl mx-auto px-6 pb-32">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
-          {notasGrilla.map((nota, i) => (
-            <motion.article 
-              key={nota.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: (i % 3) * 0.1 }}
-              className="group"
-            >
-              <Link href={`/notas/${nota.slug}`}>
-                <div className="relative aspect-square mb-6 overflow-hidden border-2 border-negro shadow-[8px_8px_0px_#000] group-hover:shadow-none group-hover:translate-x-2 group-hover:translate-y-2 transition-all duration-300">
-                  <img src={nota.imagen} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt={nota.titulo} />
-                </div>
-                
-                <span className="inline-block bg-negro text-white font-mono text-[9px] px-2 py-0.5 uppercase tracking-widest mb-3">
-                  {nota.volanta}
-                </span>
-                <h3 className="font-sansita text-3xl text-negro leading-none group-hover:text-bordo transition-colors italic">
-                  {nota.titulo}
-                </h3>
-                <p className="font-montserrat text-sm text-negro/60 mt-4 line-clamp-2">
-                  {nota.bajada}
-                </p>
-                <div className="mt-6 flex items-center justify-between border-t border-negro/10 pt-4">
-                   <span className="font-mono text-[9px] font-black uppercase">Por {nota.autor}</span>
-                   <div className="w-8 h-8 bg-bordo rounded-full flex items-center justify-center text-white text-xl opacity-0 group-hover:opacity-100 transition-opacity">→</div>
-                </div>
-              </Link>
-            </motion.article>
-          ))}
-        </div>
-      </section>/*}
-
-{/* --- SECCIÓN: ARCHIVO DE NOTAS --- */}
+      {/* --- SECCIÓN: ARCHIVO DE NOTAS --- */}
       <section id="archivo-notas" className="bg-[#f8f7f2] pb-24 px-4 -mt-1 pt-16 md:pt-20">
         <div className="max-w-[80%] mx-auto"> 
 
@@ -293,7 +253,7 @@ export default function FeminismoYPolitica() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: (i % 3) * 0.1 }}
-                  className="group flex" // Flex para que el Link ocupe todo el alto
+                  className="group flex"
                 >
                   <Link href={`/notas/${nota.slug}`} className="flex flex-col w-full">
                     
@@ -301,7 +261,7 @@ export default function FeminismoYPolitica() {
                       <img src={nota.imagen} className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700" alt={nota.titulo} />
                     </div>
                     
-                    {/* Contenedor de texto con flex-grow */}
+                    {/* Contenedor de texto */}
                     <div className="flex flex-col flex-grow">
                       <span 
                         className="inline-block font-black text-[var(--cat-color)] font-montserrat text-[9px] px-2 py-0.5 uppercase tracking-widest mb-2 self-start transition-colors duration-300 group-hover:bg-negro group-hover:text-white"
@@ -319,7 +279,7 @@ export default function FeminismoYPolitica() {
                       </p>
                     </div>
 
-                    {/* PIE DE CARD: El mt-auto lo clava abajo */}
+                    {/* PIE DE CARD */}
                     <div className="mt-auto pt-1 border-t border-negro/10 flex justify-between items-end">
                       <div className="flex flex-col gap-0.5">
                         <span className="font-mono text-[8px] uppercase text-negro/40 font-black tracking-[0.2em]">
@@ -331,7 +291,6 @@ export default function FeminismoYPolitica() {
                         </p>
                       </div>
 
-                      {/* Tu botón original intacto */}
                       <div 
                         style={{ borderColor: colorSeccion, color: colorSeccion }}
                         className="relative w-6 h-6 flex items-center justify-center transition-all duration-300 hover:text-white overflow-hidden"

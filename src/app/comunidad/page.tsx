@@ -34,10 +34,10 @@ export default function ComunidadPage() {
   const getSlug = (item: string) => item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
   return (
     <article className="min-h-screen bg-[#f8f7f2] text-black selection:bg-[#FB9160] selection:text-white overflow-x-hidden">
-      {/* TEXTURA ANALÓGICA */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.04] z-[200] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-[#FB9160] z-[300] origin-left" style={{ scaleX }} />
-{/* NAVBAR ESTILO "FEMINISMO Y POLÍTICA" */}
+      
+      {/* NAVBAR ESTILO */}
       <nav className="fixed top-0 w-full z-[250] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
           <Link href="/" className="h-full flex items-center group">
@@ -68,14 +68,13 @@ export default function ComunidadPage() {
             </Link>
           </div>
 
-{/* BOTONES MOBILE UNIFICADOS */}
+          {/* BOTONES MOBILE UNIFICADOS */}
           <div className="flex lg:hidden items-center gap-4">
             <button 
               onClick={() => setIsMenuOpen(true)} 
               className="p-2"
             >
               <div className="flex flex-col gap-1.5 items-end">
-                {/* Usamos bg-black si tu nav de esa página es blanco */}
                 <div className="w-8 h-1 bg-black"></div>
                 <div className="w-5 h-1 bg-black"></div>
                 <div className="w-8 h-1 bg-black"></div>
@@ -85,7 +84,7 @@ export default function ComunidadPage() {
         </div>
       </nav>
 
-{/* OVERLAY DEL MENÚ MOBILE (IGUAL AL HOME) */}
+      {/* OVERLAY DEL MENÚ MOBILE */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
@@ -136,7 +135,7 @@ export default function ComunidadPage() {
       </AnimatePresence>
       {/* ESPACIADOR PARA EL NAV FIJO */}
       <div className="h-18" />
-      {/* HEADER TIPO COLLAGE */}
+      {/* HEADER */}
       <header className="pt-40 pb-20 px-6 relative">
         <div className="max-w-6xl mx-auto text-center">
             <motion.div 
@@ -161,7 +160,6 @@ export default function ComunidadPage() {
         {/* SECCIÓN INTRODUCCIÓN CON EFECTO PAPEL */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-center">
             <div className="lg:col-span-7 bg-white p-10 md:p-16 border border-black/10 shadow-sm relative">
-                {/* Bordes rasgados decorativos (simulados) */}
                 <div className="absolute top-0 left-0 w-full h-2 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')] opacity-10"></div>
                 
                 <div className="font-montserrat text-xl md:text-2xl leading-[1.8] text-gray-900 space-y-8 text-justify">
@@ -174,7 +172,7 @@ export default function ComunidadPage() {
                 </div>
             </div>
 
-            {/* CAJA DEL LIBRO (LOOK STICKER/RECORTADO) */}
+            {/* CAJA DEL LIBRO */}
             <motion.div 
                 whileHover={{ rotate: 0 }}
                 className="lg:col-span-5 bg-black text-white p-10 rotate-3 border-2 border-dashed border-[#FB9160] relative group"
@@ -187,7 +185,7 @@ export default function ComunidadPage() {
             </motion.div>
         </section>
 
-        {/* GRILLA DE PLANES (BRUTALISMO) */}
+        {/* GRILLA DE PLANES */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-40">
             {planes.map((plan, i) => (
                 <motion.div 
@@ -209,24 +207,23 @@ export default function ComunidadPage() {
             ))}
         </section>
 
-        {/* SECCIÓN ESCRIBIR (LOOK MANIFIESTO - OPTIMIZADO MOBILE) */}
+        {/* SECCIÓN ESCRIBIR */}
         <section className="relative overflow-hidden bg-white py-20 px-4 md:p-24 text-center">
             <div className="relative z-10 max-w-[90vw] md:max-w-3xl mx-auto flex flex-col items-center">
                 
-                {/* Título: Ajustado a 4xl en mobile para que el <br/> no genere huecos raros */}
                 <h2 className="font-sansita text-4xl md:text-7xl mb-10 tracking-tighter leading-[0.9]">
                     ¿Querés escribir <br className="hidden md:block"/> 
                     <span className="text-[#FB9160]">con nosotras?</span>
                 </h2>
 
-                {/* Texto: Reducido a text-lg en mobile para mejor legibilidad */}
+                {/* Texto */}
                 <div className="font-montserrat text-lg md:text-xl leading-relaxed md:leading-[1.8] mb-12 text-gray-700 max-w-[85vw] md:max-w-none">
                     <p>
                         Como un medio que pone resistencia a los tiempos que acechan, creemos que es importante priorizar la pluralidad de voces. Si considerás que podés hacer algún aporte ya sea desde la redacción, diseño gráfico o el fotoperiodismo, contactanos.
                     </p>
                 </div>
 
-                {/* Botón: Ahora es responsivo (text-sm en mobile) y no se desborda */}
+                {/* Botón */}
                 <a 
                     href="mailto:alertaflequillo@gmail.com" 
                     className="w-full md:w-auto inline-block bg-black text-white text-sm md:text-xl font-sansita px-6 md:px-12 py-5 md:py-6 hover:bg-[#FB9160] hover:text-black transition-all transform hover:-rotate-2 shadow-xl"

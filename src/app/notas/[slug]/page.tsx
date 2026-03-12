@@ -3,13 +3,12 @@ import Link from 'next/link';
 import * as motion from 'framer-motion/client'; 
 import { client } from '@/sanity/lib/client'; 
 import { PortableText } from '@portabletext/react';
-// Importamos el Navbar que vamos a crear abajo
 import NavbarNota from '@/components/NavbarNota'; 
 
 export default async function NotaPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
-  // 1. Definimos los colores aquí adentro
+  // 1. Definimos los colores 
   const coloresCategorias: { [key: string]: string } = {
     "Comunicación": "#390D02",
     "Feminismo": "#4F136C",
@@ -17,11 +16,11 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
     "Streaming": "#A52502",
     "Política": "#1C8394",
     "Arte y Cultura": "#154B52", 
-    "Feminismo y Política": "#4F136C", // Agregué esta por si acaso coincide con el menú
+    "Feminismo y Política": "#4F136C", 
     "default": "#FB9160"
   };
 
-  // Query mejorada para traer la nota y los relacionados
+  // Query para traer la nota y los relacionados
   const query = `{
     "nota": *[_type == "post" && slug.current == $slug][0]{
       titulo,
@@ -50,8 +49,6 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
   return (
     <article className="min-h-screen bg-[#f8f7f2] text-black selection:text-white overflow-x-hidden" 
              style={{ ['--accent-color' as any]: colorNota }}>
-      
-      {/* Estilo para que el resaltado de texto (selection) también sea dinámico */}
       <style dangerouslySetInnerHTML={{ __html: `
         ::selection { background-color: ${colorNota}; color: white; }
       `}} />

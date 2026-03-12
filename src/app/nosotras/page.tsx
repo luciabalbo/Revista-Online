@@ -13,10 +13,9 @@ export default function NosotrasPage() {
   const getSlug = (item: string) => item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
   return (
     <article className="min-h-screen bg-[#f8f7f2] text-black selection:bg-[#FB9160] selection:text-white overflow-x-hidden">
-       {/* TEXTURA DE GRANO (Overlay sutil para look analógico) */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[200] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-[#1C8394] z-[300] origin-left" style={{ scaleX }} />
-      {/* NAVBAR ESTILO "FEMINISMO Y POLÍTICA" */}
+      {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-[250] bg-white/80 backdrop-blur-xl border-b border-black/5 px-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center h-24">
           <Link href="/" className="h-full flex items-center group">
@@ -47,14 +46,13 @@ export default function NosotrasPage() {
             </Link>
           </div>
 
-{/* BOTONES MOBILE UNIFICADOS */}
+          {/* BOTONES MOBILE */}
           <div className="flex lg:hidden items-center gap-4">
             <button 
               onClick={() => setIsMenuOpen(true)} 
               className="p-2"
             >
               <div className="flex flex-col gap-1.5 items-end">
-                {/* Usamos bg-black si tu nav de esa página es blanco */}
                 <div className="w-8 h-1 bg-black"></div>
                 <div className="w-5 h-1 bg-black"></div>
                 <div className="w-8 h-1 bg-black"></div>
@@ -64,7 +62,7 @@ export default function NosotrasPage() {
         </div>
       </nav>
 
-{/* OVERLAY DEL MENÚ MOBILE (IGUAL AL HOME) */}
+      {/* OVERLAY DEL MENÚ MOBILE */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
@@ -126,7 +124,7 @@ export default function NosotrasPage() {
         </motion.h1>
       </header>
 
-      {/* FOTO GRUPAL (Placeholder para que pongas la suya) */}
+      {/* FOTO GRUPAL */}
       <section className="px-6 max-w-7xl mx-auto mb-32">
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
@@ -139,13 +137,10 @@ export default function NosotrasPage() {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-          {/*<p className="absolute bottom-8 left-8 font-mono text-white text-[10px] uppercase tracking-widest">
-            Tanti, Córdoba — 2024/2026
-          </p>*/}
         </motion.div>
       </section>
 
-      {/* MANIFIESTO - ESTILO ENFANT TERRIBLE */}
+      {/* MANIFIESTO */}
       <main className="max-w-6xl mx-auto px-6 pb-40">
         
         {/* BLOQUE DE DOS COLUMNAS */}
@@ -193,7 +188,7 @@ export default function NosotrasPage() {
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#FB9160] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
               <img 
-                src="/nosotras.PNG" // Cambiar por ruta real
+                src="/nosotras.PNG"
                 alt="Nombre Integrante"
                 className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
               />
@@ -212,9 +207,8 @@ export default function NosotrasPage() {
               </button>
             </div>
           </div>
-          {/* FIN BLOQUE INTEGRANTE */}
 
-          {/* EJEMPLO 2 */}
+          {/* 2 */}
           <div className="flex items-center gap-6 group">
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#1C8394] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
@@ -236,13 +230,13 @@ export default function NosotrasPage() {
             </div>
           </div>
 
-                    {/* REPETIR ESTE BLOQUE POR CADA INTEGRANTE */}
+          {/* REPETIR ESTE BLOQUE POR CADA INTEGRANTE */}
           <div className="flex items-center gap-6 group">
             {/* Foto Circular */}
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#FB9160] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
               <img 
-                src="/integrantes/foto1.jpg" // Cambiar por ruta real
+                src="/integrantes/foto1.jpg"
                 alt="Nombre Integrante"
                 className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
               />

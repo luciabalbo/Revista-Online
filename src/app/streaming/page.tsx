@@ -71,14 +71,13 @@ export default function Streaming() {
             </Link>
           </div>
 
-{/* BOTONES MOBILE UNIFICADOS */}
+          {/* BOTONES MOBILE */}
           <div className="flex lg:hidden items-center gap-4">
             <button 
               onClick={() => setIsMenuOpen(true)} 
               className="p-2"
             >
               <div className="flex flex-col gap-1.5 items-end">
-                {/* Usamos bg-black si tu nav de esa página es blanco */}
                 <div className="w-8 h-1 bg-black"></div>
                 <div className="w-5 h-1 bg-black"></div>
                 <div className="w-8 h-1 bg-black"></div>
@@ -88,7 +87,7 @@ export default function Streaming() {
         </div>
       </nav>
 
-{/* OVERLAY DEL MENÚ MOBILE (IGUAL AL HOME) */}
+      {/* OVERLAY DEL MENÚ MOBILE*/}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div 
@@ -140,7 +139,7 @@ export default function Streaming() {
       {/* ESPACIADOR PARA EL NAV FIJO */}
       <div className="h-25" />
 
-    {/* HERO SECTION - CLEAN & PROFESSIONAL PROTOTYPE */}
+      {/* HERO SECTION */}
       <div className="w-full bg-[#f8f7f2]">
         <motion.section 
           initial="hidden"
@@ -151,7 +150,7 @@ export default function Streaming() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center w-full bg-[#f8f7f2]">
             
-            {/* TEXTO: FOCO EN LA LEGIBILIDAD */}
+            {/* TEXTO */}
             <motion.div variants={itemVariants} className="lg:col-span-6 space-y-10 text-center lg:text-left">
               <div className="flex justify-center lg:justify-start">
                 <span className="bg-[#A52502] text-white text-[11px] px-5 py-2 uppercase font-black tracking-[0.3em] shadow-[4px_4px_0px_#000]">
@@ -181,13 +180,12 @@ export default function Streaming() {
               </div>
             </motion.div>
 
-            {/* MEDIA: LA MINIATURA PURA */}
+            {/* MEDIA: LA MINIATURA */}
             <motion.div 
               variants={itemVariants} 
               className="lg:col-span-6"
             >
               <div className="relative group">
-                {/* Marco sólido minimalista */}
                 <div className="absolute inset-0 bg-[#A52502] translate-x-3 translate-y-3 -z-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
                 
                 <div className="relative aspect-video bg-black border-[3px] border-black overflow-hidden shadow-2xl">
@@ -204,14 +202,13 @@ export default function Streaming() {
         </motion.section>
       </div>
 
-{/* SECCIÓN ARCHIVO: RADIO REVÉS - LISTA VERTICAL */}
+      {/* SECCIÓN ARCHIVO: RADIO REVÉS - LISTA VERTICAL */}
       <section className="bg-black py-32 px-4 relative overflow-hidden border-t border-white/10">
-        {/* Decoración lateral */}
         <div className="absolute left-0 top-0 bottom-0 w-2 bg-[#A52502]" />
         
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
           
-          {/* COLUMNA IZQUIERDA: INFO (Se mantiene igual pero con mejor grid span) */}
+          {/* COLUMNA IZQUIERDA */}
           <div className="lg:col-span-5 space-y-8">
             <h2 className="font-sansita text-5xl md:text-7xl text-white leading-[1] text-center lg:text-left">
               Estos son nuestros programas en <br /> 
@@ -231,7 +228,7 @@ export default function Streaming() {
             </div>
           </div>
 
-          {/* COLUMNA DERECHA: LOS PROGRAMAS (Uno abajo del otro) */}
+          {/* COLUMNA DERECHA */}
           <div className="lg:col-span-7 flex flex-col gap-12">
             {[
               { id: "rT2QvkmtUN8"},
@@ -239,12 +236,11 @@ export default function Streaming() {
             ].map((v) => (
               <motion.a 
                 key={v.id}
-                whileHover={{ x: 10 }} // Animación hacia la derecha en vez de hacia arriba
+                whileHover={{ x: 10 }}
                 href={`https://www.youtube.com/watch?v=${v.id}`}
                 target="_blank"
                 className="group flex flex-col md:flex-row gap-6 items-center border-b border-white/10 pb-12 last:border-0"
               >
-                {/* Miniatura más grande para formato lista */}
                 <div className="relative w-full md:w-80 aspect-video border-2 border-white/20 overflow-hidden flex-shrink-0">
                   <img 
                     src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} 
@@ -252,7 +248,6 @@ export default function Streaming() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60" />
                   
-                  {/* Play Icon central que aparece en hover */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-[#A52502] p-3 rounded-full">
                       <span className="text-white">▶</span>
@@ -260,7 +255,6 @@ export default function Streaming() {
                   </div>
                 </div>
 
-                {/* Info del programa al costado */}
                 <div className="flex flex-col gap-2 w-full text-center md:text-left">
                   <span className="font-mono text-[#A52502] text-[10px] font-black tracking-[0.3em]">
                     RADIO REVÉS
@@ -274,7 +268,7 @@ export default function Streaming() {
           </div>
         </div>
       </section>
-            {/* --- FOOTER --- */}
+      {/* --- FOOTER --- */}
       <footer className="bg-negro text-white pt-16 md:pt-28 pb-10 px-6 border-t-[8px] md:border-t-[12px] border-bordo relative overflow-hidden">
 
         {/* CONTENEDOR PRINCIPAL */}

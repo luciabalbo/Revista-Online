@@ -54,7 +54,7 @@ export default function Home() {
       const target = `${nota.titulo} ${nota.autor} ${nota.volanta} ${nota.bajada}`.toLowerCase();
       return target.includes(term);
     });
-  }, [searchTerm, notas]); // <-- IMPORTANTE: agregamos 'notas' aquí
+  }, [searchTerm, notas]);
 
   // 5. DISTRIBUCIÓN
   const notasBanner = notas.slice(0, 3); 
