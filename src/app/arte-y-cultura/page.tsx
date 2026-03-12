@@ -3,72 +3,74 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from "next/image";
 import Link from "next/link"; 
-import { motion, AnimatePresence, useScroll, useSpring, Variants } from 'framer-motion';
-import notas from '@/app/notas.json';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+// 1. IMPORTAMOS EL CLIENTE DE SANITY
+import { client } from '@/sanity/lib/client'; 
 
-export default function ArteYCultura() {
+export default function FeminismoYPolitica() {
   const router = useRouter();
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 }); 
   
-  // 1. Estados de UI
+  // 2. NUEVOS ESTADOS PARA SANITY
+  const [notas, setNotas] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Estados de UI
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false); 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(''); 
-  
+  const [searchTerm, setSearchTerm] = useState('');
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });  
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // 2. FILTRADO ESPECÍFICO: Solo notas de "Arte y Cultura"
-  const notasCategoria = useMemo(() => {
-    return notas.filter(nota => nota.volanta === "Arte y Cultura");
+  const colorSeccion = "#154B52"; 
+
+  // 3. EFECTO PARA TRAER NOTAS FILTRADAS DESDE SANITY
+  useEffect(() => {
+    const fetchNotas = async () => {
+      // Pedimos notas que tengan alguna de esas 3 variantes en la volanta
+      const query = `*[_type == "post" && (volanta == "Arte" || volanta == "Cultura" || volanta == "Arte y Cultura")] | order(fecha desc) {
+        "id": _id,
+        titulo,
+        volanta,
+        bajada,
+        autor,
+        fecha,
+        "slug": slug.current,
+        "imagen": imagen.asset->url
+      }`;
+      const data = await client.fetch(query);
+      setNotas(data);
+      setLoading(false);
+    };
+    fetchNotas();
   }, []);
 
-  // 3. Lógica de búsqueda dentro de la categoría
+  // 4. LÓGICA DE BÚSQUEDA
   const notasFiltradas = useMemo(() => {
     const term = searchTerm.toLowerCase().trim();
-    if (!term) return notasCategoria;
-    return notasCategoria.filter((nota) => {
+    if (!term) return notas;
+    return notas.filter((nota) => {
       const target = `${nota.titulo} ${nota.autor} ${nota.bajada}`.toLowerCase();
       return target.includes(term);
     });
-  }, [searchTerm, notasCategoria]);
+  }, [searchTerm, notas]);
 
-  // Distribución: Los primeros 3 para el banner, el resto para la grilla
-  const notasBanner = notasCategoria.slice(0, 3); 
+  const notasBanner = notas.slice(0, 3); 
   const notasGrilla = notasFiltradas;    
 
-  // Efectos de Scroll y Mouse
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isMenuOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'unset';
-  }, [isMenuOpen]);
-
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollTo = direction === "left" ? scrollLeft - clientWidth : scrollLeft + clientWidth;
-      scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
-    }
-  };
-
-  const coloresCategorias: { [key: string]: string } = {
-    "Arte y Cultura": "#059669", 
-    "default": "#FB9160"
-  };
-
-  // Limpiador de slugs para los links del nav
   const getSlug = (item: string) => item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+
+  if (loading) return <div className="min-h-screen bg-[#f8f7f2] flex items-center justify-center font-sansita text-2xl">Cargando sección...</div>;
 
   return (
     <main className="min-h-screen bg-[#f8f7f2] overflow-x-hidden">
-      {/* BARRA DE PROGRESO */}
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-[#154B52] z-[300] origin-left" style={{ scaleX }} />
       
       {/* NAVBAR */}
@@ -178,15 +180,13 @@ export default function ArteYCultura() {
         >
           {notasBanner.map((nota) => (
             <div key={nota.id} className="min-w-full h-full snap-center relative flex-shrink-0 group">
-              
-              {/* IMAGEN */}
               <img 
                 src={nota.imagen} 
                 className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.6] md:brightness-[0.8]" 
                 alt={nota.titulo} 
               />
               
-              {/* Overlay: Gradiente oscuro desde abajo para que el texto blanco resalte */}
+              {/* Overlay: Gradiente oscuro desde abajo para que el texto blanco resalte siempre */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent z-10" />
               
               {/* CONTENEDOR DE TEXTO */}
@@ -195,18 +195,18 @@ export default function ArteYCultura() {
                 <div className="max-w-[90vw] md:max-w-5xl flex flex-col items-center">
                   
                   {/* VOLANTA / CATEGORÍA */}
-                  <span className="mb-4 inline-block bg-[#154B52] text-white font-montserrat text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black px-4 py-1.5 shadow-lg">
+                  <span className="mb-4 inline-block bg-[#4F136C] text-white font-montserrat text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black px-4 py-1.5 shadow-lg">
                     Destacado de hoy
                   </span>
 
-                  {/* Título */}
+                  {/* Título: Ajustado a 4xl en mobile para evitar desbordes laterales */}
                   <Link href={`/notas/${nota.slug}`}>
-                    <h2 className="font-sansita font-bold text-4xl md:text-7xl text-white leading-[0.95] tracking-tighter italic hover:text-[#154B52] transition-all duration-500 drop-shadow-2xl">
+                    <h2 className="font-sansita font-bold text-4xl md:text-7xl text-white leading-[0.95] tracking-tighter italic hover:text-[#4F136C] transition-all duration-500 drop-shadow-2xl">
                       {nota.titulo}
                     </h2>
                   </Link>
 
-                  {/* Bajada */}
+                  {/* Bajada: Limitada al 85% del ancho de pantalla y máximo 3 líneas en mobile */}
                   <p className="mt-4 font-montserrat text-white/90 text-sm md:text-xl max-w-[85vw] md:max-w-3xl leading-relaxed line-clamp-3 md:line-clamp-none">
                     {nota.bajada}
                   </p>
@@ -216,7 +216,7 @@ export default function ArteYCultura() {
                     href={`/notas/${nota.slug}`} 
                     className="mt-8 md:mt-10 group/btn flex items-center gap-3 text-white uppercase text-[9px] md:text-[10px] tracking-[0.3em] font-black transition-all"
                   >
-                    <span className="border-b-2 border-[#154B52] pb-1 group-hover/btn:text-[#154B52] transition-colors">
+                    <span className="border-b-2 border-[#4F136C] pb-1 group-hover/btn:text-[#4F136C] transition-colors">
                       Leer Nota
                     </span>
                     <span className="text-lg group-hover/btn:translate-x-2 transition-transform">→</span>
@@ -228,56 +228,88 @@ export default function ArteYCultura() {
         </div>
       </section>
 
+
       {/* --- TÍTULO DE SECCIÓN --- */}
       <section className="max-w-7xl mx-auto px-6 pt-20 pb-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b-4 border-negro pb-6">
-          <h1 className="font-sansita text-5xl md:text-8xl text-negro leading-none tracking-tighter">
-            arte y <span className="text-verde">cultura</span>
+          <h1 className="font-sansita text-4xl md:text-6xl text-negro leading-none tracking-tighter">
+            Arte <span className="text-verde">& Cultura</span>
           </h1>
-          <p className="font-mono text-[10px] uppercase tracking-[0.5em] text-negro/40 mt-4 md:mt-0">
-            {notasCategoria.length} notas publicadas
-          </p>
+          <div className="flex items-center gap-4 mt-4 md:mt-0">
+             <p className="font-mono text-[10px] uppercase tracking-[0.5em] text-negro/40">Periodismo con flequillo</p>
+          </div>
         </div>
       </section>
 
-      {/* --- GRILLA DE TODAS LAS NOTAS (3 COLUMNAS) --- */}
-      <section className="max-w-7xl mx-auto px-6 pb-32">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
-          {notasGrilla.map((nota, i) => (
-            <motion.article 
-              key={nota.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: (i % 3) * 0.1 }}
-              className="group cursor-pointer"
-            >
-              <Link href={`/notas/${nota.slug}`}>
-                <div className="relative aspect-[4/5] mb-6 overflow-hidden bg-gray-200">
-                  <img 
-                    src={nota.imagen} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
-                    alt={nota.titulo} 
-                  />
-                  <div className="absolute inset-0 bg-verde/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                
-                <span className="font-mono text-[10px] text-verde font-bold uppercase tracking-[0.3em]">
-                  {nota.fecha || '2026'}
-                </span>
-                <h3 className="font-sansita text-3xl text-negro mt-2 leading-none group-hover:text-verde transition-colors italic">
-                  {nota.titulo}
-                </h3>
-                <p className="font-montserrat text-sm text-negro/60 mt-4 line-clamp-3 leading-relaxed">
-                  {nota.bajada}
-                </p>
-                <div className="mt-6 flex items-center justify-between">
-                   <span className="font-mono text-[9px] font-black uppercase text-negro/40">Por {nota.autor}</span>
-                   <span className="text-2xl group-hover:translate-x-2 transition-transform">→</span>
-                </div>
-              </Link>
-            </motion.article>
-          ))}
+      {/* --- SECCIÓN: ARCHIVO DE NOTAS --- */}
+      <section id="archivo-notas" className="bg-[#f8f7f2] pb-24 px-4 -mt-1 pt-16 md:pt-20">
+        <div className="max-w-[80%] mx-auto"> 
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 mt-0 items-stretch">
+            {notasGrilla.map((nota, i) => (
+                <motion.article 
+                  key={nota.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: (i % 3) * 0.1 }}
+                  className="group flex"
+                >
+                  <Link href={`/notas/${nota.slug}`} className="flex flex-col w-full">
+                    
+                    <div className="relative aspect-square mb-4 overflow-hidden border-2 border-negro shadow-[8px_8px_0px_#000] group-hover:shadow-none group-hover:translate-x-2 group-hover:translate-y-2 transition-all duration-300">
+                      <img src={nota.imagen} className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700" alt={nota.titulo} />
+                    </div>
+                    
+                    {/* Contenedor de texto */}
+                    <div className="flex flex-col flex-grow">
+                      <span 
+                        className="inline-block font-black text-[var(--cat-color)] font-montserrat text-[9px] px-2 py-0.5 uppercase tracking-widest mb-2 self-start transition-colors duration-300 group-hover:bg-negro group-hover:text-white"
+                        style={{ '--cat-color': colorSeccion } as any}
+                      >
+                        {nota.volanta}
+                      </span>
+
+                      <h3 className="font-sansita text-2xl text-negro leading-none group-hover:text-bordo transition-colors">
+                        {nota.titulo}
+                      </h3>
+
+                      <p className="font-montserrat text-sm text-negro/60 mt-2 mb-4 line-clamp-2">
+                        {nota.bajada}
+                      </p>
+                    </div>
+
+                    {/* PIE DE CARD */}
+                    <div className="mt-auto pt-1 border-t border-negro/10 flex justify-between items-end">
+                      <div className="flex flex-col gap-0.5">
+                        <span className="font-mono text-[8px] uppercase text-negro/40 font-black tracking-[0.2em]">
+                          Escrito por
+                        </span>
+                        <p className="font-mono text-[9px] uppercase font-black text-negro group-hover:underline decoration-1 underline-offset-2"
+                          style={{ textDecorationColor: colorSeccion }}>
+                          {nota.autor}
+                        </p>
+                      </div>
+
+                      <div 
+                        style={{ borderColor: colorSeccion, color: colorSeccion }}
+                        className="relative w-6 h-6 flex items-center justify-center transition-all duration-300 hover:text-white overflow-hidden"
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = colorSeccion;
+                          e.currentTarget.style.color = '#ffffff';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.color = colorSeccion;
+                        }}
+                      >
+                        <span className="text-lg font-bold">→</span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.article>
+              ))}
+          </div>
         </div>
       </section>
 
@@ -368,20 +400,6 @@ export default function ArteYCultura() {
           </div>
         </div>
       </footer>
-
-      {/* MENÚ MOBILE */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} className="fixed inset-0 bg-verde z-[200] flex flex-col items-center justify-center text-white">
-            <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 text-4xl">×</button>
-            {['Arte y Cultura', 'Feminismo y Política', 'Streaming', 'Nosotras'].map((item) => (
-              <Link key={item} href={`/${item.toLowerCase().replace(/ /g, '-')}`} onClick={() => setIsMenuOpen(false)} className="text-4xl font-sansita mb-6 italic hover:text-negro transition-colors">
-                {item}
-              </Link>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </main>
   );
 }
