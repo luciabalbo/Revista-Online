@@ -1,25 +1,29 @@
-"use client";
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { client } from "@/sanity/lib/client";
+import { GALERIA_DETALLE_QUERY } from "@/sanity/lib/queries";
+import NavbarNota from '@/components/NavbarNota';
+// Revalidar cada 1 minuto para ver cambios nuevos
+export const revalidate = 60;
 
-export default function GaleriaDetalle() {
-  // Estos datos vendrían de notas.json o una API según el ID
-  const galeria = {
-    titulo: "Paro nacional docente",
-    bajada: "Desde las primeras horas de la mañana, las calles del centro cordobés se tiñeron de guardapolvos blancos. Un reclamo que trasciende lo salarial y se convierte en defensa de la educación pública.",
-    fecha: "02 de Octubre, 2026",
-    autor: "Lula.",
-    fotos: [
-      "/fotos/paro1.jpg", 
-      "/fotos/paro2.jpg",
-      "/fotos/paro3.jpg",
-      "/fotos/paro4.jpg"
-    ]
-  };
+export default async function GaleriaDetalle({ params }: { params: { slug: string } }) {
+  // 1. Buscamos la data en Sanity usando el slug de la URL
+  const galeria = await client.fetch(GALERIA_DETALLE_QUERY, { slug: params.slug });
+
+  // Si no encuentra la galería, mostramos un aviso
+  if (!galeria) {
+    return (
+      <div className="min-h-screen flex items-center justify-center font-sansita text-2xl">
+        Galería no encontrada...
+      </div>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-[#f8f7f2] text-black overflow-x-hidden">
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[200] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+
+      <NavbarNota />
 
       {/* HEADER DE LA NOTA FOTOGRÁFICA */}
       <header className="pt-32 pb-12 px-6 max-w-5xl mx-auto text-center md:text-left">
@@ -51,9 +55,9 @@ export default function GaleriaDetalle() {
         </p>
       </section>
 
-      {/* FLUJO DE IMÁGENES */}
+      {/* FLUJO DE IMÁGENES DINÁMICO */}
       <section className="max-w-6xl mx-auto px-4 space-y-4 md:space-y-12 pb-32">
-        {galeria.fotos.map((foto, index) => (
+        {galeria.fotos?.map((foto: string, index: number) => (
           <motion.div 
             key={index}
             initial={{ opacity: 0, scale: 0.95 }}
@@ -61,16 +65,14 @@ export default function GaleriaDetalle() {
             viewport={{ once: true, margin: "-100px" }}
             className="relative w-full group"
           >
-            {/* El contenedor de la imagen */}
             <div className="bg-gray-200 overflow-hidden">
               <img 
-                src={foto} 
+                src={foto} // URL directa desde Sanity
                 alt={`Registro ${index + 1}`} 
                 className="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-[1.02]"
               />
             </div>
             
-            {/* Pie de foto */}
             <div className="mt-2 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
               <span className="font-mono text-[9px] uppercase">Registro #{index + 1}</span>
               <span className="font-mono text-[9px] uppercase">Alerta Flequillo © 2026</span>
