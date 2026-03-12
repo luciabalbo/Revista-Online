@@ -1,5 +1,5 @@
 import Link from "next/link"; 
-import { motion } from 'framer-motion';
+import { MotionDiv } from "@/components/FramerWrapper";
 import { client } from "@/sanity/lib/client"; 
 import { GALERIAS_QUERY } from "@/sanity/lib/queries";
 import NavbarNota from '@/components/NavbarNota'; 
@@ -35,7 +35,7 @@ export default async function Fotoperiodismo() {
       <section className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
           {galerias.map((item: any) => (
-            <motion.div 
+            <MotionDiv 
               key={item.id}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ export default async function Fotoperiodismo() {
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
       </section>
