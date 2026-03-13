@@ -215,7 +215,7 @@ export default function Streaming() {
               <span className="text-[#A52502] not-italic">Radio Revés</span>
             </h2>
             <p className="text-center lg:text-left font-montserrat text-base text-white/50 leading-relaxed uppercase tracking-widest font-bold max-w-sm">
-              Un espacio para estudiantes de la Facultad de Ciencias de la Comunicación (FCC)
+              Un espacio de la Facultad de Ciencias de la Comunicación de la UNC.
             </p>
             <div className="pt-4 flex justify-center lg:justify-start">
               <Link 

@@ -202,9 +202,6 @@ export default function NosotrasPage() {
               <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">
                 Valentina Terrango
               </h3>
-              <button className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/40 hover:text-[#FB9160] transition-colors flex items-center gap-2">
-                + Info
-              </button>
             </div>
           </div>
 
@@ -224,9 +221,6 @@ export default function NosotrasPage() {
               <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">
                 Celeste
               </h3>
-              <button className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/40 hover:text-[#1C8394] transition-colors flex items-center gap-2">
-                + Info
-              </button>
             </div>
           </div>
 
@@ -250,9 +244,6 @@ export default function NosotrasPage() {
               <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">
                 Clara
               </h3>
-              <button className="mt-2 text-[10px] font-bold uppercase tracking-widest text-black/40 hover:text-[#FB9160] transition-colors flex items-center gap-2">
-                + Info
-              </button>
             </div>
           </div>
 
