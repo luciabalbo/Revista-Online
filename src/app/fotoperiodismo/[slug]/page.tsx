@@ -3,6 +3,40 @@ import Link from 'next/link';
 import { client } from "@/sanity/lib/client";
 import { GALERIA_DETALLE_QUERY } from "@/sanity/lib/queries";
 import NavbarNota from '@/components/NavbarNota';
+import ShareButton from "@/components/ShareButton";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const galeria = await client.fetch(GALERIA_DETALLE_QUERY, { slug });
+
+  if (!galeria) return { title: "Alerta Flequillo" };
+
+  return {
+    title: `Alerta Flequillo - ${galeria.titulo}`,
+    description: `Registro fotográfico por ${galeria.autor}.`,
+    openGraph: {
+      title: galeria.titulo,
+      description: `Cobertura fotográfica de ${galeria.autor} para Alerta Flequillo.`,
+      url: `https://revista-online.vercel.app/fotoperiodismo/${slug}`,
+      siteName: 'Alerta Flequillo',
+      images: [
+        {
+          url: galeria.imagen || galeria.fotos?.[0], // Usa la miniatura o la primera foto
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: 'es_AR',
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: galeria.titulo,
+      description: `Fotos por ${galeria.autor}`,
+      images: [galeria.imagen || galeria.fotos?.[0]],
+    },
+  };
+}
 // Revalidar cada 1 minuto para ver cambios nuevos
 export const revalidate = 60;
 
@@ -89,13 +123,14 @@ export default async function GaleriaDetalle({
         ))}
       </section>
 
-      {/* FOOTER DE LA GALERÍA */}
       <footer className="bg-negro text-white py-24 px-6 text-center">
-        <h2 className="font-sansita text-3xl md:text-5xl mb-8 italic">¿Te interesó esta cobertura?</h2>
+        <h2 className="font-sansita text-3xl md:text-5xl mb-8 italic">
+          ¿Te interesó esta cobertura?
+        </h2>
         <div className="flex flex-wrap justify-center gap-4">
-          <button className="bg-[#1C8394] text-white px-8 py-3 font-black uppercase text-[10px] tracking-widest hover:bg-white hover:text-negro transition-all">
-            Compartir registro
-          </button>
+          {/* REEMPLAZAMOS EL BOTÓN VIEJO POR ESTE: */}
+          <ShareButton titulo={galeria.titulo} /> 
+          
           <Link href="/fotoperiodismo" className="border border-white/20 px-8 py-3 font-black uppercase text-[10px] tracking-widest hover:bg-white/10 transition-all">
             Ver más galerías
           </Link>
