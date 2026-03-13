@@ -39,6 +39,16 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
     }
   }`;
 
+  const components = {
+    block: {
+      normal: ({ children }: any) => (
+        <p className="mb-8">
+          {children}
+        </p>
+      ),
+    },
+  };
+
   const { nota, relacionados } = await client.fetch(query, { slug });
 
   if (!nota) return notFound();
@@ -101,11 +111,9 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
       {/* CUERPO */}
       <main className="max-w-7xl mx-auto px-6 py-20 md:py-32 grid grid-cols-1 lg:grid-cols-12">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} className="lg:col-span-8 lg:col-start-3">
-          <div className="font-montserrat text-lg md:text-[20px] leading-[1.7] text-gray-900 text-left 
-                          first-letter:text-7xl md:first-letter:text-8xl first-letter:font-sansita 
-                          first-letter:mr-4 first-letter:float-left first-letter:text-[#FB9160] 
-                          first-letter:leading-none mb-24">
-            <PortableText value={nota.cuerpo} />
+          {/* Limpiamos las clases de first-letter de este div */}
+          <div className="font-montserrat text-lg md:text-[20px] leading-[1.7] text-gray-900 text-left mb-24">
+            <PortableText value={nota.cuerpo} components={components} />
           </div>
         </motion.div>
       </main>
