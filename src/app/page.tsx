@@ -575,7 +575,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
             
             {/* CARD 1: Feminismo y Política */}
-            <div className="bg-bordo rounded-[30px] md:rounded-[40px] p-6 md:p-8 h-[200px] md:h-[280px] relative overflow-hidden group cursor-pointer shadow-[0_15px_30px_rgba(165,37,2,0.2)] transition-all duration-500 hover:-translate-y-2 flex items-center justify-center text-center border-2 border-transparent hover:border-white/20">
+            <div className="bg-lila rounded-[30px] md:rounded-[40px] p-6 md:p-8 h-[200px] md:h-[280px] relative overflow-hidden group cursor-pointer shadow-[0_15px_30px_rgba(165,37,2,0.2)] transition-all duration-500 hover:-translate-y-2 flex items-center justify-center text-center border-2 border-transparent hover:border-white/20">
               {/* LINK ABSOLUTO: Sin contenido interno para no anidar <a> */}
               <Link href={`/${getSlug('Feminismo y Politica')}`} className="absolute inset-0 z-30" aria-label="Feminismo y Política" />
               
@@ -588,14 +588,14 @@ export default function Home() {
             </div>
 
             {/* CARD 2: Arte y Cultura */}
-            <div className="bg-white rounded-[30px] md:rounded-[40px] border-[2px] md:border-[3px] border-negro p-2 h-[200px] md:h-[280px] relative overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 shadow-[6px_6px_0px_rgba(0,0,0,0.05)] md:shadow-[10px_10px_0px_rgba(0,0,0,0.05)]">
+            <div className="bg-white rounded-[30px] md:rounded-[40px] border-[2px] md:border-[3px] border-verde p-2 h-[200px] md:h-[280px] relative overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 shadow-[6px_6px_0px_rgba(0,0,0,0.05)] md:shadow-[10px_10px_0px_rgba(0,0,0,0.05)]">
               <Link href={`/${getSlug('Arte y Cultura')}`} className="absolute inset-0 z-30" aria-label="Arte y Cultura" />
               
               <div className="w-full h-full rounded-[22px] md:rounded-[30px] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-1000">
                 <img src="/stikers/fondo.jpg" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Cultura" />
                 
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-white border-[2px] md:border-[3px] border-negro px-4 py-1.5 md:px-6 md:py-2 -rotate-6 shadow-[5px_5px_0px_#000] md:shadow-[8px_8px_0px_#000] group-hover:rotate-0 transition-transform duration-500">
+                  <div className="bg-white border-[2px] md:border-[3px] border-verde px-4 py-1.5 md:px-6 md:py-2 -rotate-6 shadow-[5px_5px_0px_#154B52] md:shadow-[8px_8px_0px_#154B52] group-hover:rotate-0 transition-transform duration-500">
                     <span className="text-negro font-mono font-black text-lg md:text-2xl uppercase tracking-tighter">Arte y Cultura</span>
                   </div>
                 </div>
@@ -603,14 +603,14 @@ export default function Home() {
             </div>
 
             {/* CARD 3: Comunidad */}
-            <div className="bg-negro rounded-[30px] md:rounded-[40px] p-6 md:p-8 h-[200px] md:h-[280px] group cursor-pointer relative overflow-hidden transition-all duration-500 hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] flex items-center justify-center text-center border-2 border-white/5 hover:border-naranja/30">
+            <div className="bg-naranja rounded-[30px] md:rounded-[40px] p-6 md:p-8 h-[200px] md:h-[280px] group cursor-pointer relative overflow-hidden transition-all duration-500 hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] flex items-center justify-center text-center border-2 border-white/5 hover:border-naranja/30">
               <Link href="/comunidad" className="absolute inset-0 z-30" aria-label="Comunidad" />
               
               <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-naranja/10 rounded-full blur-3xl group-hover:bg-naranja/20 transition-colors" />
               
-              <h4 className="text-3xl md:text-5xl font-sansita text-naranja leading-[0.85] tracking-tighter relative z-10">
+              <h4 className="text-3xl md:text-5xl font-sansita text-negro leading-[0.85] tracking-tighter relative z-10">
                 Súmate a la <br/> 
-                <span className="text-white group-hover:text-naranja transition-colors duration-500">comunidad</span>
+                <span className="text-white group-hover:text-negro transition-colors duration-500">comunidad</span>
               </h4>
             </div>
           </div>
