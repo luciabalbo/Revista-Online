@@ -29,6 +29,22 @@ export const metadata: Metadata = {
     shortcut: "/logo_redondo.png",
     apple: "/logo_redondo.png", // Opcional, para cuando guardan la web en el iPhone
   },
+  // AGREGÁ ESTO:
+  openGraph: {
+    title: "Alerta Flequillo | Revista Online",
+    description: "Feminismo, Cultura y Política.",
+    url: "https://www.alertaflequillo.com.ar",
+    siteName: "Alerta Flequillo",
+    images: [
+      {
+        url: "/logo_redondo.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "es_AR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
