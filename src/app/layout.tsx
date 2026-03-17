@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   description: "Feminismo, Cultura y Política.",
   icons: {
     icon: "/logo_redondo.png",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png", // Opcional, para cuando guardan la web en el iPhone
+    shortcut: "/logo_redondo.png",
+    apple: "/logo_redondo.png", // Opcional, para cuando guardan la web en el iPhone
   },
 };
 
