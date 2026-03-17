@@ -22,14 +22,14 @@ const specialElite = Special_Elite({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.alertaflequillo.com.ar'),
   title: "Alerta Flequillo | Revista Online",
   description: "Feminismo, Cultura y Política.",
   icons: {
     icon: "/logo_redondo.png",
     shortcut: "/logo_redondo.png",
-    apple: "/logo_redondo.png", // Opcional, para cuando guardan la web en el iPhone
+    apple: "/logo_redondo.png", 
   },
-  // AGREGÁ ESTO:
   openGraph: {
     title: "Alerta Flequillo | Revista Online",
     description: "Feminismo, Cultura y Política.",
