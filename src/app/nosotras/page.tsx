@@ -187,7 +187,7 @@ export default function NosotrasPage() {
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#1C8394] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
               <img 
-                src="/nosotras.PNG"
+                src="/"
                 alt="Valentina Terrango"
                 className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
               />
@@ -203,13 +203,14 @@ export default function NosotrasPage() {
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#FB9160] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
               <img 
-                src="/integrantes/foto2.jpg"
+                src="/"
+                alt="Celeste Feraud"
                 className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
             <div className="flex flex-col">
               <span className="text-[#FB9160] font-mono text-[10px] uppercase tracking-widest font-black mb-1">Redacción</span>
-              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Celeste Feraud</h3>
+              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Celeste <br></br>Feraud</h3>
             </div>
           </div>
 
@@ -218,14 +219,14 @@ export default function NosotrasPage() {
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#FB9160] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
               <img 
-                src="/integrantes/foto1.jpg"
-                alt="Clara Mandaradoni Alvares"
+                src="/"
+                alt="Clara Mandaradoni Alvarez"
                 className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
             <div className="flex flex-col">
               <span className="text-[#FB9160] font-mono text-[10px] uppercase tracking-widest font-black mb-1">Redacción</span>
-              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Clara Mandaradoni Alvares</h3>
+              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Clara Mandaradoni Alvarez</h3>
             </div>
           </div>
 
@@ -234,14 +235,14 @@ export default function NosotrasPage() {
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#1C8394] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
               <img 
-                src="/nosotras.PNG"
+                src="/"
                 alt="Ona Greco"
                 className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
             <div className="flex flex-col">
               <span className="text-[#1C8394] font-mono text-[10px] uppercase tracking-widest font-black mb-1">Fotografía</span>
-              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Ona Greco</h3>
+              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Ona <br></br>Greco</h3>
             </div>
           </div>
 
@@ -250,14 +251,14 @@ export default function NosotrasPage() {
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#FB9160] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
               <img 
-                src="/nosotras.PNG"
+                src="/"
                 alt="Lucia Balbo"
                 className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
             <div className="flex flex-col">
               <span className="text-[#FB9160] font-mono text-[10px] uppercase tracking-widest font-black mb-1">Programadora</span>
-              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Lucia Balbo</h3>
+              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Lucia <br></br>Balbo</h3>
             </div>
           </div>
 

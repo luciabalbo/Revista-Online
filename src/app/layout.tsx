@@ -23,7 +23,12 @@ const specialElite = Special_Elite({
 
 export const metadata: Metadata = {
   title: "Alerta Flequillo | Revista Online",
-  description: "Cultura, política y pensamiento.",
+  description: "Feminismo, Cultura y Política.",
+  icons: {
+    icon: "/logo_redondo.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png", // Opcional, para cuando guardan la web en el iPhone
+  },
 };
 
 export default function RootLayout({

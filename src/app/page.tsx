@@ -331,11 +331,15 @@ export default function Home() {
                     </p>
 
                     {/* SECCIÓN AUTOR */}
-                    <div className="mt-6 flex items-center gap-3 font-mono text-[10px] md:text-[12px] uppercase tracking-[0.5em]">
-                      <span className="text-white/40">POR</span>
-                      <span className="text-white font-black">
-                        {nota.autor || "VALENTINA TERRAGNO"}
-                      </span>
+                    <div className="mt-5 flex flex-col items-center justify-center w-full px-4 overflow-hidden">
+                      <div className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-3 text-center">
+                        <span className="text-white/40 font-mono text-[10px] uppercase tracking-[0.2em]">
+                          POR
+                        </span>
+                        <span className="text-white font-black font-mono text-[10px] md:text-[12px] uppercase tracking-normal md:tracking-[0.5em] leading-tight break-words max-w-[85vw]">
+                          {nota.autor || "-"}
+                        </span>
+                      </div>
                     </div>
 
                     {/* Botón */}
@@ -591,8 +595,8 @@ export default function Home() {
             <div className="bg-white rounded-[30px] md:rounded-[40px] border-[2px] md:border-[3px] border-verde p-2 h-[200px] md:h-[280px] relative overflow-hidden group cursor-pointer transition-all duration-500 hover:-translate-y-2 shadow-[6px_6px_0px_rgba(0,0,0,0.05)] md:shadow-[10px_10px_0px_rgba(0,0,0,0.05)]">
               <Link href={`/${getSlug('Arte y Cultura')}`} className="absolute inset-0 z-30" aria-label="Arte y Cultura" />
               
-              <div className="w-full h-full rounded-[22px] md:rounded-[30px] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-1000">
-                <img src="/stikers/fondo.jpg" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Cultura" />
+              <div className="w-full h-full rounded-[22px] md:rounded-[30px] overflow-hidden relative group-hover:grayscale-0 transition-all duration-1000">
+                <img src="/arteycultura.jpg" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" alt="Cultura" />
                 
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-white border-[2px] md:border-[3px] border-verde px-4 py-1.5 md:px-6 md:py-2 -rotate-6 shadow-[5px_5px_0px_#154B52] md:shadow-[8px_8px_0px_#154B52] group-hover:rotate-0 transition-transform duration-500">
