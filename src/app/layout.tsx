@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Alerta Flequillo",
     images: [
       {
-        url: "/logo_redondo.png",
+        url: "/logo.png",
         width: 1200,
         height: 630,
       },
