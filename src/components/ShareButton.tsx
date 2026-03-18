@@ -1,41 +1,39 @@
 "use client";
 
-export default function ShareButton({ titulo }: { titulo: string }) {
-  const handleShare = async () => {
-  const url = window.location.href;
+import { useEffect, useState } from "react";
 
-  try {
-    // 1. Intentamos el método moderno (Mobile)
+export default function ShareButton({ titulo, bajada }: { titulo: string, bajada: string }) {
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    setUrl(window.location.href);
+  }, []);
+
+  const handleShare = async () => {
+    // Si el navegador soporta compartir (Cualquier celu moderno)
     if (navigator.share) {
-      await navigator.share({
-        title: `Alerta Flequillo - ${titulo}`,
-        url: url
-      });
-    } else {
-      // 2. Método "a prueba de balas" para copiar en PC
-      const textArea = document.createElement("textarea");
-      textArea.value = url;
-      document.body.appendChild(textArea);
-      textArea.select();
       try {
-        document.execCommand('copy'); // Este no falla en localhost
-        alert("¡Link copiado al portapapeles! 🖇️");
+        await navigator.share({
+          title: `Alerta Flequillo: ${titulo}`,
+          text: bajada, // Esto es lo que aparece como mensaje
+          url: url,     // Al enviar la URL, la app (WPP/IG) busca la miniatura
+        });
       } catch (err) {
-        console.error('No se pudo copiar', err);
+        console.log("Se canceló el compartido");
       }
-      document.body.removeChild(textArea);
+    } else {
+      // Si estás en PC (donde no hay menú de apps), copiamos el link
+      await navigator.clipboard.writeText(url);
+      alert("¡Link copiado! (En PC no hay menú de apps, usá Ctrl+V)");
     }
-  } catch (err) {
-    console.log("Error:", err);
-  }
-};
+  };
 
   return (
     <button 
       onClick={handleShare}
-      className="bg-[#1C8394] text-white px-8 py-3 font-black uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all"
+      className="bg-[#1C8394] text-white px-8 py-3 font-black uppercase text-[10px] tracking-widest hover:bg-black transition-all shadow-[5px_5px_0px_#000] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
     >
-      Compartir registro
+      Compartir nota
     </button>
   );
 }

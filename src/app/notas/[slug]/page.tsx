@@ -3,7 +3,34 @@ import Link from 'next/link';
 import * as motion from 'framer-motion/client'; 
 import { client } from '@/sanity/lib/client'; 
 import { PortableText } from '@portabletext/react';
-import NavbarNota from '@/components/NavbarNota'; 
+import NavbarNota from '@/components/NavbarNota';
+import ShareButton from '@/components/ShareButton';
+
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: any }): Promise<Metadata> {
+  const { slug } = await params;
+  const nota = await client.fetch(`*[_type == "post" && slug.current == $slug][0]{
+    titulo,
+    bajada,
+    "imagen": imagen.asset->url
+  }`, { slug });
+
+  if (!nota) return {};
+
+  return {
+    title: nota.titulo,
+    description: nota.bajada,
+    openGraph: {
+      title: nota.titulo,
+      description: nota.bajada,
+      url: `https://www.alertaflequillo.com.ar/notas/${slug}`,
+      siteName: 'Alerta Flequillo',
+      images: [{ url: nota.imagen }], // ESTO ES LA MINIATURA
+      type: 'article',
+    },
+  };
+}
 
 export default async function NotaPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -112,6 +139,11 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
           {/* Limpiamos las clases de first-letter de este div */}
           <div className="font-montserrat text-lg md:text-[20px] leading-[1.7] text-gray-900 text-left mb-24">
             <PortableText value={nota.cuerpo} components={components} />
+          </div>
+
+          {/* 2. AGREGALO ACÁ AL FINAL DE LA NOTA */}
+          <div className="flex justify-start pb-20">
+             <ShareButton titulo={nota.titulo} bajada={nota.bajada} />
           </div>
         </motion.div>
       </main>
