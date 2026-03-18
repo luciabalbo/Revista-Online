@@ -409,7 +409,7 @@ export default function Home() {
               {/* Contenedor de párrafo y botón */}
               <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
                 <p className="font-montserrat font-medium text-negro/60 text-xs md:text-base max-w-sm md:max-w-md leading-relaxed">
-                  Sumate a alerta y con un año de suscripción te regalamos un libro para leer juntas en el verano.
+                  Sumate y con un año de suscripción te regalamos un libro para leer juntas en el verano.
                 </p>
 
                 {/* BOTÓN */}
