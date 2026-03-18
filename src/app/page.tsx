@@ -575,7 +575,7 @@ export default function Home() {
             </h3>
           </div>
 
-{/* Grid: Gap más chico en mobile */}
+          {/* Grid: Gap más chico en mobile */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
             
             {/* CARD 1: Feminismo y Política */}
@@ -640,7 +640,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row shadow-[8px_8px_0px_#000] md:shadow-[12px_12px_0px_#000] border-2 border-black transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1">
               <input 
                 type="text" 
-                placeholder="Escribí aquí..." 
+                placeholder="Escribí aca..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && ejecutarBusqueda(searchTerm)}
@@ -698,10 +698,10 @@ export default function Home() {
               <span className="hidden md:block w-8 h-[2px] bg-bordo"></span> SECCIONES <span className="md:hidden w-8 h-[2px] bg-bordo"></span>
             </span>
             <div className="flex flex-col gap-3 md:gap-4 font-sansita text-[15px] md:text-2xl">
-              <a href="/feminismo-y-politica" className="hover:text-celeste transition-colors hover:scale-105 duration-300">Feminismo y política</a>
-              <a href="/arte-y-cultura" className="hover:text-naranja transition-colors hover:scale-105 duration-300">Arte y cultura</a>
-              <a href="/streaming" className="hover:text-lila transition-colors hover:scale-105 duration-300">Streaming</a>
-              <a href="/nosotras" className="hover:text-verde transition-colors hover:scale-105 duration-300">Nosotras</a>
+              <a href="/feminismo-y-politica" className="hover:text-lila transition-colors hover:scale-105 duration-300">Feminismo y política</a>
+              <a href="/arte-y-cultura" className="hover:text-verde transition-colors hover:scale-105 duration-300">Arte y cultura</a>
+              <a href="/streaming" className="hover:text-bordo transition-colors hover:scale-105 duration-300">Streaming</a>
+              <a href="/nosotras" className="hover:text-celeste transition-colors hover:scale-105 duration-300">Nosotras</a>
             </div>
           </div>
 
@@ -711,7 +711,7 @@ export default function Home() {
               <span className="hidden md:block w-8 h-[2px] bg-celeste"></span> CONTACTO <span className="md:hidden w-8 h-[2px] bg-celeste"></span>
             </span>
             
-            <a href="mailto:alertaflequillo@gmail.com" className="font-sansita text-[15px] md:text-2xl hover:text-bordo transition-colors break-all underline underline-offset-4 decoration-white/20">
+            <a href="mailto:alertaflequillo@gmail.com" className="font-sansita text-[15px] md:text-2xl hover:text-naranja transition-colors break-all underline underline-offset-4 decoration-white/20">
               alertaflequillo@gmail.com
             </a>
 

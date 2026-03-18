@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   title: "Alerta Flequillo | Revista Online",
   description: "Feminismo, Cultura y Política.",
   icons: {
-    icon: "/logo_redondo.png",
-    shortcut: "/logo_redondo.png",
-    apple: "/logo_redondo.png", 
+    icon: "/logo_pestania.png",
+    shortcut: "/logo_pestania.png",
+    apple: "/logo_pestania.png", 
   },
   openGraph: {
     title: "Alerta Flequillo | Revista Online",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: "Alerta Flequillo",
     images: [
       {
-        url: "/logo.png",
+        url: "/logo_pestania.png",
         width: 1200,
         height: 630,
       },

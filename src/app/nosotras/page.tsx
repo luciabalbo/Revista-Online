@@ -187,8 +187,8 @@ export default function NosotrasPage() {
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#1C8394] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
               <img 
-                src="/"
-                alt="Valentina Terrango"
+                src="/nosotras/vale.PNG"
+                alt="Valentina Terragno"
                 className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
@@ -203,7 +203,7 @@ export default function NosotrasPage() {
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#FB9160] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
               <img 
-                src="/"
+                src="/nosotras/cele.jpeg"
                 alt="Celeste Feraud"
                 className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
               />
@@ -214,44 +214,61 @@ export default function NosotrasPage() {
             </div>
           </div>
 
-          {/* 3. Clara */}
+          {/* 3. Ona */}
           <div className="flex items-center gap-6 group">
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#FB9160] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
               <img 
-                src="/"
-                alt="Clara Mandaradoni Alvarez"
-                className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[#FB9160] font-mono text-[10px] uppercase tracking-widest font-black mb-1">Redacción</span>
-              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Clara Mandaradoni Alvarez</h3>
-            </div>
-          </div>
-
-          {/* 4. Ona */}
-          <div className="flex items-center gap-6 group">
-            <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
-              <div className="absolute inset-0 bg-[#1C8394] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
-              <img 
-                src="/"
+                src="/nosotras/ona.jpeg"
                 alt="Ona Greco"
                 className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-[#1C8394] font-mono text-[10px] uppercase tracking-widest font-black mb-1">Fotografía</span>
+              <span className="text-[#FB9160] font-mono text-[10px] uppercase tracking-widest font-black mb-1">Fotografía</span>
               <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Ona <br></br>Greco</h3>
             </div>
           </div>
 
-          {/* 5. Lucia (Podés centrar esta sola si querés, pero así queda en la 3ra fila) */}
+          {/* 4. Clara */}
+          <div className="flex items-center gap-6 group">
+            <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+              <div className="absolute inset-0 bg-[#1C8394] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
+              <img 
+                src="/nosotras/clara.jpg"
+                alt="Clara Mandaradoni Alvarez"
+                className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[#1C8394] font-mono text-[10px] uppercase tracking-widest font-black mb-1">Redacción</span>
+              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Clara Mandaradoni Alvarez</h3>
+            </div>
+          </div>
+
+
+          {/* 5. Milagros*/}
+          <div className="flex items-center gap-6 group">
+            <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+              <div className="absolute inset-0 bg-[#1C8394] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
+              <img 
+                src="/nosotras/mila.jpeg"
+                alt="Milagros de Puerta Gallardo"
+                className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[#1C8394] font-mono text-[10px] uppercase tracking-widest font-black mb-1">Redacción</span>
+              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Milagros de Puerta Gallardo</h3>
+            </div>
+          </div>
+
+          {/* 6. Lucia*/}
           <div className="flex items-center gap-6 group">
             <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
               <div className="absolute inset-0 bg-[#FB9160] rounded-full translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
               <img 
-                src="/"
+                src="/nosotras/lula.jpg"
                 alt="Lucia Balbo"
                 className="relative w-full h-full object-cover rounded-full border-2 border-black grayscale hover:grayscale-0 transition-all duration-500"
               />

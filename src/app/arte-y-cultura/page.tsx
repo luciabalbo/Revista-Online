@@ -195,13 +195,13 @@ export default function FeminismoYPolitica() {
                 <div className="max-w-[90vw] md:max-w-5xl flex flex-col items-center">
                   
                   {/* VOLANTA / CATEGORÍA */}
-                  <span className="mb-4 inline-block bg-[#4F136C] text-white font-montserrat text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black px-4 py-1.5 shadow-lg">
+                  <span className="mb-4 inline-block bg-[#154B52] text-white font-montserrat text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black px-4 py-1.5 shadow-lg">
                     Destacado de hoy
                   </span>
 
                   {/* Título: Ajustado a 4xl en mobile para evitar desbordes laterales */}
                   <Link href={`/notas/${nota.slug}`}>
-                    <h2 className="font-sansita font-bold text-4xl md:text-7xl text-white leading-[0.95] tracking-tighter italic hover:text-[#4F136C] transition-all duration-500 drop-shadow-2xl">
+                    <h2 className="font-sansita font-bold text-4xl md:text-7xl text-white leading-[0.95] tracking-tighter italic hover:text-[#154B52] transition-all duration-500 drop-shadow-2xl">
                       {nota.titulo}
                     </h2>
                   </Link>
@@ -216,7 +216,7 @@ export default function FeminismoYPolitica() {
                     href={`/notas/${nota.slug}`} 
                     className="mt-8 md:mt-10 group/btn flex items-center gap-3 text-white uppercase text-[9px] md:text-[10px] tracking-[0.3em] font-black transition-all"
                   >
-                    <span className="border-b-2 border-[#4F136C] pb-1 group-hover/btn:text-[#4F136C] transition-colors">
+                    <span className="border-b-2 border-[#154B52] pb-1 group-hover/btn:text-[#154B52] transition-colors">
                       Leer Nota
                     </span>
                     <span className="text-lg group-hover/btn:translate-x-2 transition-transform">→</span>
