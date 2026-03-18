@@ -194,7 +194,7 @@ export default function NosotrasPage() {
             </div>
             <div className="flex flex-col">
               <span className="text-[#1C8394] font-mono text-[10px] uppercase tracking-widest font-black mb-1">Redacción</span>
-              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Valentina Terrango</h3>
+              <h3 className="font-sansita text-2xl md:text-3xl font-bold leading-tight">Valentina Terragno</h3>
             </div>
           </div>
 

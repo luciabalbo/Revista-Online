@@ -98,14 +98,13 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
       </header>
 
       {/* IMAGEN PRINCIPAL */}
-      <section className="relative w-full h-[60vh] md:h-[90vh] overflow-hidden">
-        <motion.div 
-          initial={{ scale: 1.1 }}
-          whileInView={{ scale: 1 }}
-          transition={{ duration: 2 }}
-          className="absolute inset-0 bg-fixed bg-center bg-cover"
+      <section className="relative w-full h-[60vh] md:h-[120vh] overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat"
           style={{ backgroundImage: `url(${nota.imagen})` }}
         />
+        {/* Overlay opcional por si querés que el texto que pase por encima se lea mejor */}
+        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
       </section>
 
       {/* CUERPO */}
