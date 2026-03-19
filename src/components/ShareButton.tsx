@@ -5,12 +5,12 @@ export default function ShareButton({
   titulo, 
   bajada, 
   texto = "Compartir nota",
-  color = "#1C8394" // Celeste por defecto
+  color = "#1C8394" 
 }: { 
   titulo: string, 
   bajada?: string, 
   texto?: string,
-  color?: string // Agregamos esta prop
+  color?: string 
 }) { 
   const [url, setUrl] = useState("");
   const [copiado, setCopiado] = useState(false);
@@ -24,7 +24,7 @@ export default function ShareButton({
       try {
         await navigator.share({
           title: `Alerta Flequillo - ${titulo}`,
-          text: bajada || "Mirá este registro de Alerta Flequillo", // Si no hay bajada, usa este texto
+          text: bajada || "Mirá este registro de Alerta Flequillo", 
           url: url,
         });
       } catch (err) {

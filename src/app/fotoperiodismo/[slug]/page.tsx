@@ -13,19 +13,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const siteUrl = "https://www.alertaflequillo.com.ar";
   
-  // 1. Buscamos la imagen. WhatsApp a veces falla si la URL tiene demasiados parámetros de Sanity
-  // Intentamos que sea una URL limpia.
-  let fotoUrl = galeria.imagen || (galeria.fotos && galeria.fotos.length > 0 ? galeria.fotos[0] : null);
-  
-  // Si la URL existe, nos aseguramos de que sea absoluta
-  if (fotoUrl && !fotoUrl.startsWith('http')) {
-    fotoUrl = `${siteUrl}${fotoUrl}`;
-  }
+  // 1. Buscamos la imagen y nos aseguramos de que sea la URL de Sanity pura
+  const fotoUrl = galeria.imagen || (galeria.fotos && galeria.fotos.length > 0 ? galeria.fotos[0] : null);
 
   return {
-    title: `Alerta Flequillo - ${galeria.titulo}`,
+    // 2. Título más limpio (WhatsApp odia los títulos eternos)
+    title: `${galeria.titulo} | Alerta Flequillo`,
     description: galeria.bajada || `Registro fotográfico por ${galeria.autor}.`,
-    metadataBase: new URL(siteUrl), // Esto ayuda a resolver URLs relativas
+    
+    // 3. SACAMOS EL METADATABASE (Esto es lo que estaba rompiendo WPP)
+    
     openGraph: {
       title: galeria.titulo,
       description: galeria.bajada || `Cobertura fotográfica de ${galeria.autor} para Alerta Flequillo.`,
@@ -33,20 +30,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: 'Alerta Flequillo',
       images: [
         {
-          url: fotoUrl || "/og-image.png",
+          url: fotoUrl, // Mandamos la URL directa de Sanity sin vueltas
           width: 1200,
           height: 630,
           alt: galeria.titulo,
         },
       ],
       locale: 'es_AR',
-      type: 'article', // WhatsApp prefiere 'article' o 'website'
+      type: 'article', 
     },
     twitter: {
       card: 'summary_large_image',
       title: galeria.titulo,
-      description: `Fotos por ${galeria.autor}`,
-      images: [fotoUrl || "/og-image.png"],
+      images: [fotoUrl],
     },
   };
 }
