@@ -100,7 +100,7 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           className="inline-block font-black text-[10px] md:text-xs uppercase tracking-[0.6em] mb-6"
-          style={{ color: colorNota }} // COLOR DINÁMICO
+          style={{ color: colorNota }} 
         >
           {nota.volanta || "CULTURA"}
         </motion.span>
@@ -141,9 +141,14 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
             <PortableText value={nota.cuerpo} components={components} />
           </div>
 
-          {/* 2. BOTON COMPARTIR NOTA */}
+          {/* Boton compartir */}
           <div className="flex justify-start pb-20">
-              <ShareButton titulo={nota.titulo} bajada={nota.bajada} />
+            <ShareButton 
+              titulo={nota.titulo} 
+              bajada={nota.bajada} 
+              texto="Compartir nota" 
+              color={colorNota} 
+            />
           </div>
         </motion.div>
       </main>

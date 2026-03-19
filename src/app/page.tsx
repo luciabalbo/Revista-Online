@@ -521,7 +521,7 @@ export default function Home() {
               src={notasBanner[0].imagen} 
               alt="Background Illustration"
               className="w-full h-full object-cover 
-                         grayscale brightness-[1.1] contrast-[1.4] opacity-30 
+                         grayscale brightness-[1.1] contrast-[2] opacity-70 
                          mix-blend-multiply transition-all duration-1000" 
             />
           ) : (
@@ -548,12 +548,12 @@ export default function Home() {
             <Link 
               href="/fotoperiodismo" 
               className="group relative inline-flex items-center gap-3 md:gap-4 bg-blanco text-negro 
-                        px-3 py-2 md:px-6 md:py-3 
+                        px-3 py-2 md:px-6 md:py-2 
                         font-black uppercase 
                         text-[7px] md:text-[10px] 
                         tracking-[0.2em] md:tracking-[0.4em] 
                         transition-all 
-                        shadow-[5px_5px_0px_#1C8394] md:shadow-[8px_8px_0px_#1C8394] 
+                        shadow-[4px_4px_0px_#1C8394] md:shadow-[8px_8px_0px_#1C8394] 
                         border-2 border-negro
                         hover:shadow-none hover:translate-x-[5px] md:hover:translate-x-[8px] hover:translate-y-[5px] md:hover:translate-y-[8px] shrink-0"
             >
@@ -623,7 +623,7 @@ export default function Home() {
 
       {/* --- SECCIÓN BUSCADOR  --- */}
       <section className="relative w-full py-20 md:py-32 bg-white overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-10 md:opacity-20 grayscale pointer-events-none">
+        <div className="absolute inset-0 z-0 opacity-40 md:opacity-40 grayscale pointer-events-none">
           <img src="/buscador.png" className="w-full h-full object-cover" alt="Fondo Buscador" />
         </div>
 

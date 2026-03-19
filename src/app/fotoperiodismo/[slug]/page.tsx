@@ -128,8 +128,14 @@ export default async function GaleriaDetalle({
           ¿Te interesó esta cobertura?
         </h2>
         <div className="flex flex-wrap justify-center gap-4">
-          {/* REEMPLAZAMOS EL BOTÓN VIEJO POR ESTE: */}
-          <ShareButton titulo={galeria.titulo} /> 
+          <div className="flex flex-wrap justify-center gap-4">
+            <ShareButton 
+              titulo={galeria.titulo} 
+              bajada={galeria.bajada} 
+              texto="Compartir registro" 
+              color="#1C8394" 
+            />
+          </div>
           
           <Link href="/fotoperiodismo" className="border border-white/20 px-8 py-3 font-black uppercase text-[10px] tracking-widest hover:bg-white/10 transition-all">
             Ver más galerías

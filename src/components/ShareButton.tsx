@@ -1,9 +1,19 @@
 "use client";
 import { useEffect, useState } from "react";
 
-// Ponemos el signo "?" después de bajada para que sea opcional
-export default function ShareButton({ titulo, bajada }: { titulo: string, bajada?: string }) { 
+export default function ShareButton({ 
+  titulo, 
+  bajada, 
+  texto = "Compartir nota",
+  color = "#1C8394" // Celeste por defecto
+}: { 
+  titulo: string, 
+  bajada?: string, 
+  texto?: string,
+  color?: string // Agregamos esta prop
+}) { 
   const [url, setUrl] = useState("");
+  const [copiado, setCopiado] = useState(false);
 
   useEffect(() => {
     setUrl(window.location.href);
@@ -29,9 +39,10 @@ export default function ShareButton({ titulo, bajada }: { titulo: string, bajada
   return (
     <button 
       onClick={handleShare}
-      className="bg-[#1C8394] text-white px-8 py-3 font-black uppercase text-[10px] tracking-widest hover:bg-black transition-all shadow-[5px_5px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+      style={{ backgroundColor: color }}
+      className="text-white px-8 py-3 font-black uppercase text-[10px] tracking-widest hover:bg-black transition-all shadow-[5px_5px_0px_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none min-w-[200px] cursor-pointer"
     >
-      Compartir nota
+      {copiado ? "¡LINK COPIADO! 🖇️" : texto}
     </button>
   );
 }
