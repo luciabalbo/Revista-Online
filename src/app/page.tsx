@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link"; 
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 // 1. IMPORTAMOS EL CLIENTE DE SANITY
-import { client } from '@/sanity/lib/client'; 
+import { client } from '@/sanity/lib/client';
 
 export default function Home() {
   const router = useRouter();
@@ -29,7 +29,7 @@ export default function Home() {
   // 3. EFECTO PARA TRAER LAS NOTAS DE SANITY AL CARGAR
   useEffect(() => {
     const fetchNotas = async () => {
-      const query = `*[_type == "post"] | order(fecha desc) {
+      const query = `*[_type == "post"] | order(_createdAt desc) {
         "id": _id,
         titulo,
         volanta,
@@ -39,9 +39,18 @@ export default function Home() {
         "slug": slug.current,
         "imagen": imagen.asset->url
       }`;
-      const data = await client.fetch(query);
-      setNotas(data);
-      setLoading(false);
+      
+      try {
+        // Agregamos { next: { revalidate: 0 } } para que pida data fresca siempre
+        const data = await client.fetch(query, {}, { 
+          next: { revalidate: 0 } 
+        });
+        setNotas(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error:", error);
+        setLoading(false);
+      }
     };
     fetchNotas();
   }, []);

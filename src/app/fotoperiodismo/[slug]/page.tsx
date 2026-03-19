@@ -13,14 +13,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const siteUrl = "https://www.alertaflequillo.com.ar";
   
-  // 1. Buscamos la mejor imagen para la miniatura
-  // Primero intentamos con 'imagen' (si tenés una de portada), 
-  // sino la primera del array de 'fotos'.
-  const fotoMiniatura = galeria.imagen || (galeria.fotos && galeria.fotos.length > 0 ? galeria.fotos[0] : null);
+  // 1. Buscamos la imagen. WhatsApp a veces falla si la URL tiene demasiados parámetros de Sanity
+  // Intentamos que sea una URL limpia.
+  let fotoUrl = galeria.imagen || (galeria.fotos && galeria.fotos.length > 0 ? galeria.fotos[0] : null);
+  
+  // Si la URL existe, nos aseguramos de que sea absoluta
+  if (fotoUrl && !fotoUrl.startsWith('http')) {
+    fotoUrl = `${siteUrl}${fotoUrl}`;
+  }
 
   return {
     title: `Alerta Flequillo - ${galeria.titulo}`,
     description: galeria.bajada || `Registro fotográfico por ${galeria.autor}.`,
+    metadataBase: new URL(siteUrl), // Esto ayuda a resolver URLs relativas
     openGraph: {
       title: galeria.titulo,
       description: galeria.bajada || `Cobertura fotográfica de ${galeria.autor} para Alerta Flequillo.`,
@@ -28,19 +33,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: 'Alerta Flequillo',
       images: [
         {
-          url: fotoMiniatura || "/og-image.png", // Si no hay nada, usa una por defecto
+          url: fotoUrl || "/og-image.png",
           width: 1200,
           height: 630,
+          alt: galeria.titulo,
         },
       ],
       locale: 'es_AR',
-      type: 'article',
+      type: 'article', // WhatsApp prefiere 'article' o 'website'
     },
     twitter: {
       card: 'summary_large_image',
       title: galeria.titulo,
       description: `Fotos por ${galeria.autor}`,
-      images: [fotoMiniatura || "/og-image.png"],
+      images: [fotoUrl || "/og-image.png"],
     },
   };
 }
