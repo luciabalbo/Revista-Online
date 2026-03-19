@@ -48,10 +48,10 @@ export default async function Fotoperiodismo() {
                 alt={item.titulo}
               />
               
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent md:bg-[#00AEEF]/10 md:group-hover:bg-transparent transition-all duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent md:bg-[#1C8394]/10 md:group-hover:bg-transparent transition-all duration-500" />
 
               <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end text-white">
-                <span className="font-mono text-[9px] text-[#00AEEF] font-black uppercase tracking-widest mb-2 transition-opacity md:opacity-0 md:group-hover:opacity-100">
+                <span className="font-mono text-[9px] text-[#1C8394] font-black uppercase tracking-widest mb-2 transition-opacity md:opacity-0 md:group-hover:opacity-100">
                    {item.fecha} — {item.autor}
                 </span>
                 <h3 className="font-sansita text-2xl md:text-3xl leading-tight md:leading-none">
@@ -59,7 +59,7 @@ export default async function Fotoperiodismo() {
                 </h3>
                 
                 <div className="mt-4 overflow-hidden transition-all duration-300 md:h-0 md:group-hover:h-8">
-                  <Link href={`/fotoperiodismo/${item.slug}`} className="text-[10px] font-black uppercase tracking-widest border-b border-[#00AEEF] md:border-white">
+                  <Link href={`/fotoperiodismo/${item.slug}`} className="text-[10px] font-black uppercase tracking-widest border-b border-[#1C8394] md:border-celeste">
                     Ver Galería →
                   </Link>
                 </div>
@@ -73,7 +73,7 @@ export default async function Fotoperiodismo() {
       <footer className="bg-negro text-white py-32 px-6 text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="font-sansita text-3xl md:text-5xl mb-10">¿Tenés fotos de alguna lucha?</h2>
-          <a href="mailto:alertaflequillo@gmail.com" className="inline-block bg-white text-negro px-10 py-4 font-black uppercase tracking-widest shadow-[6px_6px_0px_#00AEEF] hover:shadow-none transition-all">
+          <a href="mailto:alertaflequillo@gmail.com" className="inline-block bg-white text-negro px-8 py-4 font-black uppercase tracking-widest shadow-[4px_4px_0px_#1C8394] hover:shadow-none transition-all">
             Mandar Material
           </a>
         </div>

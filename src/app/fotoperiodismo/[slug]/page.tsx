@@ -11,17 +11,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!galeria) return { title: "Alerta Flequillo" };
 
+  const siteUrl = "https://www.alertaflequillo.com.ar";
+  
+  // 1. Buscamos la mejor imagen para la miniatura
+  // Primero intentamos con 'imagen' (si tenés una de portada), 
+  // sino la primera del array de 'fotos'.
+  const fotoMiniatura = galeria.imagen || (galeria.fotos && galeria.fotos.length > 0 ? galeria.fotos[0] : null);
+
   return {
     title: `Alerta Flequillo - ${galeria.titulo}`,
-    description: `Registro fotográfico por ${galeria.autor}.`,
+    description: galeria.bajada || `Registro fotográfico por ${galeria.autor}.`,
     openGraph: {
       title: galeria.titulo,
-      description: `Cobertura fotográfica de ${galeria.autor} para Alerta Flequillo.`,
-      url: `https://revista-online.vercel.app/fotoperiodismo/${slug}`,
+      description: galeria.bajada || `Cobertura fotográfica de ${galeria.autor} para Alerta Flequillo.`,
+      url: `${siteUrl}/fotoperiodismo/${slug}`,
       siteName: 'Alerta Flequillo',
       images: [
         {
-          url: galeria.imagen || galeria.fotos?.[0], // Usa la miniatura o la primera foto
+          url: fotoMiniatura || "/og-image.png", // Si no hay nada, usa una por defecto
           width: 1200,
           height: 630,
         },
@@ -33,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: 'summary_large_image',
       title: galeria.titulo,
       description: `Fotos por ${galeria.autor}`,
-      images: [galeria.imagen || galeria.fotos?.[0]],
+      images: [fotoMiniatura || "/og-image.png"],
     },
   };
 }
