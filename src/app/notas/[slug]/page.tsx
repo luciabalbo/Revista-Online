@@ -141,9 +141,9 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
             <PortableText value={nota.cuerpo} components={components} />
           </div>
 
-          {/* 2. AGREGALO ACÁ AL FINAL DE LA NOTA */}
+          {/* 2. BOTON COMPARTIR NOTA */}
           <div className="flex justify-start pb-20">
-             <ShareButton titulo={nota.titulo} bajada={nota.bajada} />
+              <ShareButton titulo={nota.titulo} bajada={nota.bajada} />
           </div>
         </motion.div>
       </main>
