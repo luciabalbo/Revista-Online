@@ -13,16 +13,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const siteUrl = "https://www.alertaflequillo.com.ar";
   
-  // 1. Buscamos la imagen y nos aseguramos de que sea la URL de Sanity pura
-  const fotoUrl = galeria.imagen || (galeria.fotos && galeria.fotos.length > 0 ? galeria.fotos[0] : null);
+  // 1. Buscamos la imagen. WhatsApp a veces falla si la URL tiene demasiados parámetros de Sanity
+  // Intentamos que sea una URL limpia.
+  let fotoUrl = galeria.imagen || (galeria.fotos && galeria.fotos.length > 0 ? galeria.fotos[0] : null);
+  
+  // Si la URL existe, nos aseguramos de que sea absoluta
+  if (fotoUrl && !fotoUrl.startsWith('http')) {
+    fotoUrl = `${siteUrl}${fotoUrl}`;
+  }
 
   return {
-    // 2. Título más limpio (WhatsApp odia los títulos eternos)
-    title: `${galeria.titulo} | Alerta Flequillo`,
+    title: `Alerta Flequillo - ${galeria.titulo}`,
     description: galeria.bajada || `Registro fotográfico por ${galeria.autor}.`,
-    
-    // 3. SACAMOS EL METADATABASE (Esto es lo que estaba rompiendo WPP)
-    
+    metadataBase: new URL(siteUrl), 
     openGraph: {
       title: galeria.titulo,
       description: galeria.bajada || `Cobertura fotográfica de ${galeria.autor} para Alerta Flequillo.`,
@@ -30,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: 'Alerta Flequillo',
       images: [
         {
-          url: fotoUrl, // Mandamos la URL directa de Sanity sin vueltas
+          url: fotoUrl || "/og-image.png",
           width: 1200,
           height: 630,
           alt: galeria.titulo,
@@ -42,7 +45,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     twitter: {
       card: 'summary_large_image',
       title: galeria.titulo,
-      images: [fotoUrl],
+      description: `Fotos por ${galeria.autor}`,
+      images: [fotoUrl || "/og-image.png"],
     },
   };
 }
