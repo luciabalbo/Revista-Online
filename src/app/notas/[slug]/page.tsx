@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: any }): Promise<Met
       description: nota.bajada,
       url: `https://www.alertaflequillo.com.ar/notas/${slug}`,
       siteName: 'Alerta Flequillo',
-      images: [{ url: nota.imagen }], // ESTO ES LA MINIATURA
+      images: [{ url: nota.imagen }],
       type: 'article',
     },
   };

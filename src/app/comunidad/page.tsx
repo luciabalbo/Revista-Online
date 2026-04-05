@@ -14,22 +14,29 @@ export default function ComunidadPage() {
         nombre: "Cortate el flequillo", 
         precio: "$3.000", 
         desc: "Aporte mensual básico para sostener la red.",
-        link: "https://mpago.la/2Jusorn",
+        link: "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=29fc164a5bd546278bc762abebbbb823",
         estilo: "bg-white text-black shadow-[10px_10px_0px_#FB9160] border-2 border-black" 
     },
     { 
         nombre: "Lo personal es flequillo", 
         precio: "$6.000", 
         desc: "Aporte medio para impulsar nuevas notas.",
-        link: "https://mpago.la/111BpX1",
+        link: "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=f6a5373845554b2589595b84ee5720ce",
         estilo: "bg-[#FB9160] text-white shadow-[10px_10px_0px_#000] border-2 border-black" 
     },
     { 
-        nombre: "El flequillo ya no es un prejuicio, es una orden de restricción", 
+        nombre: "El flequillo ya no es prejuicio", 
         precio: "$10.000", 
         desc: "Aporte premium para bancar la autogestión total.",
-        link: "https://mpago.la/2gCxXY6",
-        estilo: "bg-black text-white shadow-[10px_10px_0px_#FB9160] border-2 border-white/20" 
+        link: "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=2d2bf4ad66eb46c4b6e2b63c1f36024e",
+        estilo: "bg-white text-black shadow-[10px_10px_0px_#FB9160] border-2 border-black" 
+    },
+    { 
+      nombre: "Si no podés suscribirte", 
+      precio: "", 
+      desc: "pero queres hacer un aporte único y ayudarnos, doná aca.",
+      link: "link.mercadopago.com.ar/alertaflequilloaport",
+      estilo: "bg-black text-white shadow-[10px_10px_0px_#FB9160] border-2 border-naranja" 
     }
   ];
 
@@ -169,7 +176,7 @@ export default function ComunidadPage() {
                     <p>
                         En un contexto de sobreinformación, donde las fake news y twitter parecen colonizar nuestras conexiones, seguimos apostando por la comunicación colectiva, por el periodismo crítico y feminista, en la militancia y la participación política.
                     </p>
-                    <p className="font-sansita text-3xl italic text-[#1C8394]">
+                    <p className="font-sansita text-3xl text-[#1C8394]">
                         Ayúdanos y se parte de nuestra comunidad. Sumate a Alerta Flequillo con una suscripción mensual.
                     </p>
                 </div>
@@ -181,36 +188,60 @@ export default function ComunidadPage() {
                 className="lg:col-span-5 bg-black text-white p-10 rotate-3 border-2 border-dashed border-[#FB9160] relative group"
             >
                 <span className="absolute -top-4 -right-4 bg-[#FB9160] text-black font-mono text-xs font-bold px-4 py-2 rounded-full group-hover:scale-110 transition-transform">¡REGALO!</span>
-                <h3 className="font-sansita text-3xl mb-6 italic lowercase">¿Sabías que...?</h3>
+                <h3 className="font-sansita text-3xl mb-6">¿Sabías que...?</h3>
                 <p className="font-montserrat text-lg leading-relaxed opacity-90">
                     con un año de suscripción te regalamos un libro para leer juntas en el verano. Mandanos un mail solicitándolo y coordinamos el envío.
                 </p>
             </motion.div>
         </section>
 
-        {/* GRILLA DE PLANES */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-40">
-            {planes.map((plan, i) => (
-                <motion.a 
-                    key={i}
-                    href={plan.link} // <--- ¡ESTO ES LO QUE FALTABA!
-                    target="_blank"  // <--- Para que se abra en otra pestaña
-                    rel="noopener noreferrer" // Por seguridad al abrir links externos
-                    whileHover={{ y: -10 }}
-                    className={`${plan.estilo} p-10 flex flex-col justify-between min-h-[400px] cursor-pointer group no-underline`}
-                >
-                    <div>
-                        <h3 className="font-sansita text-3xl leading-tight mb-4">{plan.nombre}</h3>
-                        <p className="font-montserrat text-sm opacity-80 mb-8">{plan.desc}</p>
-                    </div>
-                    <div className="mt-auto">
-                        <span className="font-sansita text-5xl block mb-6">{plan.precio}</span>
-                        <div className="w-full py-4 border-t border-current font-mono text-[10px] uppercase tracking-widest flex justify-between items-center group-hover:text-[#1C8394] transition-colors">
-                            Suscribirme <span>→</span>
+        {/* GRILLA DE PLANES (3 COLUMNAS ARRIBA + BANNER ABAJO) */}
+        <section className="mb-40 max-w-5xl mx-auto">
+            
+            {/* Las 3 suscripciones mensuales */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 justify-items-center">
+                {planes.slice(0, 3).map((plan, i) => (
+                    <motion.a 
+                        key={i}
+                        href={plan.link} 
+                        target="_blank"  
+                        rel="noopener noreferrer" 
+                        whileHover={{ y: -10 }}
+                        className={`${plan.estilo} p-10 flex flex-col justify-between min-h-[300px] w-full max-w-[300px] cursor-pointer group no-underline`}
+                    >
+                        <div>
+                            <h3 className="font-sansita text-3xl leading-tight mb-4">{plan.nombre}</h3>
+                            <p className="font-montserrat text-sm opacity-80 mb-4">{plan.desc}</p>
                         </div>
+                        <div className="">
+                            <span className="font-sansita text-5xl block mb-4">{plan.precio}</span>
+                            <div className="w-full py-4 border-t border-current font-mono text-[10px] uppercase tracking-widest flex justify-between items-center group-hover:text-[#1C8394] transition-colors">
+                                Suscribirme <span>→</span>
+                            </div>
+                        </div>
+                    </motion.a>
+                ))}
+            </div>
+
+            {/* BANNER APORTE UNICO */}
+            {planes[3] && (
+                <motion.a
+                    href={planes[3].link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -5 }}
+                    className={`${planes[3].estilo} p-8 md:p-10 flex flex-col md:flex-row justify-between items-center gap-6 cursor-pointer group no-underline`}
+                >
+                    <div className="text-center md:text-left">
+                        <h3 className="font-sansita text-3xl leading-tight mb-2">{planes[3].nombre}</h3>
+                        <p className="font-montserrat text-sm opacity-80 max-w-xl">{planes[3].desc}</p>
+                    </div>
+                    
+                    <div className="w-full md:w-auto py-4 px-8 border-2 border-black font-mono text-[11px] uppercase tracking-widest flex justify-center items-center gap-3 text-white hover:text-celeste transition-colors">
+                        Hacer aporte <span>→</span>
                     </div>
                 </motion.a>
-            ))}
+            )}
         </section>
 
         {/* SECCIÓN ESCRIBIR */}

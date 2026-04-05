@@ -250,7 +250,7 @@ export default function Home() {
             </button>
 
             <div className="flex flex-col items-center gap-6 px-10 text-center">
-              {['Arte y Cultura', 'Feminismo y Politica', 'Streaming', 'Nosotras', 'Contacto', 'fotoperiodismo'].map((item, idx) => (
+              {['Arte y Cultura', 'Feminismo y Politica', 'Streaming', 'Nosotras', 'fotoperiodismo'].map((item, idx) => (
                 <motion.div
                   key={item}
                   initial={{ opacity: 0, x: 20 }}
