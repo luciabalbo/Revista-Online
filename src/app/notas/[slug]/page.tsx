@@ -8,6 +8,8 @@ import ShareButton from '@/components/ShareButton';
 
 import type { Metadata } from 'next';
 
+export const revalidate = 0;
+
 export async function generateMetadata({ params }: { params: any }): Promise<Metadata> {
   const { slug } = await params;
   const nota = await client.fetch(`*[_type == "post" && slug.current == $slug][0]{
