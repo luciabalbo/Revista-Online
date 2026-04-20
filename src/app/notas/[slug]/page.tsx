@@ -68,11 +68,14 @@ export default async function NotaPage({ params }: { params: Promise<{ slug: str
 
   const components = {
     block: {
+      // Modificamos el estilo "normal" para que respete espacios y saltos de línea
       normal: ({ children }: any) => (
-        <p className="mb-8">
+        <p className="mb-8 whitespace-pre-wrap">
           {children}
         </p>
       ),
+      // Si usás otros estilos como h1, h2, etc., podés agregar whitespace-pre-wrap también
+      h2: ({ children }: any) => <h2 className="text-3xl font-sansita mb-6 whitespace-pre-wrap">{children}</h2>,
     },
   };
 
